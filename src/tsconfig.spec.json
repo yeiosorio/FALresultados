@@ -2,14 +2,23 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/spec",
+<<<<<<< HEAD
+=======
+    "baseUrl": "./",
+    "module": "commonjs",
+>>>>>>> 53efebf97dd15e690f62bca68cf64747cd9c7961
     "types": [
       "jasmine",
       "node"
     ]
   },
   "files": [
+<<<<<<< HEAD
     "test.ts",
     "polyfills.ts"
+=======
+    "test.ts"
+>>>>>>> 53efebf97dd15e690f62bca68cf64747cd9c7961
   ],
   "include": [
     "**/*.spec.ts",
