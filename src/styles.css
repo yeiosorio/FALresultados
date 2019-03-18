@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+}
+
+body::-webkit-scrollbar {
+    width: 1px
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: red;
+}
+
+nav {
+    background-color: #f1f3f2;
+}
+
+nav .nav-wrapper {
+    padding: 0px 5%;
+}
+
+nav .brand-logo {
+    color: #464847;
+}
+
+.nav-recuadro {
+    padding: 3px 16px;
+    border-radius: 2px;
+    color: white;
+}
+
+nav i,
+nav [class^="mdi-"],
+nav [class*="mdi-"],
+nav i.material-icons {
+    display: inline;
+    font-size: 22px;
+}
+
+#menu2 {
+    line-height: 31px;
+    height: 30px;
+}
+
+#menu2 .brand-logo {
+    font-size: 14px;
+}
+
+.content {
+    padding: 5px 33px;
+}
