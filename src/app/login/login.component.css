@@ -24,3 +24,27 @@ h5{
 li{
     width: 50%;
 }
+.contenedor{
+    height: auto !important;
+    width: 550PX;
+}
+.centrar{
+    display: block;
+    margin: auto;
+}
+.centrarTexto{
+    text-align: center;
+}
+.teal {
+    background-color: #156499 !important;
+}
+.tabs .indicator{
+    background-blend-mode: multiply;
+}
+.titulos{
+    padding:  15px 0px;
+}
+.titulos>h3, h5{
+    line-height: 16px;
+    color: #156499 !important;
+}
