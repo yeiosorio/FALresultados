@@ -10,6 +10,8 @@ import { ResultComponent } from './result/result.component';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MzNavbarModule } from 'ngx-materialize';
+
 import { AuthGuard } from './_guards';
 import {
 	MatPaginatorModule,
@@ -50,6 +52,7 @@ import {
 @NgModule({
 	declarations: [ AppComponent, LoginComponent, ResultComponent ],
 	imports: [
+		MzNavbarModule,
 		FormsModule,
 		ReactiveFormsModule,
 		BrowserModule,
