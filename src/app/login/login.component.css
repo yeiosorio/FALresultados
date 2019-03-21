@@ -162,12 +162,12 @@ li{
     align-items: center;
 }
 
-
-
-
-
-
-
+/*JEAN*/
+.tabs>.indicator {
+height:100%;
+background-color:rgba(61, 176, 248, 1);
+mix-blend-mode: lighten;
+}
 
 
 /* MEDIAQUERIES - Dispositivos */
