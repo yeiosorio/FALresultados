@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { app_routing } from './app.routes';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ResultComponent } from './result/result.component';
@@ -9,6 +10,7 @@ import { ResultComponent } from './result/result.component';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AuthGuard } from './_guards';
 import {
 	MatPaginatorModule,
 	MatTableModule,
@@ -52,6 +54,7 @@ import {
 		ReactiveFormsModule,
 		BrowserModule,
 		AppRoutingModule,
+		app_routing,
 		MatButtonModule,
 		MatCheckboxModule,
 		MatPaginatorModule,
@@ -93,7 +96,7 @@ import {
 		MatTooltipModule,
 		MatTreeModule
 	],
-	providers: [],
+	providers: [ AuthGuard ],
 	bootstrap: [ AppComponent ]
 })
 export class AppModule {}
