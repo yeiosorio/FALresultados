@@ -11,32 +11,37 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+.contenedor-back{
+    background-color: rgba(255, 255, 255, .8);
+    min-height: 350px;
+    margin-top: 25px;
+    padding: 15px 45px;
+}
+.resultados{
+    margin: 10px 0px;
+}
 .estudies{
-    padding: 10px 15px;
+    padding: 10px 20px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    height: 128px;
+    min-height: 80px;
+    position: relative;
 }
-.estudies::before{
+.estudies-son::before{
     content: '';
     position: absolute;
     height: 100%;
     width: 12px;
-    background-color: red;
+    background-color: #9dda5d;
     top: 0%;
     left: 0;
+    border-bottom-left-radius: 5px;
 }
 .tabs>li>a{
     color: #fff;
 }
 h5{
     text-align: center;
-}
-.contenedor-back{
-    background-color: rgba(255, 255, 255, .8);
-    height: 350px;
-    margin-top: 25px;
-    padding: 15px 45px;
 }
 nav{
     background-color: #2b224c !important;
@@ -55,5 +60,20 @@ nav{
     }
     .contenedor-back{
         background-color: rgba(255, 255, 255, 0);
+        padding: 0px;
     }
+    h5{
+        color: #fff;
+    }
+}
+.sidenav{
+    background-image: url('/assets/img/mobile.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.sidenav li>a {
+    color: rgba(255, 255, 255, 1);
+}
+.sidenav li>a>i {
+    color: rgba(255, 255, 255, 1);
 }

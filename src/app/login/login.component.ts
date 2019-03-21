@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+declare var M: any;
 
 @Component({
 	selector: 'app-login',
@@ -12,7 +13,12 @@ export class LoginComponent implements OnInit {
 	contrasena: any;
 	constructor(private router: Router) {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		// inicia los componentes de materialize
+		setTimeout(() => {
+			M.AutoInit();
+		}, 100);
+	}
 	// funcion que permite realizar la autenticacion del usuario ante el sistema
 	iniciarSesion() {
 		this.router.navigate([ '/result' ]);
