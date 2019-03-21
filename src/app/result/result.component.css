@@ -1,0 +1,16 @@
+html, body{
+    background: red;
+}
+nav{
+    background-color: #2b224c !important;
+}
+.logo-header{
+    width: auto;
+    height: 48px;
+    margin-top: 8px;
+}
+@media screen and (max-width: 600px){
+    .logo-header{
+        margin-top: 4px;
+    }
+}
