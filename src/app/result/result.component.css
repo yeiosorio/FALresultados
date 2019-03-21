@@ -1,7 +1,42 @@
 .body-style{
-    background: red;
-    height: 3000px;
+    background-image: url('/assets/img/wallpaper-results.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
     width: 100%;
+}
+.tabs{
+    background-color: #0081bf;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.estudies{
+    padding: 10px 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 128px;
+}
+.estudies::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 12px;
+    background-color: red;
+    top: 0%;
+    left: 0;
+}
+.tabs>li>a{
+    color: #fff;
+}
+h5{
+    text-align: center;
+}
+.contenedor-back{
+    background-color: rgba(255, 255, 255, .8);
+    height: 350px;
+    margin-top: 25px;
+    padding: 15px 45px;
 }
 nav{
     background-color: #2b224c !important;
@@ -14,5 +49,11 @@ nav{
 @media screen and (max-width: 600px){
     .logo-header{
         margin-top: 4px;
+    }
+    .body-style{
+        background-image: url('/assets/img/wallpaper-results-mobile.jpg');
+    }
+    .contenedor-back{
+        background-color: rgba(255, 255, 255, 0);
     }
 }
