@@ -1,5 +1,7 @@
-html, body{
+.body-style{
     background: red;
+    height: 3000px;
+    width: 100%;
 }
 nav{
     background-color: #2b224c !important;
