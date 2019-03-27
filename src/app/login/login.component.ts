@@ -13,9 +13,12 @@ declare var M: any;
 export class LoginComponent implements OnInit {
 	email: any;
 	password: any;
+	emailLogin: any;
 	identification: any;
 	confirmEmail: any;
 	colorSuccess: any;
+	msgUserValidate = "";
+
 	term = false;
 	msgRegister = "";
 	registerStatus = false;
@@ -32,8 +35,25 @@ export class LoginComponent implements OnInit {
 	}
 
 	// funcion que permite realizar la autenticacion del usuario ante el sistema
-	signin() {
-		this.router.navigate([ '/result' ]);
+	userAuthenticate() {
+
+		let data = JSON.stringify({
+			email : this.emailLogin,
+			password : this.password
+		});
+
+		this.serviceUser.userAuthenticate(data)
+			.subscribe(data => {
+				if (data.success) {
+					// Se almacena token del lado del cliente para las futuras peticiones
+
+					// Se redirecciona a la pagina de lista de resultados
+					this.router.navigate([ '/result' ]);
+
+				} else {
+					this.msgUserValidate = data.msg
+				}
+			});
 	}
 
 	// funcion que permite realizar el registro del usuario en la plataforma
@@ -48,7 +68,6 @@ export class LoginComponent implements OnInit {
 				} else {
 					this.colorSuccess = false
 					if (!data.noExist) {
-						
 						this.registerStatus = true;
 						this.msgRegister = data.msg
 					}else{

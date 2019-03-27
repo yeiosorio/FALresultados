@@ -18,23 +18,19 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="email"
-                                           type="text"
-                                           class="validate">
-                                    <label for="email">Digíta tu número de documento</label>
+                                    <input [(ngModel)]="emailLogin" id="emailLogin" type="text" class="validate" name="emailLogin">
+                                    <label for="emailLogin">Digíta tu número de documento</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="password"
-                                           type="password"
-                                           class="validate">
+                                    <input [(ngModel)]="password" id="password" type="password" class="validate" name="password">
                                     <label for="password">Contraseña</label>
                                 </div>
                             </div>
                             <br>
                             <div>
-                                <button class="btn waves-effect waves-light teal centrar" type="submit" name="action" (click)="signin()">INCIAR SESIÓN</button><br><br>
+                                <button class="btn waves-effect waves-light teal centrar" type="submit" name="action" (click)="userAuthenticate()">INCIAR SESIÓN</button><br><br>
                                 <a href="" class="centroTextoLink">¿Has olvidado la contraseña?</a>
                             </div>
                         </div>
@@ -50,8 +46,8 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input [(ngModel)]="identification" id="last_name" type="text" class="validate" name="identification">
-                                    <label for="last_name">Número de documento</label>
+                                    <input [(ngModel)]="identification" id="identification" type="text" class="validate" name="identification">
+                                    <label for="identification">Número de documento</label>
                                 </div>
                                 <div class="input-field col s12" *ngIf="registerStatus">
                                     <input [(ngModel)]="email" id="email" type="email" name="email">

@@ -48,4 +48,20 @@ export class UserService {
           );
       });
    }
+   public userAuthenticate(data) {
+
+      return Observable.create(observer => {
+        this.http.post(this.URL_API + `WsUsers/userAuthenticate.json`, data).subscribe(
+            data => {
+              observer.next(data);
+              observer.complete();
+            },
+            error => {
+              observer.next(error);
+              observer.complete();
+            }
+          );
+      });
+   }
+
 }
