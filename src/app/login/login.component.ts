@@ -32,14 +32,14 @@ export class LoginComponent implements OnInit {
 	}
 
 	// funcion que permite realizar la autenticacion del usuario ante el sistema
-	iniciarSesion() {
+	signin() {
 		this.router.navigate([ '/result' ]);
 	}
 
 	// funcion que permite realizar el registro del usuario en la plataforma
 	getEmailRegister() {
 		if(this.term){
-			this.serviceUser.getEmailRegister(this.identification)
+			this.serviceUser.getEmailRegister(this.identification) 
 			.subscribe(data => {
 				if (data.success) {
 					// Registro con exito
@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
 				});
 			}else{
 				this.colorSuccess = false
-				this.msgRegister = "Debe aceptar los terminos y condiciones!."
+				this.msgRegister = "Debe aceptar los terminos y condiciones!." 
 			}
 		}else{
 			this.colorSuccess = false
