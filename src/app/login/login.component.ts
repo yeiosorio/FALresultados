@@ -155,23 +155,6 @@ export class LoginComponent implements OnInit {
 		
 	}
 
-	// Recuperacion de contraseña
-	modalRecoveryPassword() {
-		var elems = document.querySelectorAll('.recoveryPassword');
-		// var instances = M.Modal.init(elems, {
-		// 	dismissible: false
-		// });
-
-		console.log('elems')
-		console.log(elems)
-
-		var instance = M.Modal.getInstance(elems);
-		
-		instance.open();
-
-
-	}
-
 	recoveryPassword(){
 
 		if (this.recoveryIdentification != undefined) {

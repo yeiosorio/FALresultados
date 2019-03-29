@@ -34,7 +34,8 @@
                             <br>
                             <div>
                                 <button class="btn waves-effect waves-light teal centrar" type="submit" name="action" (click)="userAuthenticate()">INCIAR SESIÓN</button><br><br>
-                                <a href="#login" (click)="modalRecoveryPassword();" class="centroTextoLink">¿Has olvidado la contraseña?</a>
+                                <a href="#modal1" class="centroTextoLink modal-trigger">¿Has olvidado la contraseña?</a>
+                                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
                             </div>
                         </div>
                     </form>
@@ -166,7 +167,7 @@
     </div>
 
     <!-- Modal Recuparacion de password -->
-    <div class="recoveryPassword modal-fixed-footer">
+    <div id="recoveryPassword" class="modal-fixed-footer">
         <div class="modal-content">
             <h4>Modal Header</h4>
             <p>A bunch of text</p>
@@ -174,6 +175,16 @@
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
+    </div>
+
+    <div id="modal1" class="modal-fixed-footer">
+            <div class="modal-content">
+              <h4>Modal Header</h4>
+              <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
     </div>
 
 </body>
