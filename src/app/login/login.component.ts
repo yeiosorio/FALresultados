@@ -15,12 +15,15 @@ export class LoginComponent implements OnInit {
 	password: any;
 	emailLogin: any;
 	identification: any;
+	recoveryIdentification: any;
 	confirmEmail: any;
 	colorSuccess: any;
+
 	msgUserValidate = "";
+	msgRegister = "";
+	msgRecovery = "";
 
 	term = false;
-	msgRegister = "";
 	registerStatus = false;
 
 	constructor(private router: Router, private serviceUser: UserService) {
@@ -32,6 +35,8 @@ export class LoginComponent implements OnInit {
 		setTimeout(() => {
 			M.AutoInit();
 		}, 100);
+
+		
 	}
 
 	// funcion que permite realizar la autenticacion del usuario ante el sistema
@@ -44,14 +49,25 @@ export class LoginComponent implements OnInit {
 
 		this.serviceUser.userAuthenticate(data)
 			.subscribe(data => {
+
+				console.log('response')
+				console.log(data)
+
 				if (data.success) {
 					// Se almacena token del lado del cliente para las futuras peticiones
+					localStorage.setItem('token', data.data.token);
+					delete data.user.password;
+					localStorage.setItem('userInfo', JSON.stringify(data.user));
 
 					// Se redirecciona a la pagina de lista de resultados
 					this.router.navigate([ '/result' ]);
 
 				} else {
 					this.msgUserValidate = data.msg
+
+					setTimeout(() => {
+						this.msgUserValidate = ""
+					}, 4000);
 				}
 			});
 	}
@@ -65,19 +81,33 @@ export class LoginComponent implements OnInit {
 					// Registro con exito
 					this.colorSuccess = true
 					this.msgRegister = "¡Felicitaciones su registro ha sido exitoso!. Ha sido enviado un email con la contraseña"
+
+					setTimeout(() => {
+						this.msgRegister = ""
+					}, 6000);
+
 				} else {
 					this.colorSuccess = false
 					if (!data.noExist) {
 						this.registerStatus = true;
 						this.msgRegister = data.msg
+
+						setTimeout(() => {
+							this.msgRegister = ""
+						}, 6000);
 					}else{
 						this.msgRegister = data.msg
+
+						setTimeout(() => {
+							this.msgRegister = ""
+						}, 6000);
+						
 					}
 				}
 			});
 		}else{
 			this.colorSuccess = false
-			this.msgRegister = "Debe aceptar los terminos y condiciones!."
+			this.msgRegister = "¡Debe aceptar los terminos y condiciones!."
 		}
 	}
 	// funcion que permite realizar el registro del usuario en la plataforma
@@ -86,33 +116,84 @@ export class LoginComponent implements OnInit {
 		let email = this.email
 		let confirmEmail = this.confirmEmail
 
-		if(confirmEmail == email){
-			if (this.term) {
-				this.serviceUser.register(identification, email)
-				.subscribe(data => {
-					if (data.success) {
-						this.colorSuccess = true
-						this.registerStatus = false
-						this.msgRegister = data.msg
-					} else {
-						this.msgRegister = data.msg
-					}
-				});
+		if (email != undefined) {
+			if(confirmEmail == email){
+				if (this.term) {
+					this.serviceUser.register(identification, email)
+					.subscribe(data => {
+						if (data.success) {
+							this.colorSuccess = true
+							this.registerStatus = false
+							this.msgRegister = data.msg
+
+							setTimeout(() => {
+								this.msgRegister = ""
+							}, 5000);
+						} else {
+							this.msgRegister = data.msg
+
+							setTimeout(() => {
+								this.msgRegister = ""
+							}, 5000);
+						}
+					});
+				}else{
+					this.colorSuccess = false
+					this.msgRegister = "¡Debe aceptar los terminos y condiciones!." 
+				}
 			}else{
 				this.colorSuccess = false
-				this.msgRegister = "Debe aceptar los terminos y condiciones!." 
+				this.msgRegister = "¡No coinciden los correos ingresados!."
 			}
+			
 		}else{
+
+			console.log('hola')
 			this.colorSuccess = false
-			this.msgRegister = "No coinciden los correos ingresados!."
+			this.msgRegister = "¡El campo email no puede estar vacio!."
 		}
-			
-			
 		
+	}
+
+	// Recuperacion de contraseña
+	modalRecoveryPassword() {
+		var elems = document.querySelectorAll('.recoveryPassword');
+		// var instances = M.Modal.init(elems, {
+		// 	dismissible: false
+		// });
+
+		console.log('elems')
+		console.log(elems)
+
+		var instance = M.Modal.getInstance(elems);
+		
+		instance.open();
+
+
+	}
+
+	recoveryPassword(){
+
+		if (this.recoveryIdentification != undefined) {
+			this.serviceUser.recoveryPassword(this.recoveryIdentification)
+				.subscribe(data => {
+					this.msgRecovery = data.msg
+					if (data.success) {
+
+					} else {
+						
+					}
+				});
+			
+		}else{
+			
+		}
 	}
 
 	toggleCheck(e){
 		this.term = e.target.checked;
+		this.msgRegister = ""
+
 	}
 
 

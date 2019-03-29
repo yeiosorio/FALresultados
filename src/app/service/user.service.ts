@@ -48,20 +48,52 @@ export class UserService {
           );
       });
    }
+
    public userAuthenticate(data) {
 
-      return Observable.create(observer => {
-        this.http.post(this.URL_API + `WsUsers/userAuthenticate.json`, data).subscribe(
-            data => {
-              observer.next(data);
-              observer.complete();
-            },
-            error => {
-              observer.next(error);
-              observer.complete();
-            }
-          );
-      });
+        // let token = localStorage.getItem('token').substring(1, localStorage.getItem('token').length - 1);
+
+        // let headers: HttpHeaders = new HttpHeaders();
+        // headers = headers.append('Content-Type', 'application/json');
+        // headers = headers.append('authgl', 'glbearer ' + token);
+
+        return Observable.create(observer => {
+          this.http.post(this.URL_API + `WsUsers/userAuthenticate.json`, data).subscribe(
+              data => {
+                observer.next(data);
+                observer.complete();
+              },
+              error => {
+                observer.next(error);
+                observer.complete();
+              }
+            );
+        });
+
    }
+
+   public recoveryPassword(identification) {
+
+        // let token = localStorage.getItem('token').substring(1, localStorage.getItem('token').length - 1);
+
+        // let headers: HttpHeaders = new HttpHeaders();
+        // headers = headers.append('Content-Type', 'application/json');
+        // headers = headers.append('authgl', 'glbearer ' + token);
+
+        return Observable.create(observer => {
+          this.http.post(this.URL_API + `WsUsers/recoveryPassword.json`, {identification:identification}).subscribe(
+              data => {
+                observer.next(data);
+                observer.complete();
+              },
+              error => {
+                observer.next(error);
+                observer.complete();
+              }
+            );
+        });
+
+   }
+
 
 }
