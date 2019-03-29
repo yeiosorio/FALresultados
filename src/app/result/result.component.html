@@ -1,115 +1,356 @@
 <div class="body-style">
-<nav>
-    <div class="nav-wrapper">
-        <a href="#!"
-           class="brand-logo"><img class="logo-header"
-                 src="assets/img/logo.jpg" /></a>
-        <a href="#"
-           data-target="slide-out"
-           class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><!-- <a href="mobile.html">Visitar Sitio Web</a> --><a class="waves-effect waves-light modal-trigger" href="#modal1">Ayuda</a></li>
-            
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal bottom-sheet">
-              <div class="modal-content">
-                <h4>Modal Header</h4>
-                <p>A bunch of text</p>
-              </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  <nav>
+      <div class="nav-wrapper">
+          <a href="#!"
+            class="brand-logo"><img class="logo-header"
+                  src="assets/img/logo.jpg" /></a>
+          <a href="#"
+            data-target="slide-out"
+            class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+              <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Ayuda</a></li>
+              <!-- <li><a class='dropdown-trigger btn user' href='#' data-target='dropdown12' style="width: 250px;">Usuario01</a></li> -->
+              <li>
+                  <div class="dropdown">
+                      <button class="dropbtn">Usuario01 
+                        <i class="fa fa-caret-down"></i>
+                      </button>
+                      <div class="dropdown-content1">
+                        <a class="waves-effect waves-light logout"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
+                        <hr class="none-hr">
+                        <a class="waves-effect waves-light logout"><i class="material-icons">wrap_text</i>Cerrar Sesión</a>
+                        <!-- <hr class="none-hr">
+                        <a href="#">Link 3</a> -->
+                      </div>
+                    </div>
+              </li>
+              <!-- <ul id="dropdown12" class="dropdown-content config" width="200px">
+                  <li><a href="#!"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a></li>
+                  <li class="divider">
+                  </li><li><a href="#!"><i class="material-icons">wrap_text</i>Cerrar Sesión</a></li>
+              </ul> -->
+          </ul>
+      </div>
+  </nav>
+
+
+  <ul id="slide-out"
+      class="sidenav">
+
+      <li><a class="waves-effect waves-light modal-trigger" href="#modal1"><i class="material-icons">lightbulb_outline</i>Ayuda</a></li>
+      <!-- <li><a href="#!">Second Link</a></li> -->
+      <li>
+          <div class="divider"></div>
+      </li>
+      <!-- <li><a class="subheader">Subheader</a></li> -->
+      <li><a href="#!"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a></li>
+      <li>
+          <div class="divider"></div>
+      </li>
+      <li><a href="#!"><i class="material-icons">wrap_text</i>Cerrar Sesión</a></li>
+  </ul>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+      <div class="modal-content">
+        <h4>¿Necesitas Ayuda?</h4>
+        <p>Tips Básicos que te ayudarán para el uso de la aplicación</p>
+      </div>
+      <div class="container">
+        <ul class="collapsible popout">
+          <li class="">
+            <div class="collapsible-header"><i class="material-icons">color_lens</i>Colores</div>
+            <div class="collapsible-body">
+              <div>
+                <p><b>Los colores dentro de la actividad de los estudios se representan en la parte izquierda:</b></p>
+                <img src="/assets/img/estado-estudios.JPG" class="responsive">
+                <ol>
+                  <li>El color <em class="color-verde">"Verde" </em> muestra que los estudios estan listos para descarga.</li>
+                  <li>El color <em class="color-rojo">"Rojo" </em> muestra que aún hay estudios en proceso.</li>
+                  <li>El color <em class="color-gris">"Gris" </em> muestra el bloqueo e inactividad total de los estudios.</li>
+                </ol>
               </div>
             </div>
-            <a class='dropdown-button btn'
-               href='#'
-               data-activates='dropdown1'>CERRAR</a>
-
-            <ul id='dropdown1'
-                class='dropdown-content'>
-                <li><a href="#!">one</a></li>
-                <li><a href="#!">two</a></li>
-                <li class="divider"></li>
-                <li><a href="#!">three</a></li>
-                <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-            </ul>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">menu</i>Menú Superior</div>
+            <div class="collapsible-body">
+              <div>
+              <p><b>En el menú superior puedes encontrar:</b></p>
+              <img src="/assets/img/nav.png" class="responsive">
+                <ol>
+                  <li><b>Ayuda:</b> Te explica toda la plataforma, si tienes dudas.</li>
+                  <li><b>Cambiar Contraseña: </b>Puedes cambiar tu contraseña cuando desees.</li>
+                  <li><b>Cerrar Sesión: </b>Cerrar la sesión activa por tu seguridad y la de tus trabajadores.</li>
+                </ol>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">view_agenda</i>Botones</div>
+            <div class="collapsible-body">
+              <div>
+                <p><b>En el menú superior puedes encontrar:</b></p>
+                  <ol>
+                    <img src="/assets/img/filtrar.JPG" class="responsive">
+                    <li>
+                      <b>Filtrar:</b> Colocando un rango de fecha, te permite generar un reporte de todos los estudios.
+                    </li>
+                    <img src="/assets/img/descargar-todos.JPG" class="responsive">
+                    <li>
+                      <b>Descargar todo:</b> esta opcion te permite, despues de seleccionar, descargar todos los estudios de una manera más fácil.
+                    </li>
+                    <img src="/assets/img/download.JPG">
+                    <li>
+                      <b>Descargar:</b> Este botón te permite descargar estudios.
+                    </li>
+                  </ol>
+                </div>
+            </div>
+          </li>
         </ul>
-
-
-
+      </div>
+      <div class="modal-footer">
+       <!--  <a href="" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
     </div>
-</nav>
+  </div>
 
-
-
-<ul id="slide-out"
-    class="sidenav">
-
-    <li><a href="#!"><i class="material-icons">lightbulb_outline</i>Ayuda</a></li>
-    <!-- <li><a href="#!">Second Link</a></li> -->
-    <li>
-        <div class="divider"></div>
-    </li>
-    <!-- <li><a class="subheader">Subheader</a></li> -->
-    <li><a href="#!"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a></li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li><a href="#!"><i class="material-icons">wrap_text</i>Salir</a></li>
-</ul>
-
-<div class="container contenedor-back">
+  <div class="container contenedor-back">
     <!-- Page Content goes here -->
     <div class="row">
         <h5><b>ENTIDAD: </b><span>Usuario01</span></h5>
     </div>
-    <div class="row">
-        <div class="col s1">1</div>
-        <div class="col s1">2</div>
-        <div class="col s1">3</div>
-        <div class="col s1">4</div>
-        <div class="col s1">5</div>
-        <div class="col s1">6</div>
-        <div class="col s1">7</div>
-        <div class="col s1">8</div>
-        <div class="col s1">9</div>
-        <div class="col s1">10</div>
-        <div class="col s1">11</div>
-        <div class="col s1">12</div>
+    <div class="row background-search">
+      <div class="col s5 m5">
+        <div class="input-field col s12">
+          <select class="fondo-select">
+            <option value="" disabled selected>Sede</option>
+            <option value="1">Sede Número 1</option>
+            <option value="2">Sede Número 2</option>
+            <option value="3">Sede Número 3</option>
+          </select>
+          <label>Elije Una Sede</label>
+        </div>
       </div>
-      <div class="resultados">
-        <ul id="tabs-swipe-demo" class="tabs">
-            <li class="tab col s3"><a href="#test-swipe-1" class="active">Información</a></li>
-            <li class="tab col s3"><a href="#test-swipe-2">Estudios</a></li>
-        </ul>
-        <div id="test-swipe-1" class="col s12 white estudies">
-          <div class="estudies-son">
-            Esto es informacion 1
+      <div class="col s7 m7">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">search</i>
+            <input type="text" id="autocomplete-input" class="autocomplete">
+            <label for="autocomplete-input">Buscador...</label>
           </div>
         </div>
-        <div id="test-swipe-2" class="col s12 white estudies">
-            <div class="estudies-son">
-              HOLA
+      </div>
+      <div class="col s12">
+        <div class="row otro-busqueda">
+            <div class="col m4 l2">
+                <p class="retirar estudios-titulo">ESTUDIOS</p>
+            </div>
+            <div class="col s12 m8 l3">
+              <a class="waves-effect waves-light btn modal-trigger boton-filtro" href="#modal-fecha">Filtrar por Fecha</a>
+            </div>
+            <div class="col s12 m8 l4 xl4">
+              <a class="waves-effect waves-light btn no-mobile boton-filtro btn-fter disabled">Descargar Seleccionados</a>
+            </div>
+            <div class="col s12 m8 l3">
+              <p class="no-mobile check">
+                <label>
+                  <input type="checkbox" class="filled-in" checked="checked" />
+                  <span><small>Seleccionar todos</small></span>
+                </label>
+              </p>
             </div>
         </div>
-      </div>
-      <div class="resultados">
-        <ul id="tabs-swipe-demo" class="tabs">
-            <li class="tab col s3"><a href="#test-swipe-3" class="active">Información</a></li>
-            <li class="tab col s3"><a href="#test-swipe-4">Estudios</a></li>
-        </ul>
-        <div id="test-swipe-3" class="col s12 white estudies">
-          <div class="estudies-son">
-              Esto es informacion 2
+        <hr class="retirar">
+        <!-- Modal Structure -->
+        <div id="modal-fecha" class="modal modal-1">
+          <div class="modal-content">
+              <h4 style="color:#345b9a">Reporte de Resultados </h4>
+              <p>A partir de rango de fechas</p>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col s6">
+                  <label>Fecha Inicial</label>
+                  <input type="text" placeholder="dd/mm/aa" class="datepicker">
+              </div>
+              <div class="col s6">
+                  <label>Fecha Final</label>
+                  <input type="text" placeholder="dd/mm/aa" class="datepicker">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
           </div>
         </div>
-        <div id="test-swipe-4" class="col s12 white estudies">
-            <div class="estudies-son">
-              ADIOS
+      </div>
+    </div>
+
+
+
+    <div class="row padd-out">
+      <div class="col s12 m12 l11 padd-out">
+          <div class="resultados">
+              <ul id="tabs-swipe-demo" class="tabs">
+                  <li class="tab col s3"><a href="#test-swipe-1" class="active">Información</a></li>
+                  <li class="tab col s3"><a href="#test-swipe-2">Estudios</a></li>
+                  <a class="descargar-todo no-mobile" href=""><small>
+                    <i class="material-icons text-download">file_download</i></small>
+                  </a>
+              </ul>
+              <div id="test-swipe-1" class="col s12 white estudies">
+                <div class="estudies-son">
+                  <div class="row">
+                    <div class="col s3 m2 l2 xl2 numero-orden-head">
+                        <h6><b>N°. de Orden:</b></h6>
+                        <p class="orden-number">000001</p>
+                    </div>
+                    <div class="col s1">
+                      <div class="hr-line"></div>
+                    </div>
+                    <div class="col s3 l3 xl2">
+                      <h6><b>N°. de documento:</b></h6>
+                      <label>1069587890</label>
+                    </div>
+                    <div class="col s4 m4 l4 xl3">
+                      <h6><b>Nombre del Paciente:</b></h6>
+                      <label>Jose María Paciente Prueba</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="test-swipe-2" class="col s12 white estudies">
+                  <div class="estudies-son">
+                    <div class="row espaciado-titulo">
+                      <div class="s12">
+                        <h6><b>Número de Orden: </b><span class="orden-number">000001</span></h6>
+                        <hr>
+                      </div>
+                      <div class="col s12 lista">
+                        <div class="estudios-lista">
+                          <div>
+                            HEPATITIS B, ANTICUERPOS S (ANTI HBS)
+                          </div>
+                          <div>
+                              <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
+                          </div>
+                        </div>
+                        <div class="estudios-lista">
+                          <div>
+                            HEPATITIS B, ANTICUERPOS CENTRAL TOTALES (ANTI CORE HBC)
+                          </div>
+                          <div>
+                              <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
+                          </div>
+                        </div>
+                        <div class="estudios-lista">
+                          <div>
+                            TGO AST TRANSAM GLUTAMICO OXALOACETICA
+                          </div>
+                          <div>
+                              <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
             </div>
+      </div>
+      <div class="col m1 no-mobile valign-wrapper">
+        <p class="botn-top">
+          <label>
+            <input type="checkbox" class="filled-in" checked="checked" />
+            <span></span>
+          </label>
+        </p>
+      </div>
+    </div>
+    <div class="row padd-out">
+        <div class="col s12 m12 l11 padd-out">
+            <div class="resultados">
+                <ul id="tabs-swipe-demo" class="tabs">
+                    <li class="tab col s3"><a href="#test-swipe-3" class="active">Información</a></li>
+                    <li class="tab col s3"><a href="#test-swipe-4">Estudios</a></li>
+                    <a class="descargar-todo no-mobile" href=""><small>
+                      <i class="material-icons text-download">file_download</i></small>
+                    </a>
+                </ul>
+                <div id="test-swipe-3" class="col s12 white estudies">
+                  <div class="estudies-son2">
+                    <div class="row">
+                      <div class="col s3 m2 l2 xl2 numero-orden-head">
+                          <h6><b>N°. de Orden:</b></h6>
+                          <p class="orden-number">000001</p>
+                      </div>
+                      <div class="col s1">
+                        <div class="hr-line"></div>
+                      </div>
+                      <div class="col s3 l3 xl2">
+                        <h6><b>N°. de documento:</b></h6>
+                        <label>1069587890</label>
+                      </div>
+                      <div class="col s4 m4 l4 xl3">
+                        <h6><b>Nombre del Paciente:</b></h6>
+                        <label>Jose María Paciente Prueba</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="test-swipe-4" class="col s12 white estudies">
+                    <div class="estudies-son2">
+                      <div class="row espaciado-titulo">
+                        <div class="s12">
+                          <h6><b>Número de Orden: </b><span class="orden-number">000001</span></h6>
+                          <hr>
+                        </div>
+                        <div class="col s12 lista">
+                          <div class="estudios-lista">
+                            <div>
+                              HEPATITIS B, ANTICUERPOS S (ANTI HBS)
+                            </div>
+                            <div>
+                                <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
+                            </div>
+                          </div>
+                          <div class="estudios-lista">
+                            <div>
+                              HEPATITIS B, ANTICUERPOS CENTRAL TOTALES (ANTI CORE HBC)
+                            </div>
+                            <div>
+                                <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
+                            </div>
+                          </div>
+                          <div class="estudios-lista">
+                            <div>
+                              TGO AST TRANSAM GLUTAMICO OXALOACETICA
+                            </div>
+                            <div>
+                                <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col m1 no-mobile valign-wrapper">
+          <p class="botn-top">
+            <label>
+              <input type="checkbox" class="filled-in" checked="checked" />
+              <span></span>
+            </label>
+          </p>
         </div>
       </div>
-
-
   </div>
+  <footer>
+      <p>
+          www.fundacionalejandrolondono.com
+      </p>
+      <p>
+          Gato Loco Studios S.A.S. 2019 | Todos los derechos reservados
+      </p>
+    </footer>
 </div>
