@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 	recoveryIdentification: any;
 	confirmEmail: any;
 	colorSuccess: any;
+	colorRecovery: any;
 
 	msgUserValidate = "";
 	msgRegister = "";
@@ -36,6 +37,12 @@ export class LoginComponent implements OnInit {
 			M.AutoInit();
 		}, 100);
 
+		var elems = document.querySelectorAll('#recoveryPassword');
+		var instances = M.Modal.init(elems, {
+			dismissible: false
+		});
+
+		console.log(instances)
 		
 	}
 
@@ -147,8 +154,6 @@ export class LoginComponent implements OnInit {
 			}
 			
 		}else{
-
-			console.log('hola')
 			this.colorSuccess = false
 			this.msgRegister = "¡El campo email no puede estar vacio!."
 		}
@@ -156,20 +161,21 @@ export class LoginComponent implements OnInit {
 	}
 
 	recoveryPassword(){
-
+		
 		if (this.recoveryIdentification != undefined) {
 			this.serviceUser.recoveryPassword(this.recoveryIdentification)
 				.subscribe(data => {
 					this.msgRecovery = data.msg
 					if (data.success) {
-
+						this.recoveryIdentification = undefined
+						this.colorRecovery = true;
 					} else {
-						
+						this.colorRecovery = false;
 					}
 				});
 			
 		}else{
-			
+			this.msgRecovery = "¡El campo de identificación no puede estar vacio!"
 		}
 	}
 
