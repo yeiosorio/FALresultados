@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule} from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { app_routing } from './app.routes';
@@ -97,7 +98,8 @@ import {
 		MatTabsModule,
 		MatToolbarModule,
 		MatTooltipModule,
-		MatTreeModule
+		MatTreeModule,
+		HttpClientModule
 	],
 	providers: [ AuthGuard ],
 	bootstrap: [ AppComponent ]
