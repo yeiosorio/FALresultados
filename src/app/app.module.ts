@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { app_routing } from './app.routes';
@@ -49,9 +49,12 @@ import {
 	MatTooltipModule,
 	MatTreeModule
 } from '@angular/material';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { ResultadosComponent } from './resultados/resultados.component';
 
 @NgModule({
-	declarations: [ AppComponent, LoginComponent, ResultComponent ],
+	declarations: [ AppComponent, LoginComponent, ResultComponent, ResultadosComponent ],
 	imports: [
 		MzNavbarModule,
 		FormsModule,
@@ -99,7 +102,8 @@ import {
 		MatToolbarModule,
 		MatTooltipModule,
 		MatTreeModule,
-		HttpClientModule
+		HttpClientModule,
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 	],
 	providers: [ AuthGuard ],
 	bootstrap: [ AppComponent ]
