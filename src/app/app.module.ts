@@ -52,6 +52,7 @@ import {
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ResultadosComponent } from './resultados/resultados.component';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
 	declarations: [ AppComponent, LoginComponent, ResultComponent, ResultadosComponent ],
@@ -105,7 +106,7 @@ import { ResultadosComponent } from './resultados/resultados.component';
 		HttpClientModule,
 		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 	],
-	providers: [ AuthGuard ],
+	providers: [ AuthGuard, { provide: APP_BASE_HREF, useValue: '/FalResultados' } ],
 	bootstrap: [ AppComponent ]
 })
 export class AppModule {}

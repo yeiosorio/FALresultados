@@ -4,7 +4,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "start:prod": "ng build --prod && lite-server --baseDir dist/FALResultados",
+        "start:prod": "ng build --prod --baseHref='/FalResultados/'",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
