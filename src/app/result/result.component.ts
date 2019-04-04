@@ -20,7 +20,9 @@ export class ResultComponent implements OnInit {
 	userEmail: any;
 	msgListOrders: any;
 	listOrders = [];
+	auxListOrders = [];
 	listStudies = {}
+	auxStudies = {}
 	msgchangePassword = "";
 
 	backgroundColor: any
@@ -68,7 +70,7 @@ export class ResultComponent implements OnInit {
 		this.serviceUser.getOrdersByRol(dateIni, dateEnd, identification, rol)
 			.subscribe(data => {
 				if (data.success) {
-					
+					// Array de posiciones de ordenes repetidas
 					let auxOrdersPosition = []
 
 					data.listOrders.forEach((value, index) => {
@@ -76,27 +78,47 @@ export class ResultComponent implements OnInit {
 						// busqueda para saber si se repite la orden
 						let posOrder = auxOrdersPosition.indexOf(value.order_id)
 						
-						// Si la encuentra repetida solo agrega el studios a la posicion de la orden
+						// Si la encuentra repetida solo agrega el studiosy id a la posicion de la orden
 						if (posOrder != -1) {
 							
-							this.listStudies[posOrder].push(value.name);
+							this.auxStudies[posOrder].push({
+								name: value.name,
+								result_id: value.result_id
+							});
 
 						}else{// Se almacenan los datos en un nuevo arreglo cuando es la primera vez que viene la orden
-							
-							auxOrdersPosition[index] = value.order_id;
 
-							this.listStudies[index] = [value.name];
-							this.listOrders.push(value)
+							// Se guarda cada order_id
+							auxOrdersPosition[index] = value.order_id;
+							
+							// Se asigna todo el arreglo en uno nuevo
+							this.auxListOrders.push(value)
+							this.auxStudies[index] = {
+								name: value.name,
+								result_id: value.result_id
+							};
+
+							// Se formatea objeto a array para ser iterados los estudios en el template
+							this.auxStudies[index] = Object.keys(this.auxStudies[index]).map(i => this.auxStudies[index])
+							// Se quita la primera posicion por quedar duplicada
+							this.auxStudies[index].splice(0,1)
+
 						}
 
-						this.backgroundColor = "primary";
-					 	this.colorToggle = "secondary";
-					 })
+					})
 
-					 this.listStudies = Object.keys(this.listStudies).map(i => this.listStudies[i])
+					this.auxListOrders.forEach((value, index) => {
 
-					 console.log('***********************')
-					 console.log(this.listStudies)
+						if (this.auxStudies[index]) {
+							this.listStudies[index] = this.auxStudies[index];
+						}
+						
+					});
+
+					this.backgroundColor = "primary";
+					this.colorToggle = "secondary";
+					console.log('listStudies')
+					console.log(this.listStudies)
 
 				} else {
 					this.msgListOrders = data.msg
