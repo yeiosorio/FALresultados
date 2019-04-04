@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MzNavbarModule } from 'ngx-materialize';
 
 import { AuthGuard } from './_guards';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
 	MatPaginatorModule,
 	MatTableModule,
@@ -104,7 +105,8 @@ import { APP_BASE_HREF } from '@angular/common';
 		MatTooltipModule,
 		MatTreeModule,
 		HttpClientModule,
-		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+		BrowserAnimationsModule
 	],
 	providers: [ AuthGuard, { provide: APP_BASE_HREF, useValue: '/FalResultados' } ],
 	bootstrap: [ AppComponent ]

@@ -13,7 +13,7 @@ declare var M: any;
 export class LoginComponent implements OnInit {
 	email: any;
 	password: any;
-	emailLogin: any;
+	identificationLogin: any;
 	identification: any;
 	recoveryIdentification: any;
 	confirmEmail: any;
@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
 		// this.router.navigate([ '/result' ]);
 
 		let data = JSON.stringify({
-			email: this.emailLogin,
-			password: this.password
+			identification : this.identificationLogin,
+			password : this.password
 		});
 
 		this.serviceUser.userAuthenticate(data).subscribe((data) => {
