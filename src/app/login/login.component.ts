@@ -87,11 +87,11 @@ export class LoginComponent implements OnInit {
 				if (data.success) {
 					// Registro con exito
 					this.colorSuccess = true
-					this.msgRegister = "¡Felicitaciones su registro ha sido exitoso!. Ha sido enviado un email con la contraseña"
+					this.msgRegister = data.msg 
 
-					setTimeout(() => {
-						this.msgRegister = ""
-					}, 6000);
+					// setTimeout(() => {
+					// 	this.msgRegister = "" 
+					// }, 6000);
 
 				} else {
 					this.colorSuccess = false
@@ -131,12 +131,16 @@ export class LoginComponent implements OnInit {
 						if (data.success) {
 							this.colorSuccess = true
 							this.registerStatus = false
+							this.email = undefined
+							this.confirmEmail = undefined
 							this.msgRegister = data.msg
 
 							setTimeout(() => {
 								this.msgRegister = ""
 							}, 5000);
 						} else {
+							this.email = undefined
+							this.confirmEmail = undefined
 							this.msgRegister = data.msg
 
 							setTimeout(() => {
