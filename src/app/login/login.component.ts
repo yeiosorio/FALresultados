@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 	recoveryIdentification: any;
 	confirmEmail: any;
 	colorSuccess: any;
+	colorRecovery: any;
 
 	msgUserValidate = '';
 	msgRegister = '';
@@ -33,40 +34,44 @@ export class LoginComponent implements OnInit {
 		setTimeout(() => {
 			M.AutoInit();
 		}, 100);
+
+		var elems = document.querySelectorAll('#recoveryPassword');
+		var instances = M.Modal.init(elems, {
+			dismissible: false
+		});
+
+		console.log(instances);
 	}
 
 	// funcion que permite realizar la autenticacion del usuario ante el sistema
 	userAuthenticate() {
-		this.router.navigate([ '/result' ]);
+		// this.router.navigate([ '/result' ]);
 
-		// let data = JSON.stringify({
-		// 	email : this.emailLogin,
-		// 	password : this.password
-		// });
+		let data = JSON.stringify({
+			email: this.emailLogin,
+			password: this.password
+		});
 
-		// this.serviceUser.userAuthenticate(data)
-		// 	.subscribe(data => {
+		this.serviceUser.userAuthenticate(data).subscribe((data) => {
+			console.log('response');
+			console.log(data);
 
-		// 		console.log('response')
-		// 		console.log(data)
+			if (data.success) {
+				// Se almacena token del lado del cliente para las futuras peticiones
+				localStorage.setItem('token', data.data.token);
+				delete data.user.password;
+				localStorage.setItem('userInfo', JSON.stringify(data.user));
 
-		// 		if (data.success) {
-		// 			// Se almacena token del lado del cliente para las futuras peticiones
-		// 			localStorage.setItem('token', data.data.token);
-		// 			delete data.user.password;
-		// 			localStorage.setItem('userInfo', JSON.stringify(data.user));
+				// Se redirecciona a la pagina de lista de resultados
+				this.router.navigate([ '/result' ]);
+			} else {
+				this.msgUserValidate = data.msg;
 
-		// 			// Se redirecciona a la pagina de lista de resultados
-		// 			this.router.navigate([ '/result' ]);
-
-		// 		} else {
-		// 			this.msgUserValidate = data.msg
-
-		// 			setTimeout(() => {
-		// 				this.msgUserValidate = ""
-		// 			}, 4000);
-		// 		}
-		// 	});
+				setTimeout(() => {
+					this.msgUserValidate = '';
+				}, 4000);
+			}
+		});
 	}
 
 	// funcion que permite realizar el registro del usuario en la plataforma
@@ -140,25 +145,9 @@ export class LoginComponent implements OnInit {
 				this.msgRegister = '¡No coinciden los correos ingresados!.';
 			}
 		} else {
-			console.log('hola');
 			this.colorSuccess = false;
 			this.msgRegister = '¡El campo email no puede estar vacio!.';
 		}
-	}
-
-	// Recuperacion de contraseña
-	modalRecoveryPassword() {
-		var elems = document.querySelectorAll('.recoveryPassword');
-		// var instances = M.Modal.init(elems, {
-		// 	dismissible: false
-		// });
-
-		console.log('elems');
-		console.log(elems);
-
-		var instance = M.Modal.getInstance(elems);
-
-		instance.open();
 	}
 
 	recoveryPassword() {
@@ -166,10 +155,14 @@ export class LoginComponent implements OnInit {
 			this.serviceUser.recoveryPassword(this.recoveryIdentification).subscribe((data) => {
 				this.msgRecovery = data.msg;
 				if (data.success) {
+					this.recoveryIdentification = undefined;
+					this.colorRecovery = true;
 				} else {
+					this.colorRecovery = false;
 				}
 			});
 		} else {
+			this.msgRecovery = '¡El campo de identificación no puede estar vacio!';
 		}
 	}
 

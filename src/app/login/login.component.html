@@ -69,9 +69,8 @@
                                             type="submit"
                                             name="action"
                                             (click)="userAuthenticate()">INCIAR SESIÓN</button><br><br>
-                                    <a href="#login"
-                                       (click)="modalRecoveryPassword();"
-                                       class="centroTextoLink">¿Has olvidado la contraseña?</a>
+                                    <a href="#recoveryPassword"
+                                       class="centroTextoLink modal-trigger">¿Has olvidado la contraseña?</a>
                                 </div>
                             </div>
                         </form>
@@ -136,7 +135,7 @@
                                          *ngIf="msgRegister != '' ">
                                         <label style="color: #cc6464; font-size: 14px;"
                                                *ngIf="!colorSuccess">{{msgRegister}}</label>
-                                        <label style="color: #64cca7;; font-size: 14px;"
+                                        <label style="color: #64cca7; font-size: 14px;"
                                                *ngIf="colorSuccess">{{msgRegister}}</label>
                                     </div>
                                 </div>
@@ -254,15 +253,37 @@
     </div>
 
     <!-- Modal Recuparacion de password -->
-    <!-- <div class="recoveryPassword modal-fixed-footer">
+    <div id="recoveryPassword"
+         class="modal modal-fixed-footer modalRecovery">
         <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
+            <h5 class="teal-text left">Recuperacion de contraseña</h5>
+            <div class="row mb-10">
+                <div class="input-field col s12">
+                    <input [(ngModel)]="recoveryIdentification"
+                           id="recoveryIdentification"
+                           type="text"
+                           name="recoveryIdentification">
+                    <label for="recoveryIdentification">Número de documento</label>
+                </div>
+            </div>
+            <div class="row mb-10">
+                <div class="col s12"
+                     *ngIf="msgRecovery != '' ">
+                    <label style="color: #cc6464; font-size: 14px;"
+                           *ngIf="!colorRecovery">{{msgRecovery}}</label>
+                    <label style="color: #64cca7; font-size: 14px;"
+                           *ngIf="colorRecovery">{{msgRecovery}}</label>
+                </div>
+            </div>
+
         </div>
         <div class="modal-footer">
-            <a href="#!"
-               class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            <button href="#login"
+                    class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+            <button (click)="recoveryPassword()"
+                    class="btn waves-effect waves-light"><i class="material-icons right">lock</i> Recuperar</button>
         </div>
-    </div> -->
+    </div>
+
 
 </body>

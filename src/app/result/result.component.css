@@ -6,6 +6,12 @@
     width: 100%;
     overflow: hidden scroll;
 }
+
+.modalRecovery{
+    height: 390px;
+    width: 33%;
+}
+
 .tabs{
     background-color: #0081bf;
     color: #fff;

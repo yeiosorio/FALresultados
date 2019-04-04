@@ -424,3 +424,8 @@ body {
     right: 50px;
     top: -90px;
 }
+
+.modalRecovery {
+    height: 256px;
+    width: 33%;
+}

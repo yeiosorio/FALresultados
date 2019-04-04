@@ -1,22 +1,16 @@
 <div class="body-style">
   <nav>
       <div class="nav-wrapper">
-          <a href="#!"
-            class="brand-logo"><img class="logo-header"
-                  src="assets/img/logo.jpg" /></a>
-          <a href="#"
-            data-target="slide-out"
-            class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <a href="#!" class="brand-logo"><img class="logo-header" src="assets/img/logo.jpg" /></a>
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
               <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Ayuda</a></li>
               <!-- <li><a class='dropdown-trigger btn user' href='#' data-target='dropdown12' style="width: 250px;">Usuario01</a></li> -->
               <li>
                   <div class="dropdown">
-                      <button class="dropbtn">Usuario01 
-                        <i class="fa fa-caret-down"></i>
-                      </button>
+                      <button class="dropbtn">{{userEmail}}<i class="fa fa-caret-down"></i></button>
                       <div class="dropdown-content1">
-                        <a class="waves-effect waves-light logout"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
+                        <a href="#changePassword" class="waves-effect waves-light logout modal-trigger"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
                         <hr class="none-hr">
                         <a class="waves-effect waves-light logout"><i class="material-icons">wrap_text</i>Cerrar Sesión</a>
                         <!-- <hr class="none-hr">
@@ -345,6 +339,61 @@
         </div>
       </div>
   </div>
+
+   <!-- Modal cambio de password -->
+   <div id="changePassword" class="modal modal-fixed-footer modalRecovery">
+      <div class="modal-content">
+          <h5 class="teal-text left">Cambio de contraseña</h5>
+          <div class="row mb-10">
+              <div class="input-field col s12">
+                  <input [(ngModel)]="antPassword" id="antPassword" type="text" name="antPassword">
+                  <label for="antPassword">Contraseña Anterior</label>
+              </div>
+              <div class="input-field col s12">
+                <input [(ngModel)]="newPassword" id="newPassword" type="text" name="newPassword">
+                <label for="newPassword">Contraseña Nueva</label>
+              </div>
+          </div>
+          <div class="row mb-10">
+              <div class="col s12" *ngIf="msgchangePassword != '' ">
+                  <label style="color: #cc6464; font-size: 14px;" *ngIf="!colorchangePassword">{{msgchangePassword}}</label>
+                  <label style="color: #64cca7; font-size: 14px;" *ngIf="colorchangePassword">{{msgchangePassword}}</label>
+              </div>
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+          <button class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+          <button (click)="changePassword()" class="btn waves-effect waves-light"><i class="material-icons right">lock</i> Cambiar contraseña</button>
+      </div>
+  </div>
+
+   <div id="forceChangePassword" class="modal modal-fixed-footer modalRecovery">
+      <div class="modal-content">
+          <h5 class="teal-text left">Cambio de contraseña</h5>
+          <div class="row mb-10">
+              <div class="input-field col s12">
+                  <input [(ngModel)]="antPassword" id="forcAntPassword" type="text" name="forcAntPassword">
+                  <label for="forcAntPassword">Contraseña Anterior</label>
+              </div>
+              <div class="input-field col s12">
+                <input [(ngModel)]="newPassword" id="forceNewPassword" type="text" name="forcenewPassword">
+                <label for="forceNewPassword">Contraseña Nueva</label> 
+              </div>
+          </div>
+          <div class="row mb-10">
+              <div class="col s12" *ngIf="msgchangePassword != '' ">
+                  <label style="color: #cc6464; font-size: 14px;" *ngIf="!colorchangePassword">{{msgchangePassword}}</label>
+                  <label style="color: #64cca7; font-size: 14px;" *ngIf="colorchangePassword">{{msgchangePassword}}</label>
+              </div>
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+          <button (click)="changePassword()" class="btn waves-effect waves-light"><i class="material-icons right">lock</i> Cambiar contraseña</button>
+      </div>
+  </div>
+
   <footer>
       <p>
           www.fundacionalejandrolondono.com
