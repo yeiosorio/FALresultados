@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
 		// this.router.navigate([ '/result' ]);
 
 		let data = JSON.stringify({
-			identification : this.identificationLogin,
-			password : this.password
+			identification: this.identificationLogin,
+			password: this.password
 		});
 
 		this.serviceUser.userAuthenticate(data).subscribe((data) => {
@@ -81,12 +81,11 @@ export class LoginComponent implements OnInit {
 				if (data.success) {
 					// Registro con exito
 					this.colorSuccess = true;
-					this.msgRegister =
-						'¡Felicitaciones su registro ha sido exitoso!. Ha sido enviado un email con la contraseña';
+					this.msgRegister = data.msg;
 
-					setTimeout(() => {
-						this.msgRegister = '';
-					}, 6000);
+					// setTimeout(() => {
+					// 	this.msgRegister = ""
+					// }, 6000);
 				} else {
 					this.colorSuccess = false;
 					if (!data.noExist) {
@@ -123,12 +122,16 @@ export class LoginComponent implements OnInit {
 						if (data.success) {
 							this.colorSuccess = true;
 							this.registerStatus = false;
+							this.email = undefined;
+							this.confirmEmail = undefined;
 							this.msgRegister = data.msg;
 
 							setTimeout(() => {
 								this.msgRegister = '';
 							}, 5000);
 						} else {
+							this.email = undefined;
+							this.confirmEmail = undefined;
 							this.msgRegister = data.msg;
 
 							setTimeout(() => {
