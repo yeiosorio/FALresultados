@@ -353,3 +353,17 @@ footer>p{
 .color-gris {
     color: #afafaf;
 }
+
+.mat-tab-label-container{
+    background-color: #0081bf;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* .mat-tab-label-content{
+    color: #fff!important;
+}
+.mat-tab-label-active{
+    background: #3db0f8!important;
+} */

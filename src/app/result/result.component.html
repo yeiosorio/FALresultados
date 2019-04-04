@@ -178,166 +178,74 @@
           </div>
         </div>
       </div>
+	</div>    
+
+    <div class="row padd-out" *ngFor="let item of listOrders; let i = index;">
+		<div class="col s12 m12 l11 padd-out">
+			<mat-tab-group dynamicHeight animationDuration="0ms" [color]="colorToggle" [backgroundColor]="backgroundColor">
+				<mat-tab label="Información">
+					<div class="example-small-box mat-elevation-z4">
+						<div id="test-swipe-1" class="col s12 white estudies">
+							<div class="estudies-son">
+								<div class="row">
+									<div class="col s3 m2 l2 xl2 numero-orden-head">
+										<h6><b>N°. de Orden:</b></h6>
+										<p class="orden-number">{{item.order_id}}</p>
+									</div>
+									<div class="col s1">
+										<div class="hr-line"></div>
+									</div>
+									<div class="col s3 l3 xl2">
+										<h6><b>N°. de documento:</b></h6>
+										<label>{{item.identification}}</label>
+									</div>
+									<div class="col s4 m4 l4 xl3">
+										<h6><b>Nombre del Paciente:</b></h6>
+										<label>{{item.people_name}}</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</mat-tab>
+				<mat-tab label="Estudios">
+					<div class="example-large-box mat-elevation-z4">
+						<div id="test-swipe-2" class="col s12 white estudies">
+							<div class="estudies-son">
+								<div class="row espaciado-titulo">
+								<div class="s12">
+									<h6><b>Número de Orden: </b><span class="orden-number">{{item.order_id}}</span></h6>
+									<hr>
+								</div>
+								<div class="col s12 lista" *ngFor="let study of listStudies[i]; let i = index;">
+									<div class="estudios-lista">
+									<div>
+										{{study}}
+									</div>
+									<div>
+										<a class="" href=""><small><i class="material-icons">file_download</i></small></a>
+									</div>
+									</div>
+									
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</mat-tab>
+			</mat-tab-group>
+		</div>
+		<div class="col m1 no-mobile valign-wrapper">
+			<p class="botn-top">
+				<label>
+				<input type="checkbox" class="filled-in" checked="checked" />
+				<span></span>
+				</label>
+			</p>
+		</div>
     </div>
 
-
-
-    <div class="row padd-out">
-      <div class="col s12 m12 l11 padd-out">
-          <div class="resultados">
-              <ul id="tabs-swipe-demo" class="tabs">
-                  <li class="tab col s3"><a href="#test-swipe-1" class="active">Información</a></li>
-                  <li class="tab col s3"><a href="#test-swipe-2">Estudios</a></li>
-                  <a class="descargar-todo no-mobile" href=""><small>
-                    <i class="material-icons text-download">file_download</i></small>
-                  </a>
-              </ul>
-              <div id="test-swipe-1" class="col s12 white estudies">
-                <div class="estudies-son">
-                  <div class="row">
-                    <div class="col s3 m2 l2 xl2 numero-orden-head">
-                        <h6><b>N°. de Orden:</b></h6>
-                        <p class="orden-number">000001</p>
-                    </div>
-                    <div class="col s1">
-                      <div class="hr-line"></div>
-                    </div>
-                    <div class="col s3 l3 xl2">
-                      <h6><b>N°. de documento:</b></h6>
-                      <label>1069587890</label>
-                    </div>
-                    <div class="col s4 m4 l4 xl3">
-                      <h6><b>Nombre del Paciente:</b></h6>
-                      <label>Jose María Paciente Prueba</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="test-swipe-2" class="col s12 white estudies">
-                  <div class="estudies-son">
-                    <div class="row espaciado-titulo">
-                      <div class="s12">
-                        <h6><b>Número de Orden: </b><span class="orden-number">000001</span></h6>
-                        <hr>
-                      </div>
-                      <div class="col s12 lista">
-                        <div class="estudios-lista">
-                          <div>
-                            HEPATITIS B, ANTICUERPOS S (ANTI HBS)
-                          </div>
-                          <div>
-                              <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
-                          </div>
-                        </div>
-                        <div class="estudios-lista">
-                          <div>
-                            HEPATITIS B, ANTICUERPOS CENTRAL TOTALES (ANTI CORE HBC)
-                          </div>
-                          <div>
-                              <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
-                          </div>
-                        </div>
-                        <div class="estudios-lista">
-                          <div>
-                            TGO AST TRANSAM GLUTAMICO OXALOACETICA
-                          </div>
-                          <div>
-                              <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-      </div>
-      <div class="col m1 no-mobile valign-wrapper">
-        <p class="botn-top">
-          <label>
-            <input type="checkbox" class="filled-in" checked="checked" />
-            <span></span>
-          </label>
-        </p>
-      </div>
-    </div>
-    <div class="row padd-out">
-        <div class="col s12 m12 l11 padd-out">
-            <div class="resultados">
-                <ul id="tabs-swipe-demo" class="tabs">
-                    <li class="tab col s3"><a href="#test-swipe-3" class="active">Información</a></li>
-                    <li class="tab col s3"><a href="#test-swipe-4">Estudios</a></li>
-                    <a class="descargar-todo no-mobile" href=""><small>
-                      <i class="material-icons text-download">file_download</i></small>
-                    </a>
-                </ul>
-                <div id="test-swipe-3" class="col s12 white estudies">
-                  <div class="estudies-son2">
-                    <div class="row">
-                      <div class="col s3 m2 l2 xl2 numero-orden-head">
-                          <h6><b>N°. de Orden:</b></h6>
-                          <p class="orden-number">000001</p>
-                      </div>
-                      <div class="col s1">
-                        <div class="hr-line"></div>
-                      </div>
-                      <div class="col s3 l3 xl2">
-                        <h6><b>N°. de documento:</b></h6>
-                        <label>1069587890</label>
-                      </div>
-                      <div class="col s4 m4 l4 xl3">
-                        <h6><b>Nombre del Paciente:</b></h6>
-                        <label>Jose María Paciente Prueba</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="test-swipe-4" class="col s12 white estudies">
-                    <div class="estudies-son2">
-                      <div class="row espaciado-titulo">
-                        <div class="s12">
-                          <h6><b>Número de Orden: </b><span class="orden-number">000001</span></h6>
-                          <hr>
-                        </div>
-                        <div class="col s12 lista">
-                          <div class="estudios-lista">
-                            <div>
-                              HEPATITIS B, ANTICUERPOS S (ANTI HBS)
-                            </div>
-                            <div>
-                                <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
-                            </div>
-                          </div>
-                          <div class="estudios-lista">
-                            <div>
-                              HEPATITIS B, ANTICUERPOS CENTRAL TOTALES (ANTI CORE HBC)
-                            </div>
-                            <div>
-                                <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
-                            </div>
-                          </div>
-                          <div class="estudios-lista">
-                            <div>
-                              TGO AST TRANSAM GLUTAMICO OXALOACETICA
-                            </div>
-                            <div>
-                                <a class="" href=""><small><i class="material-icons">file_download</i></small></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-        </div>
-        <div class="col m1 no-mobile valign-wrapper">
-          <p class="botn-top">
-            <label>
-              <input type="checkbox" class="filled-in" checked="checked" />
-              <span></span>
-            </label>
-          </p>
-        </div>
-      </div>
+    
   </div>
 
    <!-- Modal cambio de password -->

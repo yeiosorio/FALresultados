@@ -119,5 +119,34 @@ export class UserService {
 
    }
 
+   public getOrdersByRol(dateIni, dateEnd, identification, rol) {
+        // let token = localStorage.getItem('token').substring(1, localStorage.getItem('token').length - 1);
+
+        // let headers: HttpHeaders = new HttpHeaders();
+        // headers = headers.append('Content-Type', 'application/json');
+        // headers = headers.append('authgl', 'glbearer ' + token);
+        let data = JSON.stringify({
+            dateIni: dateIni, 
+            dateEnd: dateEnd, 
+            identification: identification,
+            rol: rol
+          });
+
+
+        return Observable.create(observer => {
+          this.http.post(this.URL_API + `WsUsers/getOrdersByRol.json`, data).subscribe(
+              data => {
+                observer.next(data);
+                observer.complete();
+              },
+              error => {
+                observer.next(error);
+                observer.complete();
+              }
+            );
+        });
+
+   }
+
 
 }

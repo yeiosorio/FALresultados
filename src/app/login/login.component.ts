@@ -13,7 +13,7 @@ declare var M: any;
 export class LoginComponent implements OnInit {
 	email: any;
 	password: any;
-	emailLogin: any;
+	identificationLogin: any;
 	identification: any;
 	recoveryIdentification: any;
 	confirmEmail: any;
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 	userAuthenticate() {
 
 		let data = JSON.stringify({
-			email : this.emailLogin,
+			identification : this.identificationLogin,
 			password : this.password
 		});
 

@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MzNavbarModule } from 'ngx-materialize';
 
 import { AuthGuard } from './_guards';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
 	MatPaginatorModule,
 	MatTableModule,
@@ -99,7 +100,8 @@ import {
 		MatToolbarModule,
 		MatTooltipModule,
 		MatTreeModule,
-		HttpClientModule
+		HttpClientModule,
+		BrowserAnimationsModule
 	],
 	providers: [ AuthGuard ],
 	bootstrap: [ AppComponent ]
