@@ -80,11 +80,14 @@ export class ResultComponent implements OnInit {
 						
 						// Si la encuentra repetida solo agrega el studiosy id a la posicion de la orden
 						if (posOrder != -1) {
-							
-							this.auxStudies[posOrder].push({
+							if(this.auxStudies[0][posOrder] !== undefined){
+								this.auxStudies[0][posOrder] = [];
+							}
+							this.auxStudies[0][posOrder] = [{...this.auxStudies[0][posOrder], [index]:{
 								name: value.name,
-								result_id: value.result_id
-							});
+								result_id: value.result_id}
+							}];
+							//push();
 
 						}else{// Se almacenan los datos en un nuevo arreglo cuando es la primera vez que viene la orden
 
@@ -93,27 +96,34 @@ export class ResultComponent implements OnInit {
 							
 							// Se asigna todo el arreglo en uno nuevo
 							this.auxListOrders.push(value)
-							this.auxStudies[index] = {
+							this.auxStudies = [{...this.auxStudies, [index]:[{
 								name: value.name,
-								result_id: value.result_id
-							};
+								result_id: value.result_id}]
+							}];
+
 
 							// Se formatea objeto a array para ser iterados los estudios en el template
-							this.auxStudies[index] = Object.keys(this.auxStudies[index]).map(i => this.auxStudies[index])
-							// Se quita la primera posicion por quedar duplicada
-							this.auxStudies[index].splice(0,1)
+							// this.auxStudies[index] = Object.keys(this.auxStudies[index]).map(i => this.auxStudies[index])
+							// // Se quita la primera posicion por quedar duplicada
+							// this.auxStudies[index].splice(0,1)
 
 						}
 
 					})
 
-					this.auxListOrders.forEach((value, index) => {
 
-						if (this.auxStudies[index]) {
-							this.listStudies[index] = this.auxStudies[index];
-						}
+					console.log(this.auxStudies)
+
+					// this.auxListOrders.forEach((value, index) => {
+					// 	console.log('index 1')
+					// 	console.log(index)
+					// 	if (!this.auxStudies[index]) {
+					// 		console.log('index 2')
+					// 		console.log(index)
+					// 		this.listStudies[index] = this.auxStudies[index + 1];
+					// 	}
 						
-					});
+					// });
 
 					this.backgroundColor = "primary";
 					this.colorToggle = "secondary";
