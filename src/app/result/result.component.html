@@ -141,13 +141,18 @@
             </div>
             <div class="col s7 m7">
                 <div class="row">
-                    <div class="input-field col s12">
+                    <!-- <div class="input-field col s12">
                         <i class="material-icons prefix">search</i>
                         <input type="text"
                                id="autocomplete-input"
                                class="autocomplete">
                         <label for="autocomplete-input">Buscador...</label>
-                    </div>
+                    </div> -->
+                    <mat-form-field class="width100">
+                        <input matInput
+                               (keyup)="getItems($event)"
+                               placeholder="Buscador...">
+                    </mat-form-field>
                 </div>
             </div>
             <div class="col s12">
@@ -206,7 +211,7 @@
         </div>
 
         <div class="row padd-out"
-             *ngFor="let item of listOrders; let i = index;">
+             *ngFor="let item of items$; let i = index;">
             <div class="col s12 m12 l11 padd-out">
                 <mat-tab-group dynamicHeight
                                animationDuration="0ms"
@@ -220,7 +225,7 @@
                                     <div class="row">
                                         <div class="col s3 m2 l2 xl2 numero-orden-head">
                                             <h6><b>N°. de Orden:</b></h6>
-                                            <p class="orden-number">{{item.order_id}}</p>
+                                            <p class="orden-number">{{item.order_consec}}</p>
                                         </div>
                                         <div class="col s1">
                                             <div class="hr-line"></div>
