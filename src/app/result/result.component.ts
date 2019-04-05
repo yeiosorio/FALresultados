@@ -22,7 +22,7 @@ export class ResultComponent implements OnInit {
 	listOrders = [];
 	auxListOrders = [];
 	listStudies = {}
-	auxStudies = {}
+	auxStudies = []
 	msgchangePassword = "";
 
 	backgroundColor: any
@@ -81,44 +81,36 @@ export class ResultComponent implements OnInit {
 						// Si la encuentra repetida solo agrega el studiosy id a la posicion de la orden
 						if (posOrder != -1) {
 							
-							this.auxStudies[posOrder].push({
+							this.auxStudies[posOrder] = [...this.auxStudies[posOrder], ...{
 								name: value.name,
 								result_id: value.result_id
-							});
+							}]
 
 						}else{// Se almacenan los datos en un nuevo arreglo cuando es la primera vez que viene la orden
 
 							// Se guarda cada order_id
-							auxOrdersPosition[index] = value.order_id;
+							auxOrdersPosition.push(value.order_id)
 							
 							// Se asigna todo el arreglo en uno nuevo
-							this.auxListOrders.push(value)
-							this.auxStudies[index] = {
+							this.listOrders.push(value)
+							this.auxStudies = [...this.auxStudies, ...{
 								name: value.name,
 								result_id: value.result_id
-							};
-
+							}]
+							
 							// Se formatea objeto a array para ser iterados los estudios en el template
-							this.auxStudies[index] = Object.keys(this.auxStudies[index]).map(i => this.auxStudies[index])
+							this.auxStudies[this.auxStudies.length -1] = Object.keys(this.auxStudies[this.auxStudies.length -1]).map(i => this.auxStudies[this.auxStudies.length -1])
 							// Se quita la primera posicion por quedar duplicada
-							this.auxStudies[index].splice(0,1)
+							this.auxStudies[this.auxStudies.length -1].splice(0,1)
 
-						}
-
-					})
-
-					this.auxListOrders.forEach((value, index) => {
-
-						if (this.auxStudies[index]) {
-							this.listStudies[index] = this.auxStudies[index];
+							this.listStudies = this.auxStudies
+							
 						}
 						
-					});
+					})
 
 					this.backgroundColor = "primary";
 					this.colorToggle = "secondary";
-					console.log('listStudies')
-					console.log(this.listStudies)
 
 				} else {
 					this.msgListOrders = data.msg
