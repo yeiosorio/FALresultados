@@ -179,8 +179,22 @@
         </div>
       </div>
 	</div>    
+	
+	<div class="row loading" *ngIf="loading">
+		<div class="preloader-wrapper big active" >
+			<div class="spinner-layer spinner-blue-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div><div class="gap-patch">
+				<div class="circle"></div>
+			</div><div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="row padd-out" *ngFor="let item of listOrders; let i = index;">
+  <div class="row padd-out" *ngFor="let item of listOrders; let i = index;">
 		<div class="col s12 m12 l11 padd-out">
 			<mat-tab-group mat-elevation-z4 dynamicHeight animationDuration="0ms" [color]="colorToggle" [backgroundColor]="backgroundColor">
 				<mat-tab label="Información">
@@ -223,7 +237,8 @@
 												{{study.name}}
 											</div>
 											<div>
-												<a class="" href="result#"><small><i class="material-icons">file_download</i></small></a>
+												<a matTooltip="Descargar resultado" (click)="downloadResult(study.result_id, item);" class="btn-flat" href="result#" ><small><i class="material-icons">file_download</i></small></a>
+												
 											</div>
 										</div>
 										

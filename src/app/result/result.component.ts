@@ -12,6 +12,8 @@ import * as moment from "moment"
 })
 export class ResultComponent implements OnInit {
 
+	loading = true;
+
 	colorchangePassword: any;
 	antPassword: any;
 	newPassword: any;
@@ -22,7 +24,7 @@ export class ResultComponent implements OnInit {
 	listOrders = [];
 	auxListOrders = [];
 	listStudies = {}
-	auxStudies = {}
+	auxStudies = []
 	msgchangePassword = "";
 
 	backgroundColor: any
@@ -63,6 +65,7 @@ export class ResultComponent implements OnInit {
 
 	// Se obtienen las ordenes con estudios del dia actual
 	getOrdersByRol(rol, identification){
+		
 
 		let dateIni = moment().format('YYYY-MM-DD');
 		let dateEnd = moment().format('YYYY-MM-DD');
@@ -72,7 +75,8 @@ export class ResultComponent implements OnInit {
 				if (data.success) {
 					// Array de posiciones de ordenes repetidas
 					let auxOrdersPosition = []
-
+					this.loading = false
+					
 					data.listOrders.forEach((value, index) => {
 
 						// busqueda para saber si se repite la orden
@@ -80,56 +84,38 @@ export class ResultComponent implements OnInit {
 						
 						// Si la encuentra repetida solo agrega el studiosy id a la posicion de la orden
 						if (posOrder != -1) {
-							if(this.auxStudies[0][posOrder] !== undefined){
-								this.auxStudies[0][posOrder] = [];
-							}
-							this.auxStudies[0][posOrder] = [{...this.auxStudies[0][posOrder], [index]:{
+							
+							this.auxStudies[posOrder] = [...this.auxStudies[posOrder], ...{
 								name: value.name,
-								result_id: value.result_id}
-							}];
-							//push();
+								result_id: value.result_id
+							}]
 
 						}else{// Se almacenan los datos en un nuevo arreglo cuando es la primera vez que viene la orden
 
 							// Se guarda cada order_id
-							auxOrdersPosition[index] = value.order_id;
+							auxOrdersPosition.push(value.order_id)
 							
 							// Se asigna todo el arreglo en uno nuevo
-							this.auxListOrders.push(value)
-							this.auxStudies = [{...this.auxStudies, [index]:[{
+							this.listOrders.push(value)
+							this.auxStudies = [...this.auxStudies, ...{
 								name: value.name,
-								result_id: value.result_id}]
-							}];
-
-
+								result_id: value.result_id
+							}]
+							
 							// Se formatea objeto a array para ser iterados los estudios en el template
-							// this.auxStudies[index] = Object.keys(this.auxStudies[index]).map(i => this.auxStudies[index])
-							// // Se quita la primera posicion por quedar duplicada
-							// this.auxStudies[index].splice(0,1)
+							this.auxStudies[this.auxStudies.length -1] = Object.keys(this.auxStudies[this.auxStudies.length -1]).map(i => this.auxStudies[this.auxStudies.length -1])
+							// Se quita la primera posicion por quedar duplicada
+							this.auxStudies[this.auxStudies.length -1].splice(0,1)
 
+							this.listStudies = this.auxStudies
+							
 						}
-
-					})
-
-
-					console.log(this.auxStudies)
-
-					// this.auxListOrders.forEach((value, index) => {
-					// 	console.log('index 1')
-					// 	console.log(index)
-					// 	if (!this.auxStudies[index]) {
-					// 		console.log('index 2')
-					// 		console.log(index)
-					// 		this.listStudies[index] = this.auxStudies[index + 1];
-					// 	}
 						
-					// });
+					})
 
 					this.backgroundColor = "primary";
 					this.colorToggle = "secondary";
-					console.log('listStudies')
-					console.log(this.listStudies)
-
+					
 				} else {
 					this.msgListOrders = data.msg
 					
@@ -138,6 +124,114 @@ export class ResultComponent implements OnInit {
 		
 	}
 	
+	// Funcion encargada de la generacion de resultado y la posterior descarga en Pdf.
+	downloadResult(result_id, item){
+
+		console.log('datos del template')
+		console.log(result_id)
+		console.log(item)
+
+		const peopleName = {
+			birthdate: "1996-08-20T00:00:00+0000",
+			first_name: "RICARDO",
+			gender: 0,
+			id: 81790,
+			identification: "1113790831",
+			last_name: "GUZMAN",
+			last_name_two: "FLOREZ",
+			middle_name: "JULIAN"
+		}
+
+		const order = {
+			calculated_age: "22.5",
+			client : {
+				name: "FUNDACION PARTICIPAR IPS"
+			},
+			name: "FUNDACION PARTICIPAR IPS",
+			id: 172358,
+			order_consec: "20190309010045",
+		}
+
+		const appointment = {
+			firmSpecialist: "http://52.183.68.4/xxespejofundacion/back_end/resources/specialist_signatures/1545053754414585113525391.jpg",
+			attentions: [],
+			study: {
+				cup: "881602",
+				id: 100,
+				name: "ULTRASONOGRAFÍA DE TEJIDOS BLANDOS EN LAS EXTREMIDADES INFERIORES CON TRANSDUCTOR DE 7 MHZ O MAS"
+			}
+		}
+
+		appointment.attentions.push({
+			created: "2019-03-22T10:16:18-0500",
+			id: 157419
+		});
+
+		const specialists_id = item.specialists_id
+		const summernote = item.result_content
+
+		this.serviceUser.getPhotoPeople(item.people_id)
+			.subscribe(data => {
+
+				if (data.success) {
+					let picture = data.picture.url;
+				}
+				else {
+					let picture = '';
+				}
+				
+			});
+
+		this.serviceUser.getSpecialistById(specialists_id)
+			.subscribe(data => {
+
+				if (data.success) {
+					let specialistSelected = data.specialists;
+
+					this.serviceUser.getSpecialistSignature(specialists_id)
+					.subscribe(data => {
+		
+						if (data.success) {
+							let firmSpecialist = data.picture.url;
+								// peopleName: _this.peopleName,
+                                // firmSpecialist: _this.firmSpecialist,
+                                // order: _this.order,
+                                // appointment: _this.appointment,
+                                // sex: _this.sexo,
+                                // specialistSelected: _this.specialistSelected,
+                                // summernote: _this.summernote,
+                                // validate: ($scope.optionSelected == 2 || _this.authorized == true ? true : false),
+                                // pre: true,
+                                // picture: _this.picture
+							// let data = JSON.stringify({data: data});
+							
+							// this.serviceUser.printResult()
+							// 	.subscribe(data => {
+
+							//	window.open(urls.BASE_API + '/ResultProfiles/downloadPrev/true/' + _this.peopleName.identification, '_blank');
+							// 	
+									
+							// 	});
+
+
+						}
+						else {
+						}
+						
+					});
+				}
+				else {
+				}
+				
+			});
+
+	
+
+
+
+
+	}
+
 	changePassword(){
 
 		let userInfo = JSON.parse(localStorage.getItem('userInfo'));

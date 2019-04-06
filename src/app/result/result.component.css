@@ -361,9 +361,11 @@ footer>p{
     border-top-right-radius: 5px;
 }
 
-/* .mat-tab-label-content{
-    color: #fff!important;
+.loading{
+    text-align: center;
+    margin-top: 97px;
 }
-.mat-tab-label-active{
-    background: #3db0f8!important;
-} */
+
+.btn-flat{
+    color: #0081be;
+}
