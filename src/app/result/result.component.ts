@@ -11,16 +11,17 @@ import * as moment from "moment"
 	styleUrls: [ './result.component.css' ]
 })
 export class ResultComponent implements OnInit {
-
+	downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
 	loading = true;
 
 	colorchangePassword: any;
 	antPassword: any;
 	newPassword: any;
-	elems: any;
 	instances: any;
 	userEmail: any;
 	username: any;
+	changePasswordModal: any;
+
 	rol: string;
 	msgListOrders = "";
 	listOrders = [];
@@ -41,8 +42,11 @@ export class ResultComponent implements OnInit {
 			M.AutoInit();
 		}, 100);
 
-		this.elems = document.querySelectorAll('#forceChangePassword');
-		this.instances = M.Modal.init(this.elems);
+		let elems = document.querySelectorAll('#forceChangePassword');
+		this.instances = M.Modal.init(elems);
+
+		let elems2 = document.querySelectorAll('#changePassword');
+		this.changePasswordModal = M.Modal.init(elems2);
 
 		this.forceChangePassword();
 
@@ -189,7 +193,7 @@ export class ResultComponent implements OnInit {
 				this.serviceUser.printResult(data)
 					.subscribe(response => {
 
-					window.open('http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/' + item.identification, '_blank');
+					window.open(this.DownloadUrl + item.identification, '_blank');
 						
 				});
 		});
@@ -203,16 +207,23 @@ export class ResultComponent implements OnInit {
 		if (this.antPassword != undefined || this.newPassword != undefined) {
 			this.serviceUser.changePassword(this.antPassword, this.newPassword, userInfo.identification)
 				.subscribe(data => {
+
 					this.msgchangePassword = data.msg
 					if (data.success) {
+
 						this.antPassword = undefined
 						this.newPassword = undefined
 						this.colorchangePassword = true;
 						userInfo.change_password = 1
 						localStorage.setItem('userInfo', JSON.stringify(userInfo));
+
+						console.log(this.instances)
+
 						setTimeout(() => {
-							this.instances[0].close();
+		this.changePasswordModal = M.Modal.init(elems2);
+		this.instances[0].close();
 						}, 4000);
+
 					} else {
 						this.colorchangePassword = false;
 					}
