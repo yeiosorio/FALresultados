@@ -132,11 +132,11 @@ export class UserService {
 
    }
 
-   public getPhotoPeople(people_id) {
-    let data = JSON.stringify({people_id: people_id});
+   public getInfoResult(people_id, specialist_id) {
+    let data = JSON.stringify({people_id: people_id, id: specialist_id});
 
      return Observable.create(observer => {
-       this.http.post(this.URL_API + `WsUsers/getPhotoPeople.json`, data).subscribe(
+       this.http.post(this.URL_API + `WsUsers/getInfoResult.json`, data).subscribe(
            data => {
              observer.next(data);
              observer.complete();
@@ -149,39 +149,6 @@ export class UserService {
      });
   }
 
-   public getSpecialistById(specialists_id) {
-    let data = JSON.stringify({id: specialists_id});
-
-     return Observable.create(observer => {
-       this.http.post(this.URL_API + `WsUsers/getSpecialistById.json`, data).subscribe(
-           data => {
-             observer.next(data);
-             observer.complete();
-           },
-           error => {
-             observer.next(error);
-             observer.complete();
-           }
-         );
-     });
-  }
-
-   public getSpecialistSignature(specialists_id) {
-    let data = JSON.stringify({id: specialists_id});
-
-     return Observable.create(observer => {
-       this.http.post(this.URL_API + `WsUsers/getSpecialistSignature.json`, data).subscribe(
-           data => {
-             observer.next(data);
-             observer.complete();
-           },
-           error => {
-             observer.next(error);
-             observer.complete();
-           }
-         );
-     });
-  }
 
    public printResult(data) {
 

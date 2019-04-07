@@ -8,7 +8,7 @@
               <!-- <li><a class='dropdown-trigger btn user' href='#' data-target='dropdown12' style="width: 250px;">Usuario01</a></li> -->
               <li>
                   <div class="dropdown">
-                      <button class="dropbtn">{{userEmail}}<i class="fa fa-caret-down"></i></button>
+                      <button class="dropbtn">{{username}}<i class="fa fa-caret-down"></i></button>
                       <div class="dropdown-content1">
                         <a href="#changePassword" class="waves-effect waves-light logout modal-trigger"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
                         <hr class="none-hr">
@@ -111,7 +111,7 @@
   <div class="container contenedor-back">
     <!-- Page Content goes here -->
     <div class="row">
-        <h5><b>ENTIDAD: </b><span>Usuario01</span></h5>
+        <h5><b>Usuario: </b><span>{{username}}</span></h5>
     </div>
     <div class="row background-search">
       <div class="col s5 m5">
@@ -192,7 +192,12 @@
 			</div>
 			</div>
 		</div>
-	</div>
+  </div>
+  
+  
+  <div class="row loading" *ngIf="msgListOrders != '' ">
+    <h4> {{msgListOrders}}</h4>
+  </div>
 
   <div class="row padd-out" *ngFor="let item of listOrders; let i = index;">
 		<div class="col s12 m12 l11 padd-out">
@@ -204,7 +209,7 @@
 								<div class="row">
 									<div class="col s3 m2 l2 xl2 numero-orden-head">
 										<h6><b>N°. de Orden:</b></h6>
-										<p class="orden-number">{{item.order_id}}</p>
+										<p class="orden-number">{{item.order_consec}}</p>
 									</div>
 									<div class="col s1">
 										<div class="hr-line"></div>
@@ -228,7 +233,7 @@
 							<div class="estudies-son">
 								<div class="row espaciado-titulo">
 								<div class="s12">
-									<h6><b>Número de Orden: </b><span class="orden-number">{{item.order_id}}</span></h6>
+									<h6><b>Número de Orden: </b><span class="orden-number">{{item.order_consec}}</span></h6>
 									<hr>
 								</div>
 									<div class="col s12 lista" *ngFor="let study of listStudies[i]; let x = index;">
@@ -237,7 +242,8 @@
 												{{study.name}}
 											</div>
 											<div>
-												<a matTooltip="Descargar resultado" (click)="downloadResult(study.result_id, item);" class="btn-flat" href="result#" ><small><i class="material-icons">file_download</i></small></a>
+												<a *ngIf="study.Results_state == '1' && item.state_download == '1' " matTooltip="Descargar resultado" (click)="downloadResult(study.result_id, item, study.Results_state, study.name);" class="btn-flat able" href="result#" ><small><i class="material-icons">file_download</i></small></a>
+												<a *ngIf="study.Results_state == '0' || item.state_download == '0' " matTooltip="No se permite la descarga" class="btn-flat unable" href="result#" ><small><i class="material-icons">file_download</i></small></a>
 												
 											</div>
 										</div>
@@ -253,7 +259,7 @@
 		<div class="col m1 no-mobile valign-wrapper">
 			<p class="botn-top">
 				<label>
-				<input type="checkbox" class="filled-in" checked="checked" />
+				<input type="checkbox" class="filled-in" />
 				<span></span>
 				</label>
 			</p>
@@ -269,11 +275,11 @@
           <h5 class="teal-text left">Cambio de contraseña</h5>
           <div class="row mb-10">
               <div class="input-field col s12">
-                  <input [(ngModel)]="antPassword" id="antPassword" type="text" name="antPassword">
+                  <input [(ngModel)]="antPassword" id="antPassword" type="password" name="antPassword">
                   <label for="antPassword">Contraseña Anterior</label>
               </div>
               <div class="input-field col s12">
-                <input [(ngModel)]="newPassword" id="newPassword" type="text" name="newPassword">
+                <input [(ngModel)]="newPassword" id="newPassword" type="password" name="newPassword">
                 <label for="newPassword">Contraseña Nueva</label>
               </div>
           </div>
@@ -296,11 +302,11 @@
           <h5 class="teal-text left">Cambio de contraseña</h5>
           <div class="row mb-10">
               <div class="input-field col s12">
-                  <input [(ngModel)]="antPassword" id="forcAntPassword" type="text" name="forcAntPassword">
+                  <input [(ngModel)]="antPassword" id="forcAntPassword" type="password" name="forcAntPassword">
                   <label for="forcAntPassword">Contraseña Anterior</label>
               </div>
               <div class="input-field col s12">
-                <input [(ngModel)]="newPassword" id="forceNewPassword" type="text" name="forcenewPassword">
+                <input [(ngModel)]="newPassword" id="forceNewPassword" type="password" name="forcenewPassword">
                 <label for="forceNewPassword">Contraseña Nueva</label> 
               </div>
           </div>

@@ -20,7 +20,8 @@ export class ResultComponent implements OnInit {
 	elems: any;
 	instances: any;
 	userEmail: any;
-	msgListOrders: any;
+	username: any;
+	msgListOrders = "";
 	listOrders = [];
 	auxListOrders = [];
 	listStudies = {}
@@ -45,7 +46,9 @@ export class ResultComponent implements OnInit {
 		this.forceChangePassword();
 
 		let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+		let person = JSON.parse(localStorage.getItem('person'));
 		this.userEmail = userInfo.email
+		this.username = person.first_name + ' ' + person.middle_name +' '+ person.last_name
 
 		this.getOrdersByRol(userInfo.rol, userInfo.identification);
 
@@ -72,10 +75,12 @@ export class ResultComponent implements OnInit {
 
 		this.serviceUser.getOrdersByRol(dateIni, dateEnd, identification, rol)
 			.subscribe(data => {
+				this.loading = false
+				this.msgListOrders = data.msg
+
 				if (data.success) {
 					// Array de posiciones de ordenes repetidas
 					let auxOrdersPosition = []
-					this.loading = false
 					
 					data.listOrders.forEach((value, index) => {
 
@@ -87,7 +92,8 @@ export class ResultComponent implements OnInit {
 							
 							this.auxStudies[posOrder] = [...this.auxStudies[posOrder], ...{
 								name: value.name,
-								result_id: value.result_id
+								result_id: value.result_id,
+								Results_state: value.Results_state
 							}]
 
 						}else{// Se almacenan los datos en un nuevo arreglo cuando es la primera vez que viene la orden
@@ -99,25 +105,22 @@ export class ResultComponent implements OnInit {
 							this.listOrders.push(value)
 							this.auxStudies = [...this.auxStudies, ...{
 								name: value.name,
-								result_id: value.result_id
+								result_id: value.result_id,
+								Results_state: value.Results_state
 							}]
 							
 							// Se formatea objeto a array para ser iterados los estudios en el template
 							this.auxStudies[this.auxStudies.length -1] = Object.keys(this.auxStudies[this.auxStudies.length -1]).map(i => this.auxStudies[this.auxStudies.length -1])
 							// Se quita la primera posicion por quedar duplicada
-							this.auxStudies[this.auxStudies.length -1].splice(0,1)
-
-							this.listStudies = this.auxStudies
+							this.auxStudies[this.auxStudies.length -1].splice(0,2)
 							
 						}
 						
 					})
+					this.listStudies = this.auxStudies
 
 					this.backgroundColor = "primary";
 					this.colorToggle = "secondary";
-					
-				} else {
-					this.msgListOrders = data.msg
 					
 				}
 			});
@@ -125,111 +128,70 @@ export class ResultComponent implements OnInit {
 	}
 	
 	// Funcion encargada de la generacion de resultado y la posterior descarga en Pdf.
-	downloadResult(result_id, item){
+	downloadResult(result_id, item, Results_state, name){
 
 		console.log('datos del template')
 		console.log(result_id)
 		console.log(item)
-
+		let arrayName = item.people_name.split(" ")
 		const peopleName = {
-			birthdate: "1996-08-20T00:00:00+0000",
-			first_name: "RICARDO",
-			gender: 0,
-			id: 81790,
-			identification: "1113790831",
-			last_name: "GUZMAN",
-			last_name_two: "FLOREZ",
-			middle_name: "JULIAN"
+			identification: item.identification,
+			first_name: arrayName[0],
+			middle_name: arrayName[1],
+			last_name: arrayName[2],
+			last_name_two: arrayName[3],
 		}
 
 		const order = {
-			calculated_age: "22.5",
+			calculated_age: "",
 			client : {
-				name: "FUNDACION PARTICIPAR IPS"
+				name: item.client,
 			},
-			name: "FUNDACION PARTICIPAR IPS",
-			id: 172358,
-			order_consec: "20190309010045",
+			order_consec: item.order_consec,
 		}
 
 		const appointment = {
-			firmSpecialist: "http://52.183.68.4/xxespejofundacion/back_end/resources/specialist_signatures/1545053754414585113525391.jpg",
 			attentions: [],
 			study: {
-				cup: "881602",
-				id: 100,
-				name: "ULTRASONOGRAFÍA DE TEJIDOS BLANDOS EN LAS EXTREMIDADES INFERIORES CON TRANSDUCTOR DE 7 MHZ O MAS"
+				cup: item.cup,
+				name: name
 			}
 		}
 
 		appointment.attentions.push({
-			created: "2019-03-22T10:16:18-0500",
-			id: 157419
+			created: item.date_time_ini,
+			id: item.attentions_id
 		});
 
 		const specialists_id = item.specialists_id
 		const summernote = item.result_content
+		const gender = item.gender
+		let results_state = Results_state;
 
-		this.serviceUser.getPhotoPeople(item.people_id)
-			.subscribe(data => {
-
-				if (data.success) {
-					let picture = data.picture.url;
-				}
-				else {
-					let picture = '';
-				}
+		this.serviceUser.getInfoResult(item.people_id, specialists_id)
+			.subscribe(response => {
 				
-			});
+				let data = JSON.stringify({
+					peopleName: peopleName,
+					firmSpecialist: response.signature.url,
+					order: order,
+					appointment: appointment,
+					sex: gender,
+					specialistSelected: response.specialists,
+					summernote: summernote,
+					validate: (results_state == '1') ? true : false,
+					pre: true,
+					picture: response.picture.url
+				});
+			
+				this.serviceUser.printResult(data)
+					.subscribe(response => {
 
-		this.serviceUser.getSpecialistById(specialists_id)
-			.subscribe(data => {
-
-				if (data.success) {
-					let specialistSelected = data.specialists;
-
-					this.serviceUser.getSpecialistSignature(specialists_id)
-					.subscribe(data => {
-		
-						if (data.success) {
-							let firmSpecialist = data.picture.url;
-								// peopleName: _this.peopleName,
-                                // firmSpecialist: _this.firmSpecialist,
-                                // order: _this.order,
-                                // appointment: _this.appointment,
-                                // sex: _this.sexo,
-                                // specialistSelected: _this.specialistSelected,
-                                // summernote: _this.summernote,
-                                // validate: ($scope.optionSelected == 2 || _this.authorized == true ? true : false),
-                                // pre: true,
-                                // picture: _this.picture
-							// let data = JSON.stringify({data: data});
-							
-							// this.serviceUser.printResult()
-							// 	.subscribe(data => {
-
-							//	window.open(urls.BASE_API + '/ResultProfiles/downloadPrev/true/' + _this.peopleName.identification, '_blank');
-							// 	
-									
-							// 	});
-
-
-						}
-						else {
-						}
+					window.open('http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/' + item.identification, '_blank');
 						
-					});
-				}
-				else {
-				}
-				
-			});
-
-	
-
-
-
-
+				});
+		});
+		
 	}
 
 	changePassword(){

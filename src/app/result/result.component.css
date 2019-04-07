@@ -366,6 +366,9 @@ footer>p{
     margin-top: 97px;
 }
 
-.btn-flat{
+.able{
     color: #0081be;
+}
+.unable{
+    color: rgba(0, 129, 190, 0.5);;
 }

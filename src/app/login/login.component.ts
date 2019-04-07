@@ -57,14 +57,12 @@ export class LoginComponent implements OnInit {
 		this.serviceUser.userAuthenticate(data)
 			.subscribe(data => {
 
-				console.log('response')
-				console.log(data)
-
 				if (data.success) {
 					// Se almacena token del lado del cliente para las futuras peticiones
 					localStorage.setItem('token', data.data.token);
 					delete data.user.password;
 					localStorage.setItem('userInfo', JSON.stringify(data.user));
+					localStorage.setItem('person', JSON.stringify(data.person));
 
 					// Se redirecciona a la pagina de lista de resultados
 					this.router.navigate([ '/result' ]);
