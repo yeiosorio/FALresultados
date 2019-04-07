@@ -193,7 +193,7 @@ export class ResultComponent implements OnInit {
 				this.serviceUser.printResult(data)
 					.subscribe(response => {
 
-					window.open(this.DownloadUrl + item.identification, '_blank');
+					window.open(this.downloadUrl + item.identification, '_blank');
 						
 				});
 		});
