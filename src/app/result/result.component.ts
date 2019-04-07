@@ -21,6 +21,7 @@ export class ResultComponent implements OnInit {
 	instances: any;
 	userEmail: any;
 	username: any;
+	rol: string;
 	msgListOrders = "";
 	listOrders = [];
 	auxListOrders = [];
@@ -48,6 +49,7 @@ export class ResultComponent implements OnInit {
 		let userInfo = JSON.parse(localStorage.getItem('userInfo'));
 		let person = JSON.parse(localStorage.getItem('person'));
 		this.userEmail = userInfo.email
+		this.rol = userInfo.rol
 		this.username = person.first_name + ' ' + person.middle_name +' '+ person.last_name
 
 		this.getOrdersByRol(userInfo.rol, userInfo.identification);

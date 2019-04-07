@@ -114,7 +114,7 @@
         <h5><b>Usuario: </b><span>{{username}}</span></h5>
     </div>
     <div class="row background-search">
-      <div class="col s5 m5">
+      <div class="col s5 m5" *ngIf="rol == '1' ">
         <div class="input-field col s12">
           <select class="fondo-select">
             <option value="" disabled selected>Sede</option>

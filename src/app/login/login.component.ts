@@ -41,8 +41,6 @@ export class LoginComponent implements OnInit {
 		var instances = M.Modal.init(elems, {
 			dismissible: false
 		});
-
-		console.log(instances)
 		
 	}
 
