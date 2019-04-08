@@ -8,7 +8,7 @@ declare var M: any;
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styleUrls: [ './login.component.css' ]
+	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 	email: any;
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 	term = false;
 	registerStatus = false;
 
-	constructor(private router: Router, private serviceUser: UserService) {}
+	constructor(private router: Router, private serviceUser: UserService) { }
 
 	ngOnInit() {
 		// inicia los componentes de materialize
@@ -39,12 +39,7 @@ export class LoginComponent implements OnInit {
 		var instances = M.Modal.init(elems, {
 			dismissible: false
 		});
-<<<<<<< HEAD
 
-		console.log(instances);
-=======
-		
->>>>>>> ef171d5e4efe6de6d6ecff577ff0583f192d8561
 	}
 
 	// funcion que permite realizar la autenticacion del usuario ante el sistema
@@ -56,17 +51,6 @@ export class LoginComponent implements OnInit {
 			password: this.password
 		});
 
-<<<<<<< HEAD
-		this.serviceUser.userAuthenticate(data).subscribe((data) => {
-			console.log('response');
-			console.log(data);
-
-			if (data.success) {
-				// Se almacena token del lado del cliente para las futuras peticiones
-				localStorage.setItem('token', data.data.token);
-				delete data.user.password;
-				localStorage.setItem('userInfo', JSON.stringify(data.user));
-=======
 		this.serviceUser.userAuthenticate(data)
 			.subscribe(data => {
 
@@ -78,19 +62,18 @@ export class LoginComponent implements OnInit {
 					localStorage.setItem('person', JSON.stringify(data.person));
 
 					// Se redirecciona a la pagina de lista de resultados
-					this.router.navigate([ '/result' ]);
->>>>>>> ef171d5e4efe6de6d6ecff577ff0583f192d8561
+					this.router.navigate(['/result']);
 
-				// Se redirecciona a la pagina de lista de resultados
-				this.router.navigate([ '/result' ]);
-			} else {
-				this.msgUserValidate = data.msg;
+					// Se redirecciona a la pagina de lista de resultados
+					this.router.navigate(['/result']);
+				} else {
+					this.msgUserValidate = data.msg;
 
-				setTimeout(() => {
-					this.msgUserValidate = '';
-				}, 4000);
-			}
-		});
+					setTimeout(() => {
+						this.msgUserValidate = '';
+					}, 4000);
+				}
+			});
 	}
 
 	// funcion que permite realizar el registro del usuario en la plataforma

@@ -247,6 +247,7 @@ footer>p {
 }
 
 /* LOGUT STYLES */
+
 .none-hr {
     padding: 0px 15px;
     margin: 0px;
@@ -280,8 +281,7 @@ footer>p {
     transition: .4s ease;
 }
 
-.navbar a:hover,
-.dropdown:hover .dropbtn {
+.navbar a:hover, .dropdown:hover .dropbtn {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -314,44 +314,27 @@ footer>p {
     display: block;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*  ----------MEDIA QUERY DISPOSITIVOS----------  */
+
 @media screen and (max-width: 600px) {
     .logo-header {
         margin-top: 4px;
     }
-
     .body-style {
         background-image: url('/assets/img/wallpaper-results-mobile.jpg');
     }
-
     .contenedor-back {
         background-color: rgba(255, 255, 255, 0);
         padding: 0px;
     }
-
     h5 {
         color: #fff;
     }
-
     .background-search {
         background-color: #fff;
         border-radius: 5px;
         padding-top: 15px;
     }
-
     .boton-filtro {
         width: 85%;
         text-align: center;
@@ -361,23 +344,18 @@ footer>p {
         margin-bottom: 30px;
         background-color: #0081bf;
     }
-
     .retirar {
         display: none;
     }
-
     .padd-out {
         padding: 0px;
     }
-
     .estudios-lista {
         margin: 10px 0px;
     }
-
     .lista {
         padding: 0px 10px;
     }
-
     .responsive {
         width: 85%;
         height: auto;
@@ -395,13 +373,6 @@ footer>p {
         width: 90%;
     }
 }
-
-
-
-
-
-
-
 
 .color-verde {
     color: #5cb85c;
@@ -422,20 +393,20 @@ footer>p {
     border-top-right-radius: 5px;
 }
 
-.loading{
+.loading {
     text-align: center;
     margin-top: 97px;
 }
 
-.able{
+.able {
     color: #0081be;
 }
-.unable{
-    color: rgba(0, 129, 190, 0.5);;
+
+.unable {
+    color: rgba(0, 129, 190, 0.5);
+    ;
 }
-<<<<<<< HEAD
-.mat-tab-label-active{
+
+.mat-tab-label-active {
     background: #3db0f8!important;
-} */
-=======
->>>>>>> ef171d5e4efe6de6d6ecff577ff0583f192d8561
+}
