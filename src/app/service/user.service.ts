@@ -51,12 +51,6 @@ export class UserService {
 
    public userAuthenticate(data) {
 
-        // let token = localStorage.getItem('token').substring(1, localStorage.getItem('token').length - 1);
-
-        // let headers: HttpHeaders = new HttpHeaders();
-        // headers = headers.append('Content-Type', 'application/json');
-        // headers = headers.append('authgl', 'glbearer ' + token);
-
         return Observable.create(observer => {
           this.http.post(this.URL_API + `WsUsers/userAuthenticate.json`, data).subscribe(
               data => {
@@ -74,11 +68,6 @@ export class UserService {
 
    public recoveryPassword(identification) {
 
-        // let token = localStorage.getItem('token').substring(1, localStorage.getItem('token').length - 1);
-
-        // let headers: HttpHeaders = new HttpHeaders();
-        // headers = headers.append('Content-Type', 'application/json');
-        // headers = headers.append('authgl', 'glbearer ' + token);
         let data = JSON.stringify({identification: identification});
         return Observable.create(observer => {
           this.http.post(this.URL_API + `WsUsers/recoveryPassword.json`, data).subscribe(
@@ -98,11 +87,6 @@ export class UserService {
   // Cambio de contraseña
    public changePassword(antPassword, newPassword, identification) {
 
-        // let token = localStorage.getItem('token').substring(1, localStorage.getItem('token').length - 1);
-
-        // let headers: HttpHeaders = new HttpHeaders();
-        // headers = headers.append('Content-Type', 'application/json');
-        // headers = headers.append('authgl', 'glbearer ' + token);
         let data = JSON.stringify({antPassword: antPassword, newPassword: newPassword, identification: identification});
         return Observable.create(observer => {
           this.http.post(this.URL_API + `WsUsers/changePassword.json`, data).subscribe(
@@ -147,6 +131,41 @@ export class UserService {
         });
 
    }
+
+   public getInfoResult(people_id, specialist_id) {
+    let data = JSON.stringify({people_id: people_id, id: specialist_id});
+
+     return Observable.create(observer => {
+       this.http.post(this.URL_API + `WsUsers/getInfoResult.json`, data).subscribe(
+           data => {
+             observer.next(data);
+             observer.complete();
+           },
+           error => {
+             observer.next(error);
+             observer.complete();
+           }
+         );
+     });
+  }
+
+
+   public printResult(data) {
+
+     return Observable.create(observer => {
+       this.http.post(this.URL_API + `resultProfiles/preResultProfile.json`, data).subscribe(
+           data => {
+             observer.next(data);
+             observer.complete();
+           },
+           error => {
+             observer.next(error);
+             observer.complete();
+           }
+         );
+     });
+  }
+
 
 
 }

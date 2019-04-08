@@ -39,8 +39,12 @@ export class LoginComponent implements OnInit {
 		var instances = M.Modal.init(elems, {
 			dismissible: false
 		});
+<<<<<<< HEAD
 
 		console.log(instances);
+=======
+		
+>>>>>>> ef171d5e4efe6de6d6ecff577ff0583f192d8561
 	}
 
 	// funcion que permite realizar la autenticacion del usuario ante el sistema
@@ -52,6 +56,7 @@ export class LoginComponent implements OnInit {
 			password: this.password
 		});
 
+<<<<<<< HEAD
 		this.serviceUser.userAuthenticate(data).subscribe((data) => {
 			console.log('response');
 			console.log(data);
@@ -61,6 +66,20 @@ export class LoginComponent implements OnInit {
 				localStorage.setItem('token', data.data.token);
 				delete data.user.password;
 				localStorage.setItem('userInfo', JSON.stringify(data.user));
+=======
+		this.serviceUser.userAuthenticate(data)
+			.subscribe(data => {
+
+				if (data.success) {
+					// Se almacena token del lado del cliente para las futuras peticiones
+					localStorage.setItem('token', data.data.token);
+					delete data.user.password;
+					localStorage.setItem('userInfo', JSON.stringify(data.user));
+					localStorage.setItem('person', JSON.stringify(data.person));
+
+					// Se redirecciona a la pagina de lista de resultados
+					this.router.navigate([ '/result' ]);
+>>>>>>> ef171d5e4efe6de6d6ecff577ff0583f192d8561
 
 				// Se redirecciona a la pagina de lista de resultados
 				this.router.navigate([ '/result' ]);

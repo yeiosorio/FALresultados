@@ -422,9 +422,20 @@ footer>p {
     border-top-right-radius: 5px;
 }
 
-/* .mat-tab-label-content{
-    color: #fff!important;
+.loading{
+    text-align: center;
+    margin-top: 97px;
 }
+
+.able{
+    color: #0081be;
+}
+.unable{
+    color: rgba(0, 129, 190, 0.5);;
+}
+<<<<<<< HEAD
 .mat-tab-label-active{
     background: #3db0f8!important;
 } */
+=======
+>>>>>>> ef171d5e4efe6de6d6ecff577ff0583f192d8561
