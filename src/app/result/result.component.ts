@@ -204,7 +204,10 @@ export class ResultComponent implements OnInit {
 
 		let userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-		if (this.antPassword != undefined || this.newPassword != undefined) {
+		console.log(this.antPassword)
+		console.log(this.newPassword)
+
+		if (this.antPassword && this.newPassword) {
 			this.serviceUser.changePassword(this.antPassword, this.newPassword, userInfo.identification)
 				.subscribe(data => {
 
@@ -237,6 +240,7 @@ export class ResultComponent implements OnInit {
 		this.antPassword = undefined
 		this.newPassword = undefined
 		this.msgchangePassword = "";
+		this.changePasswordModal[0].close();
 	}
 
 	openChangePassword(){

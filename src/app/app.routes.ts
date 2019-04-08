@@ -13,4 +13,4 @@ const app_routes: Routes = [
 	// path: '**' -> cualquier otra direccion
 ];
 
-export const app_routing = RouterModule.forRoot(app_routes);
+export const app_routing = RouterModule.forRoot(app_routes, { useHash: true });

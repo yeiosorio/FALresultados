@@ -275,11 +275,11 @@
           <h5 class="teal-text left">Cambio de contraseña</h5>
           <div class="row mb-10">
               <div class="input-field col s12">
-                  <input [(ngModel)]="antPassword" id="antPassword" type="password" name="antPassword">
+                  <input [(ngModel)]="antPassword" id="antPassword" type="password" name="antPassword" minlength="6">
                   <label for="antPassword">Contraseña actual</label>
               </div>
               <div class="input-field col s12">
-                <input [(ngModel)]="newPassword" id="newPassword" type="password" name="newPassword">
+                <input [(ngModel)]="newPassword" id="newPassword" type="password" name="newPassword" minlength="6">
                 <label for="newPassword">Contraseña Nueva</label>
               </div>
           </div>
@@ -302,11 +302,11 @@
           <h5 class="teal-text left">Cambio de contraseña</h5>
           <div class="row mb-10">
               <div class="input-field col s12">
-                  <input [(ngModel)]="antPassword" id="forcAntPassword" type="password" name="forcAntPassword">
+                  <input [(ngModel)]="antPassword" id="forcAntPassword" type="password" name="forcAntPassword" minlength="6">
                   <label for="forcAntPassword">Contraseña Anterior</label>
               </div>
               <div class="input-field col s12">
-                <input [(ngModel)]="newPassword" id="forceNewPassword" type="password" name="forcenewPassword">
+                <input [(ngModel)]="newPassword" id="forceNewPassword" type="password" name="forcenewPassword" minlength="6">
                 <label for="forceNewPassword">Contraseña Nueva</label> 
               </div>
           </div>
