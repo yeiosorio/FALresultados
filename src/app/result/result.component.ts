@@ -53,7 +53,8 @@ export class ResultComponent implements OnInit {
 		let userInfo = JSON.parse(localStorage.getItem('userInfo'));
 		let person = JSON.parse(localStorage.getItem('person'));
 		this.userEmail = userInfo.email
-		this.rol = userInfo.rol
+		this.rol = userInfo.rol;
+		console.log('rol', this.rol);
 		this.username = person.first_name + ' ' + person.middle_name + ' ' + person.last_name
 
 		this.getOrdersByRol(userInfo.rol, userInfo.identification);
@@ -139,6 +140,7 @@ export class ResultComponent implements OnInit {
 								result_id: value.result_id,
 								Results_state: value.Results_state
 							})
+							this.initializeItems();
 
 							// Se formatea objeto a array para ser iterados los estudios en el template
 							this.auxStudies[this.auxStudies.length - 1] = Object.keys(this.auxStudies[this.auxStudies.length - 1]).map(i => this.auxStudies[this.auxStudies.length - 1])
