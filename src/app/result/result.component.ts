@@ -96,11 +96,11 @@ export class ResultComponent implements OnInit {
 						// Si la encuentra repetida solo agrega el studiosy id a la posicion de la orden
 						if (posOrder != -1) {
 							
-							this.auxStudies[posOrder] = [...this.auxStudies[posOrder], ...{
+							this.auxStudies[posOrder].push({
 								name: value.name,
 								result_id: value.result_id,
 								Results_state: value.Results_state
-							}]
+							})
 
 						}else{// Se almacenan los datos en un nuevo arreglo cuando es la primera vez que viene la orden
 
@@ -109,11 +109,11 @@ export class ResultComponent implements OnInit {
 							
 							// Se asigna todo el arreglo en uno nuevo
 							this.listOrders.push(value)
-							this.auxStudies = [...this.auxStudies, ...{
+							this.auxStudies.push({
 								name: value.name,
 								result_id: value.result_id,
 								Results_state: value.Results_state
-							}]
+							})
 							
 							// Se formatea objeto a array para ser iterados los estudios en el template
 							this.auxStudies[this.auxStudies.length -1] = Object.keys(this.auxStudies[this.auxStudies.length -1]).map(i => this.auxStudies[this.auxStudies.length -1])
