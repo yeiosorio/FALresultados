@@ -247,8 +247,8 @@ export class ResultComponent implements OnInit {
 
 
 						setTimeout(() => {
-
 							this.changePasswordModal[0].close();
+							this.instances[0].close();
 						}, 3000);
 
 					} else {
