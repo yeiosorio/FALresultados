@@ -1,273 +1,333 @@
 <div class="body-style">
-  <nav>
-      <div class="nav-wrapper">
-          <a href="#!" class="brand-logo"><img class="logo-header" src="assets/img/logo.jpg" /></a>
-          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-              <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Ayuda</a></li>
-              <!-- <li><a class='dropdown-trigger btn user' href='#' data-target='dropdown12' style="width: 250px;">Usuario01</a></li> -->
-              <li>
-                  <div class="dropdown">
-                      <button class="dropbtn">{{username}}<i class="fa fa-caret-down"></i></button>
-                      <div class="dropdown-content1">
-                        <a href="result#" (click)="openChangePassword()" class="waves-effect waves-light logout"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
-                        <hr class="none-hr">
-                        <a class="waves-effect waves-light logout"><i class="material-icons">wrap_text</i>Cerrar Sesión</a>
-                        <!-- <hr class="none-hr">
-                        <a href="#">Link 3</a> -->
-                      </div>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">
+                <img class="logo-header" src="assets/img/logo.jpg" />
+            </a>
+            <a href="#" data-target="slide-out" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a class="waves-effect waves-light modal-trigger" href="#modal1">Ayuda</a>
+                </li>
+                <!-- <li><a class='dropdown-trigger btn user' href='#' data-target='dropdown12' style="width: 250px;">Usuario01</a></li> -->
+                <li>
+                    <div class="dropdown">
+                        <button class="dropbtn">{{username}}
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content1">
+                            <a href="result#" (click)="openChangePassword()" class="waves-effect waves-light logout">
+                                <i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
+                            <hr class="none-hr">
+                            <a class="waves-effect waves-light logout">
+                                <i class="material-icons">wrap_text</i>Cerrar Sesión</a>
+                            <!-- <hr class="none-hr">
+                          <a href="#">Link 3</a> -->
+                        </div>
                     </div>
-              </li>
-              <!-- <ul id="dropdown12" class="dropdown-content config" width="200px">
-                  <li><a href="#!"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a></li>
-                  <li class="divider">
-                  </li><li><a href="#!"><i class="material-icons">wrap_text</i>Cerrar Sesión</a></li>
-              </ul> -->
-          </ul>
-      </div>
-  </nav>
+                </li>
+                <!-- <ul id="dropdown12" class="dropdown-content config" width="200px">
+                    <li><a href="#!"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a></li>
+                    <li class="divider">
+                    </li><li><a href="#!"><i class="material-icons">wrap_text</i>Cerrar Sesión</a></li>
+                </ul> -->
+            </ul>
+        </div>
+    </nav>
 
 
-  <ul id="slide-out"
-      class="sidenav">
+    <ul id="slide-out" class="sidenav">
 
-      <li><a class="waves-effect waves-light modal-trigger" href="#modal1"><i class="material-icons">lightbulb_outline</i>Ayuda</a></li>
-      <!-- <li><a href="#!">Second Link</a></li> -->
-      <li>
-          <div class="divider"></div>
-      </li>
-      <!-- <li><a class="subheader">Subheader</a></li> -->
-      <li><a href="#!"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a></li>
-      <li>
-          <div class="divider"></div>
-      </li>
-      <li><a href="#!"><i class="material-icons">wrap_text</i>Cerrar Sesión</a></li>
-  </ul>
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal bottom-sheet">
-      <div class="modal-content">
-        <h4>¿Necesitas Ayuda?</h4>
-        <p>Tips Básicos que te ayudarán para el uso de la aplicación</p>
-      </div>
-      <div class="container">
-        <ul class="collapsible popout">
-          <li class="">
-            <div class="collapsible-header"><i class="material-icons">color_lens</i>Colores</div>
-            <div class="collapsible-body">
-              <div>
-                <p><b>Los colores dentro de la actividad de los estudios se representan en la parte izquierda:</b></p>
-                <img src="/assets/img/estado-estudios.JPG" class="responsive">
-                <ol>
-                  <li>El color <em class="color-verde">"Verde" </em> muestra que los estudios estan listos para descarga.</li>
-                  <li>El color <em class="color-rojo">"Rojo" </em> muestra que aún hay estudios en proceso.</li>
-                  <li>El color <em class="color-gris">"Gris" </em> muestra el bloqueo e inactividad total de los estudios.</li>
-                </ol>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="collapsible-header"><i class="material-icons">menu</i>Menú Superior</div>
-            <div class="collapsible-body">
-              <div>
-              <p><b>En el menú superior puedes encontrar:</b></p>
-              <img src="/assets/img/nav.png" class="responsive">
-                <ol>
-                  <li><b>Ayuda:</b> Te explica toda la plataforma, si tienes dudas.</li>
-                  <li><b>Cambiar Contraseña: </b>Puedes cambiar tu contraseña cuando desees.</li>
-                  <li><b>Cerrar Sesión: </b>Cerrar la sesión activa por tu seguridad y la de tus trabajadores.</li>
-                </ol>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="collapsible-header"><i class="material-icons">view_agenda</i>Botones</div>
-            <div class="collapsible-body">
-              <div>
-                <p><b>En el menú superior puedes encontrar:</b></p>
-                  <ol>
-                    <img src="/assets/img/filtrar.JPG" class="responsive">
-                    <li>
-                      <b>Filtrar:</b> Colocando un rango de fecha, te permite generar un reporte de todos los estudios.
-                    </li>
-                    <img src="/assets/img/descargar-todos.JPG" class="responsive">
-                    <li>
-                      <b>Descargar todo:</b> esta opcion te permite, despues de seleccionar, descargar todos los estudios de una manera más fácil.
-                    </li>
-                    <img src="/assets/img/download.JPG">
-                    <li>
-                      <b>Descargar:</b> Este botón te permite descargar estudios.
-                    </li>
-                  </ol>
+        <li>
+            <a class="waves-effect waves-light modal-trigger" href="#modal1">
+                <i class="material-icons">lightbulb_outline</i>Ayuda</a>
+        </li>
+        <!-- <li><a href="#!">Second Link</a></li> -->
+        <li>
+            <div class="divider"></div>
+        </li>
+        <!-- <li><a class="subheader">Subheader</a></li> -->
+        <li>
+            <a href="#!">
+                <i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="#!">
+                <i class="material-icons">wrap_text</i>Cerrar Sesión</a>
+        </li>
+    </ul>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h4>¿Necesitas Ayuda?</h4>
+            <p>Tips Básicos que te ayudarán para el uso de la aplicación</p>
+        </div>
+        <div class="container">
+            <ul class="collapsible popout">
+                <li class="">
+                    <div class="collapsible-header">
+                        <i class="material-icons">color_lens</i>Colores</div>
+                    <div class="collapsible-body">
+                        <div>
+                            <p>
+                                <b>Los colores dentro de la actividad de los estudios se representan en la parte izquierda:</b>
+                            </p>
+                            <img src="/assets/img/estado-estudios.JPG" class="responsive">
+                            <ol>
+                                <li>El color
+                                    <em class="color-verde">"Verde" </em> muestra que los estudios estan listos para descarga.</li>
+                                <li>El color
+                                    <em class="color-rojo">"Rojo" </em> muestra que aún hay estudios en proceso.</li>
+                                <li>El color
+                                    <em class="color-gris">"Gris" </em> muestra el bloqueo e inactividad total de los estudios.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">menu</i>Menú Superior</div>
+                    <div class="collapsible-body">
+                        <div>
+                            <p>
+                                <b>En el menú superior puedes encontrar:</b>
+                            </p>
+                            <img src="/assets/img/nav.png" class="responsive">
+                            <ol>
+                                <li>
+                                    <b>Ayuda:</b> Te explica toda la plataforma, si tienes dudas.</li>
+                                <li>
+                                    <b>Cambiar Contraseña: </b>Puedes cambiar tu contraseña cuando desees.</li>
+                                <li>
+                                    <b>Cerrar Sesión: </b>Cerrar la sesión activa por tu seguridad y la de tus trabajadores.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">view_agenda</i>Botones</div>
+                    <div class="collapsible-body">
+                        <div>
+                            <p>
+                                <b>En el menú superior puedes encontrar:</b>
+                            </p>
+                            <ol>
+                                <img src="/assets/img/filtrar.JPG" class="responsive">
+                                <li>
+                                    <b>Filtrar:</b> Colocando un rango de fecha, te permite generar un reporte de todos los
+                                    estudios.
+                                </li>
+                                <img src="/assets/img/descargar-todos.JPG" class="responsive">
+                                <li>
+                                    <b>Descargar todo:</b> esta opcion te permite, despues de seleccionar, descargar todos los
+                                    estudios de una manera más fácil.
+                                </li>
+                                <img src="/assets/img/download.JPG">
+                                <li>
+                                    <b>Descargar:</b> Este botón te permite descargar estudios.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <!--  <a href="" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
+        </div>
+    </div>
+
+    <div class="container contenedor-back">
+        <!-- Page Content goes here -->
+        <div class="row">
+            <h5>
+                <b>Usuario: </b>
+                <span>{{username}}</span>
+            </h5>
+        </div>
+        <div class="row background-search">
+            <div class="col s5 m5" *ngIf="rol == '1' ">
+                <div class="input-field col s12">
+                    <select class="fondo-select">
+                        <option value="" disabled selected>Sede</option>
+                        <option value="1">Sede Número 1</option>
+                        <option value="2">Sede Número 2</option>
+                        <option value="3">Sede Número 3</option>
+                    </select>
+                    <label>Elije Una Sede</label>
                 </div>
             </div>
-          </li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-       <!--  <a href="" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
-    </div>
-  </div>
+            <div class="col s7 m7">
+                <div class="row">
 
-  <div class="container contenedor-back">
-    <!-- Page Content goes here -->
-    <div class="row">
-        <h5><b>Usuario: </b><span>{{username}}</span></h5>
-    </div>
-    <div class="row background-search">
-      <div class="col s5 m5" *ngIf="rol == '1' ">
-        <div class="input-field col s12">
-          <select class="fondo-select">
-            <option value="" disabled selected>Sede</option>
-            <option value="1">Sede Número 1</option>
-            <option value="2">Sede Número 2</option>
-            <option value="3">Sede Número 3</option>
-          </select>
-          <label>Elije Una Sede</label>
+                    <mat-form-field class="width100">
+                        <input matInput (keyup)="getItems($event)" autocomplete="nope" placeholder="Buscador...">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="row otro-busqueda">
+                    <div class="col m4 l2">
+                        <p class="retirar estudios-titulo">ESTUDIOS</p>
+                    </div>
+                    <div class="col s12 m8 l3">
+                        <a class="waves-effect waves-light btn modal-trigger boton-filtro" href="#modal-fecha">Filtrar por Fecha</a>
+                    </div>
+                    <div class="col s12 m8 l4 xl4">
+                        <a class="waves-effect waves-light btn no-mobile boton-filtro btn-fter disabled">Descargar Seleccionados</a>
+                    </div>
+                    <div class="col s12 m8 l3">
+                        <p class="no-mobile check">
+                            <label>
+                                <input type="checkbox" class="filled-in" checked="checked" />
+                                <span>
+                                    <small>Seleccionar todos</small>
+                                </span>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+                <hr class="retirar">
+                <!-- Modal Structure -->
+                <div id="modal-fecha" class="modal modal-1">
+                    <div class="modal-content">
+                        <h4 style="color:#345b9a">Reporte de Resultados </h4>
+                        <p>A partir de rango de fechas</p>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col s6">
+                                <label>Fecha Inicial</label>
+                                <input type="text" placeholder="dd/mm/aa" class="datepicker">
+                            </div>
+                            <div class="col s6">
+                                <label>Fecha Final</label>
+                                <input type="text" placeholder="dd/mm/aa" class="datepicker">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col s7 m7">
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">search</i>
-            <input type="text" id="autocomplete-input" class="autocomplete">
-            <label for="autocomplete-input">Buscador...</label>
-          </div>
-        </div>
-      </div>
-      <div class="col s12">
-        <div class="row otro-busqueda">
-            <div class="col m4 l2">
-                <p class="retirar estudios-titulo">ESTUDIOS</p>
-            </div>
-            <div class="col s12 m8 l3">
-              <a class="waves-effect waves-light btn modal-trigger boton-filtro" href="#modal-fecha">Filtrar por Fecha</a>
-            </div>
-            <div class="col s12 m8 l4 xl4">
-              <a class="waves-effect waves-light btn no-mobile boton-filtro btn-fter disabled">Descargar Seleccionados</a>
-            </div>
-            <div class="col s12 m8 l3">
-              <p class="no-mobile check">
-                <label>
-                  <input type="checkbox" class="filled-in" checked="checked" />
-                  <span><small>Seleccionar todos</small></span>
-                </label>
-              </p>
-            </div>
-        </div>
-        <hr class="retirar">
-        <!-- Modal Structure -->
-        <div id="modal-fecha" class="modal modal-1">
-          <div class="modal-content">
-              <h4 style="color:#345b9a">Reporte de Resultados </h4>
-              <p>A partir de rango de fechas</p>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col s6">
-                  <label>Fecha Inicial</label>
-                  <input type="text" placeholder="dd/mm/aa" class="datepicker">
-              </div>
-              <div class="col s6">
-                  <label>Fecha Final</label>
-                  <input type="text" placeholder="dd/mm/aa" class="datepicker">
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-          </div>
-        </div>
-      </div>
-	</div>    
-	
-	<div class="row loading" *ngIf="loading">
-		<div class="preloader-wrapper big active" >
-			<div class="spinner-layer spinner-blue-only">
-			<div class="circle-clipper left">
-				<div class="circle"></div>
-			</div><div class="gap-patch">
-				<div class="circle"></div>
-			</div><div class="circle-clipper right">
-				<div class="circle"></div>
-			</div>
-			</div>
-		</div>
-  </div>
-  
-  
-  <div class="row loading" *ngIf="msgListOrders != '' ">
-    <h4> {{msgListOrders}}</h4>
-  </div>
 
-  <div class="row padd-out" *ngFor="let item of listOrders; let i = index;">
-		<div class="col s12 m12 l11 padd-out">
-			<mat-tab-group mat-elevation-z4 dynamicHeight animationDuration="0ms" [color]="colorToggle" [backgroundColor]="backgroundColor">
-				<mat-tab label="Información">
-					<div class="example-small-box ">
-						<div id="test-swipe-1" class="col s12 white estudies">
-							<div class="estudies-son">
-								<div class="row">
-									<div class="col s3 m2 l2 xl2 numero-orden-head">
-										<h6><b>N°. de Orden:</b></h6>
-										<p class="orden-number">{{item.order_consec}}</p>
-									</div>
-									<div class="col s1">
-										<div class="hr-line"></div>
-									</div>
-									<div class="col s3 l3 xl2">
-										<h6><b>N°. de documento:</b></h6>
-										<label>{{item.identification}}</label>
-									</div>
-									<div class="col s4 m4 l4 xl3">
-										<h6><b>Nombre del Paciente:</b></h6>
-										<label>{{item.people_name}}</label>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</mat-tab>
-				<mat-tab label="Estudios">
-					<div class="example-large-box">
-						<div id="test-swipe-2" class="col s12 white estudies">
-							<div class="estudies-son">
-								<div class="row espaciado-titulo">
-								<div class="s12">
-									<h6><b>Número de Orden: </b><span class="orden-number">{{item.order_consec}}</span></h6>
-									<hr>
-								</div>
-									<div class="col s12 lista" *ngFor="let study of listStudies[i]; let x = index;">
-										<div class="estudios-lista" *ngIf="study != undefined">
-											<div>
-												{{study.name}}
-											</div>
-											<div>
-												<a *ngIf="study.Results_state == '1' && item.state_download == '1' " matTooltip="Descargar resultado" (click)="downloadResult(study.result_id, item, study.Results_state, study.name);" class="btn-flat able" href="result#" ><small><i class="material-icons">file_download</i></small></a>
-												<a *ngIf="study.Results_state == '0' || item.state_download == '0' " matTooltip="No se permite la descarga" class="btn-flat unable" href="result#" ><small><i class="material-icons">file_download</i></small></a>
-												
-											</div>
-										</div>
-										
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</mat-tab>
-			</mat-tab-group>
-		</div>
-		<div class="col m1 no-mobile valign-wrapper">
-			<p class="botn-top">
-				<label>
-				<input type="checkbox" class="filled-in" />
-				<span></span>
-				</label>
-			</p>
-		</div>
-    </div>
+        <div class="row loading" *ngIf="loading">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    
-  </div>
+
+        <div class="row loading" *ngIf="msgListOrders != '' ">
+            <h4> {{msgListOrders}}</h4>
+        </div>
+
+        <div class="row padd-out" *ngFor="let item of items$; let i = index;">
+            <div class="col s12 m12 l11 padd-out">
+                <mat-tab-group mat-elevation-z4 dynamicHeight animationDuration="0ms" [color]="colorToggle" [backgroundColor]="backgroundColor">
+                    <mat-tab label="Información">
+                        <div class="example-small-box ">
+                            <div id="test-swipe-1" class="col s12 white estudies">
+                                <div class="estudies-son">
+                                    <div class="row">
+                                        <div class="col s3 m2 l2 xl2 numero-orden-head">
+                                            <h6>
+                                                <b>N°. de Orden:</b>
+                                            </h6>
+                                            <p class="orden-number">{{item.order_consec}}</p>
+                                        </div>
+                                        <div class="col s1">
+                                            <div class="hr-line"></div>
+                                        </div>
+                                        <div class="col s3 l3 xl2">
+                                            <h6>
+                                                <b>N°. de documento:</b>
+                                            </h6>
+                                            <label>{{item.identification}}</label>
+                                        </div>
+                                        <div class="col s4 m4 l4 xl3">
+                                            <h6>
+                                                <b>Nombre del Paciente:</b>
+                                            </h6>
+                                            <label>{{item.people_name}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Estudios">
+                        <div class="example-large-box">
+                            <div id="test-swipe-2" class="col s12 white estudies">
+                                <div class="estudies-son">
+                                    <div class="row espaciado-titulo">
+                                        <div class="s12">
+                                            <h6>
+                                                <b>Número de Orden: </b>
+                                                <span class="orden-number">{{item.order_consec}}</span>
+                                            </h6>
+                                            <hr>
+                                        </div>
+                                        <div class="col s12 lista" *ngFor="let study of listStudies[i]; let x = index;">
+                                            <div class="estudios-lista" *ngIf="study != undefined">
+                                                <div>
+                                                    {{study.name}}
+                                                </div>
+                                                <div>
+                                                    <a *ngIf="study.Results_state == '1' && item.state_download == '1' " matTooltip="Descargar resultado" (click)="downloadResult(study.result_id, item, study.Results_state, study.name);"
+                                                        class="btn-flat able" href="#/FalResultados/result#">
+                                                        <small>
+                                                            <i class="material-icons">file_download</i>
+                                                        </small>
+                                                    </a>
+                                                    <a *ngIf="study.Results_state == '0' || item.state_download == '0' " matTooltip="No se permite la descarga" class="btn-flat unable"
+                                                        href="#/FalResultados/result#">
+                                                        <small>
+                                                            <i class="material-icons">file_download</i>
+                                                        </small>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+            <div class="col m1 no-mobile valign-wrapper">
+                <p class="botn-top">
+                    <label>
+                        <input type="checkbox" class="filled-in" />
+                        <span></span>
+                    </label>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
 
    <!-- Modal cambio de password -->
    <div id="changePassword" class="modal modal-fixed-footer modalRecovery">
@@ -323,12 +383,12 @@
       </div>
   </div>
 
-  <footer>
-      <p>
-          www.fundacionalejandrolondono.com
-      </p>
-      <p>
-          Gato Loco Studios S.A.S. 2019 | Todos los derechos reservados
-      </p>
+    <footer>
+        <p>
+            www.fundacionalejandrolondono.com
+        </p>
+        <p>
+            Gato Loco Studios S.A.S. 2019 | Todos los derechos reservados
+        </p>
     </footer>
 </div>

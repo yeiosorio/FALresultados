@@ -69,7 +69,8 @@
                                             type="submit"
                                             name="action"
                                             (click)="userAuthenticate()">INCIAR SESIÓN</button><br><br>
-                                    <a href="#recoveryPassword" class="centroTextoLink modal-trigger">¿Has olvidado la contraseña?</a>
+                                    <a href="#recoveryPassword"
+                                       class="centroTextoLink modal-trigger">¿Has olvidado la contraseña?</a>
                                 </div>
                             </div>
                         </form>
@@ -130,9 +131,12 @@
                                     </div>
                                 </div>
                                 <div class="row mb-10">
-                                    <div class="col s12" *ngIf="msgRegister != '' ">
-                                        <label style="color: #cc6464; font-size: 14px;" *ngIf="!colorSuccess">{{msgRegister}}</label>
-                                        <label style="color: #64cca7; font-size: 14px;" *ngIf="colorSuccess">{{msgRegister}}</label>
+                                    <div class="col s12"
+                                         *ngIf="msgRegister != '' ">
+                                        <label style="color: #cc6464; font-size: 14px;"
+                                               *ngIf="!colorSuccess">{{msgRegister}}</label>
+                                        <label style="color: #64cca7; font-size: 14px;"
+                                               *ngIf="colorSuccess">{{msgRegister}}</label>
                                     </div>
                                 </div>
 
@@ -242,33 +246,42 @@
             </p>
         </div>
         <div class="logo-background logo-login">
-            <img src="/assets/img/logo.jpg"
+            <img src="assets/img/logo.jpg"
                  class="img-logo"
                  width="450px" />
         </div>
     </div>
 
     <!-- Modal Recuparacion de password -->
-    <div id="recoveryPassword" class="modal modal-fixed-footer modalRecovery">
+    <div id="recoveryPassword"
+         class="modal modal-fixed-footer modalRecovery">
         <div class="modal-content">
             <h5 class="teal-text left">Recuperacion de contraseña</h5>
             <div class="row mb-10">
                 <div class="input-field col s12">
-                    <input [(ngModel)]="recoveryIdentification" id="recoveryIdentification" type="text" name="recoveryIdentification">
+                    <input [(ngModel)]="recoveryIdentification"
+                           id="recoveryIdentification"
+                           type="text"
+                           name="recoveryIdentification">
                     <label for="recoveryIdentification">Número de documento</label>
                 </div>
             </div>
             <div class="row mb-10">
-                <div class="col s12" *ngIf="msgRecovery != '' ">
-                    <label style="color: #cc6464; font-size: 14px;" *ngIf="!colorRecovery">{{msgRecovery}}</label>
-                    <label style="color: #64cca7; font-size: 14px;" *ngIf="colorRecovery">{{msgRecovery}}</label>
+                <div class="col s12"
+                     *ngIf="msgRecovery != '' ">
+                    <label style="color: #cc6464; font-size: 14px;"
+                           *ngIf="!colorRecovery">{{msgRecovery}}</label>
+                    <label style="color: #64cca7; font-size: 14px;"
+                           *ngIf="colorRecovery">{{msgRecovery}}</label>
                 </div>
             </div>
-            
+
         </div>
         <div class="modal-footer">
-            <button href="#login" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
-            <button (click)="recoveryPassword()" class="btn waves-effect waves-light"><i class="material-icons right">lock</i> Recuperar</button>
+            <button href="#login"
+                    class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+            <button (click)="recoveryPassword()"
+                    class="btn waves-effect waves-light"><i class="material-icons right">lock</i> Recuperar</button>
         </div>
     </div>
 

@@ -425,6 +425,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (!selector) {
         return this;
       }
+    }]);
 
       var comparator = isFunction(selector) ? selector : getCompareFunction(selector);
 
@@ -7297,6 +7298,7 @@ $jscomp.polyfill = function (e, r, p, m) {
           });
         }
       }
+    }, true);
 
       /**
        * Remove Event Handlers
@@ -8205,6 +8207,10 @@ $jscomp.polyfill = function (e, r, p, m) {
     _createClass(Pushpin, [{
       key: "destroy",
 
+  /**
+   * @static
+   * @memberof Chips
+   */
 
       /**
        * Teardown component
