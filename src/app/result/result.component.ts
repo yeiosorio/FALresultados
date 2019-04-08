@@ -220,8 +220,7 @@ export class ResultComponent implements OnInit {
 						console.log(this.instances)
 
 						setTimeout(() => {
-		this.changePasswordModal = M.Modal.init(elems2);
-		this.instances[0].close();
+							this.instances[0].close();
 						}, 4000);
 
 					} else {
