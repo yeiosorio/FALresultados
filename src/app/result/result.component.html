@@ -10,7 +10,7 @@
                   <div class="dropdown">
                       <button class="dropbtn">{{username}}<i class="fa fa-caret-down"></i></button>
                       <div class="dropdown-content1">
-                        <a href="#changePassword" class="waves-effect waves-light logout modal-trigger"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
+                        <a href="result#" (click)="openChangePassword()" class="waves-effect waves-light logout"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
                         <hr class="none-hr">
                         <a class="waves-effect waves-light logout"><i class="material-icons">wrap_text</i>Cerrar Sesión</a>
                         <!-- <hr class="none-hr">
@@ -292,7 +292,7 @@
           
       </div>
       <div class="modal-footer">
-          <button class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+          <button (click)="closeModal()" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
           <button (click)="changePassword()" class="btn waves-effect waves-light"><i class="material-icons right">lock</i> Cambiar contraseña</button>
       </div>
   </div>

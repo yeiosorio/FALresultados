@@ -217,11 +217,11 @@ export class ResultComponent implements OnInit {
 						userInfo.change_password = 1
 						localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
-						console.log(this.instances)
-
+						
 						setTimeout(() => {
-							this.instances[0].close();
-						}, 4000);
+							
+							this.changePasswordModal[0].close();
+						}, 3000);
 
 					} else {
 						this.colorchangePassword = false;
@@ -231,6 +231,17 @@ export class ResultComponent implements OnInit {
 		}else{
 			this.msgchangePassword = "¡El campo de contraseña no puede estar vacio!"
 		}
+	}
+
+	closeModal(){
+		this.antPassword = undefined
+		this.newPassword = undefined
+		this.msgchangePassword = "";
+	}
+
+	openChangePassword(){
+		this.changePasswordModal[0].open();
+
 	}
 
 }
