@@ -20,8 +20,7 @@
                         <div class="dropdown-content1">
                             <a href="#/FalResultados/result#" (click)="openChangePassword()" class="waves-effect waves-light logout"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
                             <hr class="none-hr">
-                            <a class="waves-effect waves-light logout">
-                                <i class="material-icons">wrap_text</i>Cerrar Sesión</a>
+                            <a class="waves-effect waves-light logout" (click)="logOut()" ><i class="material-icons">wrap_text</i>Cerrar Sesión</a>
                             <!-- <hr class="none-hr">
                           <a href="#">Link 3</a> -->
                         </div>
@@ -203,16 +202,16 @@
                         <div class="row">
                             <div class="col s6">
                                 <label>Fecha Inicial</label>
-                                <input type="text" placeholder="dd/mm/aa" class="datepicker">
+                                <input type="text" placeholder="dd/mm/aa" class="test">
                             </div>
                             <div class="col s6">
                                 <label>Fecha Final</label>
-                                <input type="text" placeholder="dd/mm/aa" class="datepicker">
+                                <input type="text" placeholder="dd/mm/aa" class="datepicker2">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                      <a href="/#/FalResultados/result#" class="modal-close waves-effect waves-green btn">Filtrar resultados</a>
                     </div>
                 </div>
             </div>
@@ -334,11 +333,11 @@
           <h5 class="teal-text left">Cambio de contraseña</h5>
           <div class="row mb-10">
               <div class="input-field col s12">
-                  <input [(ngModel)]="antPassword" id="antPassword" type="password" name="antPassword" minlength="6">
+                  <input [(ngModel)]="antPassword" id="antPassword" type="password" name="antPassword">
                   <label for="antPassword">Contraseña actual</label>
               </div>
               <div class="input-field col s12">
-                <input [(ngModel)]="newPassword" id="newPassword" type="password" name="newPassword" minlength="6">
+                <input [(ngModel)]="newPassword" id="newPassword" type="password" name="newPassword">
                 <label for="newPassword">Contraseña Nueva</label>
               </div>
           </div>
@@ -352,7 +351,7 @@
       </div>
       <div class="modal-footer">
           <button (click)="closeModal()" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
-          <button (click)="changePassword()" class="btn waves-effect waves-light"><i class="material-icons right">lock</i> Cambiar contraseña</button>
+          <button (click)="changePassword()" class="btn waves-effect waves-light btnChangePassword "><i class="material-icons right">lock</i> Cambiar contraseña</button>
       </div>
   </div>
 
@@ -361,11 +360,11 @@
           <h5 class="teal-text left">Cambio de contraseña</h5>
           <div class="row mb-10">
               <div class="input-field col s12">
-                  <input [(ngModel)]="antPassword" id="forcAntPassword" type="password" name="forcAntPassword" minlength="6">
+                  <input [(ngModel)]="antPassword" id="forcAntPassword" type="password" name="forcAntPassword">
                   <label for="forcAntPassword">Contraseña Anterior</label>
               </div>
               <div class="input-field col s12">
-                <input [(ngModel)]="newPassword" id="forceNewPassword" type="password" name="forcenewPassword" minlength="6">
+                <input [(ngModel)]="newPassword" id="forceNewPassword" type="password" name="forcenewPassword">
                 <label for="forceNewPassword">Contraseña Nueva</label> 
               </div>
           </div>

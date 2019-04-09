@@ -21,6 +21,7 @@ export class ResultComponent implements OnInit {
 	userEmail: any;
 	username: any;
 	changePasswordModal: any;
+	instancesPicker: any;
 
 	rol: string;
 	msgListOrders = "";
@@ -47,6 +48,30 @@ export class ResultComponent implements OnInit {
 
 		let elems2 = document.querySelectorAll('#changePassword');
 		this.changePasswordModal = M.Modal.init(elems2);
+
+		let today = moment().format('YYYY-MM-DD');
+		let elemsPicker = document.querySelectorAll('.test');
+    	this.instancesPicker = M.Datepicker.init(elemsPicker, {
+			format: 'yyyy-mm-dd',
+			i18n: {
+				months: [
+					'Enero',
+					'Febrero',
+					'Marzo',
+					'Abril',
+					'Mayo',
+					'Junio',
+					'Julio',
+					'Agosto',
+					'Septiembre',
+					'Octubre',
+					'Noviembre',
+					'Diciembre'
+				  ]
+			}
+		});
+
+		console.log(this.instancesPicker)
 
 		this.forceChangePassword();
 
@@ -233,28 +258,32 @@ export class ResultComponent implements OnInit {
 		console.log(this.newPassword)
 
 		if (this.antPassword && this.newPassword) {
-			this.serviceUser.changePassword(this.antPassword, this.newPassword, userInfo.identification)
-				.subscribe(data => {
+			if (this.newPassword.length > 5) {
+				this.serviceUser.changePassword(this.antPassword, this.newPassword, userInfo.identification)
+					.subscribe(data => {
 
-					this.msgchangePassword = data.msg
-					if (data.success) {
+						this.msgchangePassword = data.msg
+						if (data.success) {
 
-						this.antPassword = undefined
-						this.newPassword = undefined
-						this.colorchangePassword = true;
-						userInfo.change_password = 1;
-						localStorage.setItem('userInfo', JSON.stringify(userInfo));
+							this.antPassword = undefined
+							this.newPassword = undefined
+							this.colorchangePassword = true;
+							userInfo.change_password = 1;
+							localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
 
-						setTimeout(() => {
-							this.changePasswordModal[0].close();
-							this.instances[0].close();
-						}, 3000);
+							setTimeout(() => {
+								this.changePasswordModal[0].close();
+								this.instances[0].close();
+							}, 3000);
 
-					} else {
-						this.colorchangePassword = false;
-					}
-				});
+						} else {
+							this.colorchangePassword = false;
+						}
+					});
+			}else{
+				this.msgchangePassword = '¡La contraseña debe tener un minimo de 6 digitos o letras!';
+			}
 		} else {
 			this.msgchangePassword = '¡El campo de contraseña no puede estar vacio!';
 		}
@@ -269,6 +298,12 @@ export class ResultComponent implements OnInit {
 
 	openChangePassword() {
 		this.changePasswordModal[0].open();
+
+	}
+
+	logOut() {
+		localStorage.clear();
+		this.router.navigate(['/login'])
 
 	}
 
