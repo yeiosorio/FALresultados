@@ -192,28 +192,7 @@
                     </div>
                 </div>
                 <hr class="retirar">
-                <!-- Modal Structure -->
-                <div id="modal-fecha" class="modal modal-1">
-                    <div class="modal-content">
-                        <h4 style="color:#345b9a">Reporte de Resultados </h4>
-                        <p>A partir de rango de fechas</p>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col s6">
-                                <label>Fecha Inicial</label>
-                                <input type="text" placeholder="dd/mm/aa" class="test">
-                            </div>
-                            <div class="col s6">
-                                <label>Fecha Final</label>
-                                <input type="text" placeholder="dd/mm/aa" class="datepicker2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="/#/FalResultados/result#" class="modal-close waves-effect waves-green btn">Filtrar resultados</a>
-                    </div>
-                </div>
+               
             </div>
         </div>
 
@@ -380,6 +359,34 @@
           <button (click)="changePassword()" class="btn waves-effect waves-light"><i class="material-icons right">lock</i> Cambiar contraseña</button>
       </div>
   </div>
+
+   <!-- Modal Structure -->
+   <div id="modal-fecha" class="modal modal-1 modalFilterDate">
+        <div class="modal-content">
+            <div class="titleFilterDate">
+                <h4 style="color:#345b9a">Reporte de Resultados </h4>
+            </div>
+            <p class="subTitleFilter">A partir de rango de fechas</p>
+            <div class="container">
+                <form id="formFilterDate">
+                    <div class="row">
+                        <div class="col s6">
+                            <label>Fecha Inicial</label>
+                            <input id="dateIni" type="text" placeholder="aaaa/mm/dd" name="dateini" class="dateIni" value="">
+                        </div>
+                        <div class="col s6">
+                            <label>Fecha Final</label>
+                            <input id="dateEnd" type="text" placeholder="aaaa/mm/dd" name="dateEnd" class="dateEnd" value="">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer footerFilter">
+            <button (click)="closeModalFilter()" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+            <a href="/#/FalResultados/result#" (click)="getOrdersByRol();" class="modal-close waves-effect waves-green btn">Filtrar resultados</a>
+        </div>
+    </div>
 
     <footer>
         <p>

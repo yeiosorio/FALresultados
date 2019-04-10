@@ -165,6 +165,23 @@ export class UserService {
          );
      });
   }
+  
+   public addPrintControl(result_id, uid) {
+    let data = JSON.stringify({results_id: result_id, users_id: uid});
+
+     return Observable.create(observer => {
+       this.http.post(this.URL_API + `WsUsers/addPrintControl.json`, data).subscribe(
+           data => {
+             observer.next(data);
+             observer.complete();
+           },
+           error => {
+             observer.next(error);
+             observer.complete();
+           }
+         );
+     });
+  }
 
 
 

@@ -228,7 +228,7 @@ nav {
 }
 
 .modal-1 {
-    min-height: 560px;
+    /* min-height: 560px; */
     max-height: 560px;
 }
 
@@ -412,4 +412,21 @@ footer>p {
 }
 .btnChangePassword {
     background-color: #156499 !important;
+}
+
+.modalFilterDate {
+    height: 470px;
+    /* width: 50%; */
+}
+
+.titleFilterDate {
+    text-align: center;
+}
+.subTitleFilter {
+    margin-left: 58px;
+    margin-top: 40px;
+}
+.footerFilter {
+    margin-top: 148px;
+    margin-left: -12px;
 }

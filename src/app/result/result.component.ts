@@ -20,10 +20,14 @@ export class ResultComponent implements OnInit {
 	instances: any;
 	userEmail: any;
 	username: any;
+	uid: any;
 	changePasswordModal: any;
 	instancesPicker: any;
 
 	rol: string;
+	identification: string;
+	dateIni: string;
+	dateEnd: string;
 	msgListOrders = "";
 	listOrders = [];
 	auxListOrders = [];
@@ -49,25 +53,38 @@ export class ResultComponent implements OnInit {
 		let elems2 = document.querySelectorAll('#changePassword');
 		this.changePasswordModal = M.Modal.init(elems2);
 
-		let today = moment().format('YYYY-MM-DD');
-		let elemsPicker = document.querySelectorAll('.test');
+		let today = new Date();
+		let minDate = new Date(today.getFullYear(), (today.getMonth() -3) , today.getDate() );
+		
+		let elemsPicker = document.querySelectorAll('.dateIni');
     	this.instancesPicker = M.Datepicker.init(elemsPicker, {
 			format: 'yyyy-mm-dd',
+			// maxDate: today,
+			// minDate: minDate,
+			onSelect: (value) => {
+				this.dateIni = moment(value).format("YYYY-MM-DD");
+			}, 
 			i18n: {
-				months: [
-					'Enero',
-					'Febrero',
-					'Marzo',
-					'Abril',
-					'Mayo',
-					'Junio',
-					'Julio',
-					'Agosto',
-					'Septiembre',
-					'Octubre',
-					'Noviembre',
-					'Diciembre'
-				  ]
+				months: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+				monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+				weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+				cancel: "Cancelar",
+			}
+		});
+
+		let elemsPicker2 = document.querySelectorAll('.dateEnd');
+    	this.instancesPicker = M.Datepicker.init(elemsPicker2, {
+			format: 'yyyy-mm-dd',
+			// maxDate: today,
+			// minDate: minDate,
+			onSelect: (value) => {
+				this.dateEnd = moment(value).format("YYYY-MM-DD");
+			}, 
+			i18n: {
+				months: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+				monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+				weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+				cancel: "Cancelar",
 			}
 		});
 
@@ -79,10 +96,12 @@ export class ResultComponent implements OnInit {
 		let person = JSON.parse(localStorage.getItem('person'));
 		this.userEmail = userInfo.email
 		this.rol = userInfo.rol;
-		console.log('rol', this.rol);
+		this.identification = userInfo.identification;
+		this.uid = userInfo.id
 		this.username = person.first_name + ' ' + person.middle_name + ' ' + person.last_name
 
-		this.getOrdersByRol(userInfo.rol, userInfo.identification);
+		this.getOrdersByRol();
+
 	}
 	applyFilter(filterValue: string) {
 		this.initializeItems();
@@ -110,6 +129,7 @@ export class ResultComponent implements OnInit {
 	initializeItems() {
 		this.items$ = this.listOrders;
 	}
+	
 
 	forceChangePassword() {
 		const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -124,16 +144,35 @@ export class ResultComponent implements OnInit {
 	}
 
 	// Se obtienen las ordenes con estudios del dia actual
-	getOrdersByRol(rol, identification) {
+	getOrdersByRol() {
 
+		this.listOrders = [];
+		this.loading = true;
+		this.msgListOrders = ""
+		this.items$ = [];
 
-		let dateIni = moment().format('YYYY-MM-DD');
-		let dateEnd = moment().format('YYYY-MM-DD');
+		// Se establecen por defecto las fechas con el dia actual
+		if (!this.dateIni || !this.dateEnd) {
+			this.dateIni = moment().format("YYYY-MM-DD");
+			this.dateEnd = moment().format("YYYY-MM-DD");
+		}else{
+			let dateDiffEnd = moment(this.dateEnd);
+			let dateDiffIni = moment(this.dateIni);
+			let diffDays = dateDiffEnd.diff(dateDiffIni, 'days') // 1
 
-		this.serviceUser.getOrdersByRol(dateIni, dateEnd, identification, rol)
+			// // Diferencia de 90 dias
+			if (diffDays > 90) {
+				// Se restan dias resultantes para limitar a 3 meses de anterioridad
+				let restDays = diffDays - 90;
+				dateDiffIni = dateDiffIni.add(restDays, 'days');
+				let dateFinal = moment(dateDiffIni).format("YYYY-MM-DD");
+				this.dateIni = dateFinal;
+			}
+		}
+		this.serviceUser.getOrdersByRol(this.dateIni, this.dateEnd, this.identification, this.rol)
 			.subscribe(data => {
-				this.loading = false
-				this.msgListOrders = data.msg
+				this.loading = false;
+				this.msgListOrders = data.msg;
 
 				if (data.success) {
 					// Array de posiciones de ordenes repetidas
@@ -144,7 +183,7 @@ export class ResultComponent implements OnInit {
 						// busqueda para saber si se repite la orden
 						let posOrder = auxOrdersPosition.indexOf(value.order_id)
 
-						// Si la encuentra repetida solo agrega el studiosy id a la posicion de la orden
+						// Si la encuentra repetida solo agrega el studios y id a la posicion de la orden
 						if (posOrder != -1) {
 
 							this.auxStudies[posOrder].push({
@@ -223,6 +262,7 @@ export class ResultComponent implements OnInit {
 		const gender = item.gender
 		let results_state = Results_state;
 
+		// Se obtiene informacion complementaria para generar el pdf del resultado
 		this.serviceUser.getInfoResult(item.people_id, specialists_id)
 			.subscribe(response => {
 
@@ -241,7 +281,12 @@ export class ResultComponent implements OnInit {
 
 				this.serviceUser.printResult(data)
 					.subscribe(response => {
-
+						
+						this.serviceUser.addPrintControl(result_id, this.uid)
+							.subscribe(response => {
+								
+							})
+						
 						window.open(this.downloadUrl + item.identification, '_blank');
 
 					});
@@ -294,6 +339,13 @@ export class ResultComponent implements OnInit {
 		this.newPassword = undefined
 		this.msgchangePassword = "";
 		this.changePasswordModal[0].close();
+	}
+
+	closeModalFilter() {
+		let date = document.getElementById('dateIni');
+
+		date.innerHTML = ""
+		
 	}
 
 	openChangePassword() {
