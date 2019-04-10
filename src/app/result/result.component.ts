@@ -101,10 +101,10 @@ export class ResultComponent implements OnInit {
 		this.uid = userInfo.id
 		this.username = person.name
 		
-		if (this.rol = "1") {
+		if (this.rol == "1") {
 			this.userType = "Entidad"
 			this.identification = userInfo.usuario_id;
-		}else if(this.rol = "2"){
+		}else if(this.rol == "2"){
 			this.identification = userInfo.usuario_id;
 			this.userType = "Medico"
 		}else{
@@ -195,7 +195,7 @@ export class ResultComponent implements OnInit {
 						// busqueda para saber si se repite la orden
 						let posOrder = auxOrdersPosition.indexOf(value.order_id)
 
-						// Si la encuentra repetida solo agrega el studios y id a la posicion de la orden
+						// Si la encuentra repetida solo agrega el estudio y el id a la posicion de la orden
 						if (posOrder != -1) {
 
 							this.auxStudies[posOrder].push({
