@@ -20,6 +20,7 @@ export class ResultComponent implements OnInit {
 	instances: any;
 	userEmail: any;
 	username: any;
+	userType: any;
 	uid: any;
 	changePasswordModal: any;
 	instancesPicker: any;
@@ -96,9 +97,20 @@ export class ResultComponent implements OnInit {
 		let person = JSON.parse(localStorage.getItem('person'));
 		this.userEmail = userInfo.email
 		this.rol = userInfo.rol;
-		this.identification = userInfo.identification;
+		
 		this.uid = userInfo.id
-		this.username = person.first_name + ' ' + person.middle_name + ' ' + person.last_name
+		this.username = person.name
+		
+		if (this.rol = "1") {
+			this.userType = "Entidad"
+			this.identification = userInfo.usuario_id;
+		}else if(this.rol = "2"){
+			this.identification = userInfo.usuario_id;
+			this.userType = "Medico"
+		}else{
+			this.identification = userInfo.identification;
+			this.userType = "Usuario"
+		}
 
 		this.getOrdersByRol();
 

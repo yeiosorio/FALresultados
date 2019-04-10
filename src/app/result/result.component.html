@@ -14,8 +14,7 @@
                 <!-- <li><a class='dropdown-trigger btn user' href='#' data-target='dropdown12' style="width: 250px;">Usuario01</a></li> -->
                 <li>
                     <div class="dropdown">
-                        <button class="dropbtn">{{username}}
-                            <i class="fa fa-caret-down"></i>
+                        <button class="dropbtn">{{username}}<i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content1">
                             <a href="#/FalResultados/result#" (click)="openChangePassword()" class="waves-effect waves-light logout"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
@@ -145,7 +144,7 @@
         <!-- Page Content goes here -->
         <div class="row">
             <h5>
-                <b>Usuario: </b>
+                <b>{{userType}}</b>
                 <span>{{username}}</span>
             </h5>
         </div>
