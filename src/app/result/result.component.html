@@ -90,8 +90,8 @@
                             <ol>
                                 <li>El color
                                     <em class="color-verde">"Verde" </em> muestra que los estudios estan listos para descarga.</li>
-                                <li>El color
-                                    <em class="color-rojo">"Rojo" </em> muestra que aún hay estudios en proceso.</li>
+                                <!-- <li>El color
+                                    <em class="color-rojo">"Rojo" </em> muestra que aún hay estudios en proceso.</li> -->
                                 <li>El color
                                     <em class="color-gris">"Gris" </em> muestra el bloqueo e inactividad total de los estudios.</li>
                             </ol>
@@ -261,7 +261,8 @@
                         <div class="example-small-box ">
                             <div id="test-swipe-1"
                                  class="col s12 white estudies">
-                                <div class="estudies-son">
+                                <div class="estudies-son"
+                                     [ngClass]="colorBarra">
                                     <div class="row">
                                         <div class="col s3 m2 l2 xl2 numero-orden-head">
                                             <h6>
@@ -293,13 +294,13 @@
                         <div class="example-large-box">
                             <div id="test-swipe-2"
                                  class="col s12 white estudies">
-                                <div class="estudies-son">
+                                <div class="estudies-son"
+                                     [ngClass]="colorBarra">
                                     <div class="row espaciado-titulo">
                                         <div class="s12">
                                             <a class="descargar-todo no-mobile"
                                                href="#/FalResultados/result#"
-                                               (click)="downloadBlock(item, i);">Descargar
-                                                resultados<small><i class="material-icons text-download">file_download</i></small></a>
+                                               (click)="downloadBlock(item, i);"><small><i class="material-icons text-download">file_download</i></small></a>
                                             <h6>
                                                 <b>Número de Orden: </b>
                                                 <span class="orden-number">{{item.order_consec}}</span>
