@@ -269,19 +269,15 @@
             <div class="row mb-10">
                 <div class="col s12"
                      *ngIf="msgRecovery != '' ">
-                    <label style="color: #cc6464; font-size: 14px;"
-                           *ngIf="!colorRecovery">{{msgRecovery}}</label>
-                    <label style="color: #64cca7; font-size: 14px;"
-                           *ngIf="colorRecovery">{{msgRecovery}}</label>
+                    <label style="color: #cc6464; font-size: 14px;" *ngIf="!colorRecovery">{{msgRecovery}}</label>
+                    <label style="color: #64cca7; font-size: 14px;" *ngIf="colorRecovery">{{msgRecovery}}</label>
                 </div>
             </div>
 
         </div>
         <div class="modal-footer">
-            <button href="#login"
-                    class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
-            <button (click)="recoveryPassword()"
-                    class="btn waves-effect waves-light"><i class="material-icons right">lock</i> Recuperar</button>
+            <button href="#login" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+            <button (click)="recoveryPassword()" class="btn waves-effect waves-light btnChangePassword"><i class="material-icons right">lock</i> Recuperar</button>
         </div>
     </div>
 
