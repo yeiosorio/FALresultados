@@ -19,8 +19,7 @@
                 <!-- <li><a class='dropdown-trigger btn user' href='#' data-target='dropdown12' style="width: 250px;">Usuario01</a></li> -->
                 <li>
                     <div class="dropdown">
-                        <button class="dropbtn">{{username}}
-                            <i class="fa fa-caret-down"></i>
+                        <button class="dropbtn">{{username}}<i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content1">
                             <a href="#/FalResultados/result#"
@@ -160,7 +159,7 @@
         <!-- Page Content goes here -->
         <div class="row">
             <h5>
-                <b>Usuario: </b>
+                <b>{{userType}}: </b>
                 <span>{{username}}</span>
             </h5>
         </div>
@@ -251,11 +250,13 @@
         <div class="row padd-out"
              *ngFor="let item of items$; let i = index;">
             <div class="col s12 m12 l11 padd-out">
+
                 <mat-tab-group mat-elevation-z4
                                dynamicHeight
                                animationDuration="0ms"
                                [color]="colorToggle"
                                [backgroundColor]="backgroundColor">
+
                     <mat-tab label="Información">
                         <div class="example-small-box ">
                             <div id="test-swipe-1"
@@ -295,6 +296,10 @@
                                 <div class="estudies-son">
                                     <div class="row espaciado-titulo">
                                         <div class="s12">
+                                            <a class="descargar-todo no-mobile"
+                                               href="#/FalResultados/result#"
+                                               (click)="downloadBlock(item, i);">Descargar
+                                                resultados<small><i class="material-icons text-download">file_download</i></small></a>
                                             <h6>
                                                 <b>Número de Orden: </b>
                                                 <span class="orden-number">{{item.order_consec}}</span>
@@ -314,17 +319,13 @@
                                                        (click)="downloadResult(study.result_id, item, study.Results_state, study.name);"
                                                        class="btn-flat able"
                                                        href="#/FalResultados/result#">
-                                                        <small>
-                                                            <i class="material-icons">file_download</i>
-                                                        </small>
+                                                        <small><i class="material-icons">file_download</i></small>
                                                     </a>
                                                     <a *ngIf="study.Results_state == '0' || item.state_download == '0' "
                                                        matTooltip="No se permite la descarga"
                                                        class="btn-flat unable"
                                                        href="#/FalResultados/result#">
-                                                        <small>
-                                                            <i class="material-icons">file_download</i>
-                                                        </small>
+                                                        <small><i class="material-icons">file_download</i></small>
                                                     </a>
 
                                                 </div>

@@ -20,10 +20,10 @@ export class ResultComponent implements OnInit {
 	instances: any;
 	userEmail: any;
 	username: any;
+	userType: any;
 	uid: any;
 	changePasswordModal: any;
 	instancesPicker: any;
-	client: any;
 
 	rol: string;
 	identification: string;
@@ -39,6 +39,7 @@ export class ResultComponent implements OnInit {
 	backgroundColor: any;
 	colorToggle: any;
 	items$: any[];
+	client: string;
 	clients: any;
 
 	constructor(private router: Router, private serviceUser: UserService) {
@@ -50,7 +51,6 @@ export class ResultComponent implements OnInit {
 		// inicia los componentes de materialize
 		setTimeout(() => {
 			M.AutoInit();
-			this.search = '';
 		}, 100);
 
 		let elems = document.querySelectorAll('#forceChangePassword');
@@ -154,13 +154,24 @@ export class ResultComponent implements OnInit {
 		let person = JSON.parse(localStorage.getItem('person'));
 		this.userEmail = userInfo.email;
 		this.rol = userInfo.rol;
-		this.identification = userInfo.identification;
+
 		this.uid = userInfo.id;
-		this.username = person.first_name + ' ' + person.middle_name + ' ' + person.last_name;
+		this.username = person.name;
 		// si el usuario es admin
 		if (this.rol == '0') {
 			this.getClients();
 		}
+		if (this.rol == '1') {
+			this.userType = 'Entidad';
+			this.identification = userInfo.usuario_id;
+		} else if (this.rol == '2') {
+			this.identification = userInfo.usuario_id;
+			this.userType = 'Medico';
+		} else {
+			this.identification = userInfo.identification;
+			this.userType = 'Usuario';
+		}
+
 		this.getOrdersByRol();
 	}
 	applyFilter(filterValue: string) {
@@ -241,7 +252,7 @@ export class ResultComponent implements OnInit {
 						// busqueda para saber si se repite la orden
 						let posOrder = auxOrdersPosition.indexOf(value.order_id);
 
-						// Si la encuentra repetida solo agrega el studios y id a la posicion de la orden
+						// Si la encuentra repetida solo agrega el estudio y el id a la posicion de la orden
 						if (posOrder != -1) {
 							this.auxStudies[posOrder].push({
 								name: value.name,
@@ -267,7 +278,7 @@ export class ResultComponent implements OnInit {
 							this.auxStudies[this.auxStudies.length - 1] = Object.keys(
 								this.auxStudies[this.auxStudies.length - 1]
 							).map((i) => this.auxStudies[this.auxStudies.length - 1]);
-							// Se quita la primera posicion por quedar duplicada
+							// Se quitan las dos primeras posiciones por quedar duplicada al hacer el object.keys()
 							this.auxStudies[this.auxStudies.length - 1].splice(0, 2);
 						}
 					});
@@ -277,6 +288,14 @@ export class ResultComponent implements OnInit {
 					this.colorToggle = 'secondary';
 				}
 			});
+	}
+
+	downloadBlock(item, index) {
+		this.auxStudies[index].forEach((value, index) => {
+			if (value.Results_state == '1') {
+				this.downloadResult(value.result_id, item, value.Results_state, value.name);
+			}
+		});
 	}
 
 	// Funcion encargada de la generacion de resultado y la posterior descarga en Pdf.
