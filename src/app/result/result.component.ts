@@ -220,7 +220,7 @@ export class ResultComponent implements OnInit {
 
 							// Se formatea objeto a array para ser iterados los estudios en el template
 							this.auxStudies[this.auxStudies.length - 1] = Object.keys(this.auxStudies[this.auxStudies.length - 1]).map(i => this.auxStudies[this.auxStudies.length - 1])
-							// Se quita la primera posicion por quedar duplicada
+							// Se quitan las dos primeras posiciones por quedar duplicada al hacer el object.keys()
 							this.auxStudies[this.auxStudies.length - 1].splice(0, 2)
 
 						}
@@ -233,6 +233,16 @@ export class ResultComponent implements OnInit {
 
 				}
 			});
+
+	}
+
+	downloadBlock(item, index){
+		this.auxStudies[index].forEach((value, index) => {
+			if (value.Results_state == "1") {
+				this.downloadResult(value.result_id, item, value.Results_state, value.name);
+			}
+			
+		});
 
 	}
 
@@ -294,10 +304,7 @@ export class ResultComponent implements OnInit {
 				this.serviceUser.printResult(data)
 					.subscribe(response => {
 						
-						this.serviceUser.addPrintControl(result_id, this.uid)
-							.subscribe(response => {
-								
-							})
+						this.serviceUser.addPrintControl(result_id, this.uid).subscribe(response => {})
 						
 						window.open(this.downloadUrl + item.identification, '_blank');
 
