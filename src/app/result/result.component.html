@@ -249,13 +249,14 @@
 
         <div class="row padd-out"
              *ngFor="let item of items$; let i = index;">
-            <div class="col s12 m12 l11 padd-out">
+            <div class="col s12 m12 l11 padd-out casita2">
 
                 <mat-tab-group mat-elevation-z4
                                dynamicHeight
                                animationDuration="0ms"
                                [color]="colorToggle"
-                               [backgroundColor]="backgroundColor">
+                               [backgroundColor]="backgroundColor"
+                               class="casita">
 
                     <mat-tab label="Información">
                         <div class="example-small-box ">
