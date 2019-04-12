@@ -227,6 +227,42 @@ export class ResultComponent implements OnInit {
 		} else {
 			let dateDiffEnd = moment(this.dateEnd);
 			let dateDiffIni = moment(this.dateIni);
+			let calFechas = dateDiffEnd.diff(dateDiffIni, 'days');
+
+			if (this.rol == '1' || this.rol == '2') {
+				// entidad o medico
+				if (calFechas > 90) {
+					alert('Solo se puede colsultar dos mes');
+					this.loading = false;
+					return;
+				}
+			}
+			if (this.rol == '0') {
+				// admin
+				if (calFechas > 30) {
+					this.loading = false;
+					alert('Solo se puede colsultar un mes');
+					return;
+				}
+			}
+			if (this.rol == '3') {
+				// paciente
+				if (calFechas > 120) {
+					this.loading = false;
+					alert('Solo se puede colsultar tres mes');
+					return;
+				}
+			}
+
+			if (dateDiffEnd == undefined || dateDiffEnd == null) {
+				alert('Se debe especificar una Fecha Fin');
+				return;
+			}
+			if (dateDiffIni == undefined || dateDiffIni == null) {
+				alert('Se debe especificar una Fecha Inicial');
+				return;
+			}
+
 			let diffDays = dateDiffEnd.diff(dateDiffIni, 'days'); // 1
 
 			// // Diferencia de 90 dias
