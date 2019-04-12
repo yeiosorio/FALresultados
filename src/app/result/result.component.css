@@ -427,6 +427,11 @@ footer>p {
     margin-top: 40px;
 }
 .footerFilter {
-    margin-top: 148px;
+    margin-top: 142px;
     margin-left: -12px;
+}
+
+.closeIcon {
+    font-size: 33px;
+    color: #156499;
 }

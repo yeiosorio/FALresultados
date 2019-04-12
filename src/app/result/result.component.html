@@ -242,6 +242,10 @@
         </div>
 
 
+        <div class="row"
+             *ngIf="msgLimitSearch != '' ">
+            <p><i class="material-icons">info_outline</i> {{msgLimitSearch}}</p>
+        </div>
         <div class="row loading"
              *ngIf="msgListOrders != '' ">
             <h4> {{msgListOrders}}</h4>
@@ -284,6 +288,12 @@
                                             </h6>
                                             <label>{{item.people_name}}</label>
                                         </div>
+                                        <div class="col s4 m4 l4 xl3">
+                                            <h6>
+                                                <b>Fecha de atención:</b>
+                                            </h6>
+                                            <label>{{item.date_time_ini | date:'longDate' }}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -296,13 +306,12 @@
                                 <div class="estudies-son">
                                     <div class="row espaciado-titulo">
                                         <div class="s12">
-                                            <a class="descargar-todo no-mobile"
-                                               href="#/FalResultados/result#"
-                                               (click)="downloadBlock(item, i);">Descargar
-                                                resultados<small><i class="material-icons text-download">file_download</i></small></a>
+                                            <a [ngStyle]="{'color': item.state_download == '1' ? '#0081be': 'rgba(0, 129, 190, 0.5)'}" class="descargar-todo no-mobile" href="#/FalResultados/result#" (click)="downloadBlock(item, i);">
+                                                <small><i class="material-icons text-download">file_download</i></small>
+                                            </a>
                                             <h6>
-                                                <b>Número de Orden: </b>
-                                                <span class="orden-number">{{item.order_consec}}</span>
+                                                <b>Nombre del Paciente: </b>
+                                                <span class="orden-number">{{item.people_name}}</span>
                                             </h6>
                                             <hr>
                                         </div>
@@ -358,6 +367,7 @@
          class="modal modal-fixed-footer modalRecovery">
         <div class="modal-content">
             <h5 class="teal-text left">Cambio de contraseña</h5>
+            <i class="material-icons right closeIcon modal-close waves-effect" (click)="closeModal()">close</i>
             <div class="row mb-10">
                 <div class="input-field col s12">
                     <input [(ngModel)]="antPassword"
@@ -386,10 +396,8 @@
 
         </div>
         <div class="modal-footer">
-            <button (click)="closeModal()"
-                    class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
-            <button (click)="changePassword()"
-                    class="btn waves-effect waves-light btnChangePassword "><i class="material-icons right">lock</i> Cambiar contraseña</button>
+            <button (click)="closeModal()" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+            <button (click)="changePassword()" class="btn waves-effect waves-light btnChangePassword "><i class="material-icons right">lock</i> Cambiar contraseña</button>
         </div>
     </div>
 
@@ -397,6 +405,7 @@
          class="modal modal-fixed-footer modalRecovery">
         <div class="modal-content">
             <h5 class="teal-text left">Cambio de contraseña</h5>
+            <i class="material-icons right closeIcon modal-close waves-effect">close</i>
             <div class="row mb-10">
                 <div class="input-field col s12">
                     <input [(ngModel)]="antPassword"
@@ -431,11 +440,11 @@
     </div>
 
     <!-- Modal Structure -->
-    <div id="modal-fecha"
-         class="modal modal-1 modalFilterDate">
-        <div class="modal-content">
+    <div id="modal-fecha" class="modal modal-1 modalFilterDate">
+        <div [ngStyle]="{'margin-top': '10px'}" class="modal-content">
             <div class="titleFilterDate">
                 <h4 style="color:#345b9a">Reporte de Resultados </h4>
+                <i [ngStyle]="{'margin-top': '-70px'}" class="material-icons right closeIcon modal-close waves-effect">close</i>
             </div>
             <p class="subTitleFilter">A partir de rango de fechas</p>
             <div class="container">
