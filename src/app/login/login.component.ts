@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 	term = false;
 	registerStatus = false;
 
-	constructor(private router: Router, private serviceUser: UserService) { 
+	constructor(private router: Router, private serviceUser: UserService) {7
 		if (localStorage.getItem('token')) {
             this.router.navigate(['/result'])
         }
@@ -89,24 +89,20 @@ export class LoginComponent implements OnInit {
 					this.colorSuccess = true;
 					this.msgRegister = data.msg;
 
-					// setTimeout(() => {
-					// 	this.msgRegister = ""
-					// }, 6000);
 				} else {
 					this.colorSuccess = false;
 					if (!data.noExist) {
-						this.registerStatus = true;
 						this.msgRegister = data.msg;
 
-						setTimeout(() => {
-							this.msgRegister = '';
-						}, 6000);
+						// setTimeout(() => {
+						// 	this.msgRegister = '';
+						// }, 6000);
 					} else {
 						this.msgRegister = data.msg;
 
 						setTimeout(() => {
 							this.msgRegister = '';
-						}, 6000);
+						}, 5000);
 					}
 				}
 			});

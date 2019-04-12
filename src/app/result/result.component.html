@@ -242,9 +242,8 @@
         </div>
 
 
-        <div class="row"
-             *ngIf="msgLimitSearch != '' ">
-            <p><i class="material-icons">info_outline</i> {{msgLimitSearch}}</p>
+        <div class="row" *ngIf="msgLimitSearch != '' ">
+            <i class="material-icons infoMargin">info_outline</i> <p class="infoIcon">{{msgLimitSearch}}</p>
         </div>
         <div class="row loading"
              *ngIf="msgListOrders != '' ">

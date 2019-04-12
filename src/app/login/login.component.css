@@ -437,3 +437,9 @@ body {
     font-size: 33px;
     color: #156499;
 }
+
+.infoMargin {
+    color: #cc6464;
+    margin-top: 0px;
+    position: absolute;
+}

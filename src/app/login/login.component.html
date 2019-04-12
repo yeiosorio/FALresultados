@@ -131,12 +131,10 @@
                                     </div>
                                 </div>
                                 <div class="row mb-10">
-                                    <div class="col s12"
-                                         *ngIf="msgRegister != '' ">
-                                        <label style="color: #cc6464; font-size: 14px;"
-                                               *ngIf="!colorSuccess">{{msgRegister}}</label>
-                                        <label style="color: #64cca7; font-size: 14px;"
-                                               *ngIf="colorSuccess">{{msgRegister}}</label>
+                                    <div class="col s12" *ngIf="msgRegister != '' ">
+                                        <i class="material-icons infoMargin">info_outline</i>
+                                        <label style="color: #cc6464; font-size: 14px; margin-left: 30px;" *ngIf="!colorSuccess">{{msgRegister}}</label>
+                                        <label style="color: #64cca7; font-size: 14px;" *ngIf="colorSuccess">{{msgRegister}}</label>
                                     </div>
                                 </div>
 
@@ -153,16 +151,7 @@
                                 </form>
                                 <p class="centrarTexto">Por favor lee detenidamente los <u><i>Términos y Condiciones</i></u> de usuario y las <u><i>Políticas de Seguridad</i></u></p>
                                 <div>
-                                    <button (click)="getEmailRegister()"
-                                            *ngIf="!registerStatus"
-                                            class="btn waves-effect waves-light teal centrar"
-                                            type="submit"
-                                            name="action">REGISTRARTE</button>
-                                    <button (click)="register()"
-                                            *ngIf="registerStatus"
-                                            class="btn waves-effect waves-light teal centrar"
-                                            type="submit"
-                                            name="action">REGISTRARTE</button>
+                                    <button (click)="getEmailRegister()" class="btn waves-effect waves-light teal centrar" type="submit" name="action">REGISTRARSE</button>
                                 </div>
                             </div>
                         </form>

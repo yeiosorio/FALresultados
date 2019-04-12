@@ -170,6 +170,9 @@ export class ResultComponent implements OnInit {
 		this.loading = true;
 		this.msgListOrders = '';
 		this.items$ = [];
+		this.msgLimitSearch = "";
+
+		let diffDays: any;
 
 		// Se establecen por defecto las fechas con el dia actual
 		if (!this.dateIni || !this.dateEnd) {
@@ -179,7 +182,7 @@ export class ResultComponent implements OnInit {
 			// De lo contrario se verifica que no exeda el mes de anterioridad
 			let dateDiffEnd = moment(this.dateEnd);
 			let dateDiffIni = moment(this.dateIni);
-			let diffDays = dateDiffEnd.diff(dateDiffIni, 'days'); // 1
+			diffDays = dateDiffEnd.diff(dateDiffIni, 'days'); // 1
 
 			// // Diferencia de 30 dias
 			if (diffDays > 30) {
@@ -189,14 +192,20 @@ export class ResultComponent implements OnInit {
 				let dateFinal = moment(dateDiffIni).format('YYYY-MM-DD');
 				// Se reasigna a la propiedad de fecha que sera enviada
 				this.dateIni = dateFinal;
+
+				
 			}
 
-			// Propiedad que muestra mensaje indicando que la consulta se limito a solo 3 meses
-			this.msgLimitSearch = "La consulta se ha generado a un limite de 1 mes"
 		}
 		this.serviceUser
 			.getOrdersByRol(this.dateIni, this.dateEnd, this.identification, this.rol, this.client)
 			.subscribe((data) => {
+
+				console.log(diffDays)
+				if (diffDays > 30) {
+					// Propiedad que muestra mensaje indicando que la consulta se limito a solo 3 meses
+					this.msgLimitSearch = "La consulta se ha generado con limite de 1 mes"
+				}
 				this.loading = false;
 				this.msgListOrders = data.msg;
 
