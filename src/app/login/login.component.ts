@@ -27,7 +27,11 @@ export class LoginComponent implements OnInit {
 	term = false;
 	registerStatus = false;
 
-	constructor(private router: Router, private serviceUser: UserService) { }
+	constructor(private router: Router, private serviceUser: UserService) { 
+		if (localStorage.getItem('token')) {
+            this.router.navigate(['/result'])
+        }
+	}
 
 	ngOnInit() {
 		// inicia los componentes de materialize

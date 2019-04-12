@@ -429,3 +429,7 @@ body {
     height: 256px;
     width: 33%;
 }
+
+.btnChangePassword {
+    background-color: #156499 !important;
+}

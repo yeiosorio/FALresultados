@@ -8,7 +8,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-
   URL_API: string;
 
   constructor(public http: HttpClient) {
@@ -17,15 +16,14 @@ export class UserService {
   }
 
   public register(identification, email) {
-
     let data = JSON.stringify({ identification: identification, email: email });
-    return Observable.create(observer => {
+    return Observable.create((observer) => {
       this.http.post(this.URL_API + `WsUsers/register.json`, data).subscribe(
-        data => {
+        (data) => {
           observer.next(data);
           observer.complete();
         },
-        error => {
+        (error) => {
           observer.next(error);
           observer.complete();
         }
@@ -36,13 +34,13 @@ export class UserService {
   public getEmailRegister(identification) {
     let data = JSON.stringify({ identification: identification });
 
-    return Observable.create(observer => {
+    return Observable.create((observer) => {
       this.http.post(this.URL_API + `WsUsers/getEmailRegister.json`, data).subscribe(
-        data => {
+        (data) => {
           observer.next(data);
           observer.complete();
         },
-        error => {
+        (error) => {
           observer.next(error);
           observer.complete();
         }
@@ -51,60 +49,58 @@ export class UserService {
   }
 
   public userAuthenticate(data) {
-
-    return Observable.create(observer => {
+    return Observable.create((observer) => {
       this.http.post(this.URL_API + `WsUsers/userAuthenticate.json`, data).subscribe(
-        data => {
+        (data) => {
           observer.next(data);
           observer.complete();
         },
-        error => {
+        (error) => {
           observer.next(error);
           observer.complete();
         }
       );
     });
-
   }
 
   public recoveryPassword(identification) {
-
     let data = JSON.stringify({ identification: identification });
-    return Observable.create(observer => {
+    return Observable.create((observer) => {
       this.http.post(this.URL_API + `WsUsers/recoveryPassword.json`, data).subscribe(
-        data => {
+        (data) => {
           observer.next(data);
           observer.complete();
         },
-        error => {
+        (error) => {
           observer.next(error);
           observer.complete();
         }
       );
     });
-
   }
 
   // Cambio de contraseña
   public changePassword(antPassword, newPassword, identification) {
-
-    let data = JSON.stringify({ antPassword: antPassword, newPassword: newPassword, identification: identification });
-    return Observable.create(observer => {
+    let data = JSON.stringify({
+      antPassword: antPassword,
+      newPassword: newPassword,
+      identification: identification
+    });
+    return Observable.create((observer) => {
       this.http.post(this.URL_API + `WsUsers/changePassword.json`, data).subscribe(
-        data => {
+        (data) => {
           observer.next(data);
           observer.complete();
         },
-        error => {
+        (error) => {
           observer.next(error);
           observer.complete();
         }
       );
     });
-
   }
 
-  public getOrdersByRol(dateIni, dateEnd, identification, rol) {
+  public getOrdersByRol(dateIni, dateEnd, identification, rol, client) {
     // let token = localStorage.getItem('token').substring(1, localStorage.getItem('token').length - 1);
 
     // let headers: HttpHeaders = new HttpHeaders();
@@ -114,52 +110,49 @@ export class UserService {
       dateIni: dateIni,
       dateEnd: dateEnd,
       identification: identification,
-      rol: rol
+      rol: rol,
+      client: client
     });
 
-
-    return Observable.create(observer => {
+    return Observable.create((observer) => {
       this.http.post(this.URL_API + `WsUsers/getOrdersByRol.json`, data).subscribe(
-        data => {
+        (data) => {
           observer.next(data);
           observer.complete();
         },
-        error => {
+        (error) => {
           observer.next(error);
           observer.complete();
         }
       );
     });
-
   }
 
   public getInfoResult(people_id, specialist_id) {
     let data = JSON.stringify({ people_id: people_id, id: specialist_id });
 
-    return Observable.create(observer => {
+    return Observable.create((observer) => {
       this.http.post(this.URL_API + `WsUsers/getInfoResult.json`, data).subscribe(
-        data => {
+        (data) => {
           observer.next(data);
           observer.complete();
         },
-        error => {
+        (error) => {
           observer.next(error);
           observer.complete();
         }
       );
     });
   }
-
 
   public printResult(data) {
-
-    return Observable.create(observer => {
+    return Observable.create((observer) => {
       this.http.post(this.URL_API + `resultProfiles/preResultProfile.json`, data).subscribe(
-        data => {
+        (data) => {
           observer.next(data);
           observer.complete();
         },
-        error => {
+        (error) => {
           observer.next(error);
           observer.complete();
         }
@@ -167,6 +160,35 @@ export class UserService {
     });
   }
 
+  public addPrintControl(result_id, uid) {
+    let data = JSON.stringify({ results_id: result_id, users_id: uid });
 
+    return Observable.create((observer) => {
+      this.http.post(this.URL_API + `WsUsers/addPrintControl.json`, data).subscribe(
+        (data) => {
+          observer.next(data);
+          observer.complete();
+        },
+        (error) => {
+          observer.next(error);
+          observer.complete();
+        }
+      );
+    });
+  }
 
+  public getClients() {
+    return Observable.create((observer) => {
+      this.http.get(this.URL_API + `WsUsers/getClients.json`).subscribe(
+        (data) => {
+          observer.next(data);
+          observer.complete();
+        },
+        (error) => {
+          observer.next(error);
+          observer.complete();
+        }
+      );
+    });
+  }
 }
