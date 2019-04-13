@@ -13,7 +13,7 @@ import * as moment from 'moment';
 export class ResultComponent implements OnInit {
 	downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
 	loading = true;
-	search: string = '';
+	search = 'test';
 	colorchangePassword: any;
 	antPassword: any;
 	newPassword: any;
@@ -238,8 +238,7 @@ export class ResultComponent implements OnInit {
 				this.dateIni = dateFinal;
 			}
 		}
-		this.serviceUser
-			.getOrdersByRol(this.dateIni, this.dateEnd, this.identification, this.rol, this.client)
+		this.serviceUser.getOrdersByRol(this.dateIni, this.dateEnd, this.identification, this.rol, this.client)
 			.subscribe((data) => {
 				this.loading = false;
 				this.msgListOrders = data.msg;
