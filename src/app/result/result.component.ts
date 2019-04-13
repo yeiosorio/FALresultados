@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from '../service/user.service';
 declare var M: any;
 import * as moment from 'moment';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
 	selector: 'app-result',
@@ -25,7 +26,7 @@ export class ResultComponent implements OnInit {
 	msgLimitSearch: string = '';
 	changePasswordModal: any;
 	instancesPicker: any;
-
+	colorBarra: string = 'back-estudies-sonV';
 	rol: string;
 	identification: string;
 	dateIni: string;
@@ -215,6 +216,12 @@ export class ResultComponent implements OnInit {
 
 					data.listOrders.forEach((value, index) => {
 						// busqueda para saber si se repite la orden
+						// control del color de la barra si cada orden esta bloqueada
+						if (value.state_download == 0) {
+							this.colorBarra = 'back-estudies-sonG';
+						} else {
+							this.colorBarra = 'back-estudies-sonV';
+						}
 						let posOrder = auxOrdersPosition.indexOf(value.order_id);
 
 						// Si la encuentra repetida solo agrega el estudio y el id a la posicion de la orden
@@ -230,6 +237,9 @@ export class ResultComponent implements OnInit {
 							// Se guarda cada order_id
 							auxOrdersPosition.push(value.order_id);
 
+							var newOrder = {
+								cedula: value.ce
+							};
 							// Se asigna todo el arreglo en uno nuevo
 							this.listOrders.push(value);
 							this.auxStudies.push({
@@ -345,7 +355,7 @@ export class ResultComponent implements OnInit {
 							setTimeout(() => {
 								this.changePasswordModal[0].close();
 								this.instances[0].close();
-							}, 3000);
+							}, 1000);
 						} else {
 							this.colorchangePassword = false;
 						}
@@ -392,7 +402,7 @@ export class ResultComponent implements OnInit {
 			}, 100);
 		});
 	}
-
+	// identifica la seleccion del cliente
 	changeClient() {
 		this.getOrdersByRol();
 	}

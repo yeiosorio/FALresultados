@@ -94,9 +94,9 @@ export class LoginComponent implements OnInit {
 					if (!data.noExist) {
 						this.msgRegister = data.msg;
 
-						// setTimeout(() => {
-						// 	this.msgRegister = '';
-						// }, 6000);
+						setTimeout(() => {
+							this.msgRegister = '';
+						}, 6000);
 					} else {
 						this.msgRegister = data.msg;
 
