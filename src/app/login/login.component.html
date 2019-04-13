@@ -131,12 +131,10 @@
                                     </div>
                                 </div>
                                 <div class="row mb-10">
-                                    <div class="col s12"
-                                         *ngIf="msgRegister != '' ">
-                                        <label style="color: #cc6464; font-size: 14px;"
-                                               *ngIf="!colorSuccess">{{msgRegister}}</label>
-                                        <label style="color: #64cca7; font-size: 14px;"
-                                               *ngIf="colorSuccess">{{msgRegister}}</label>
+                                    <div class="col s12" *ngIf="msgRegister != '' ">
+                                        <i class="material-icons infoMargin">info_outline</i>
+                                        <label style="color: #cc6464; font-size: 14px; margin-left: 30px;" *ngIf="!colorSuccess">{{msgRegister}}</label>
+                                        <label style="color: #64cca7; font-size: 14px;" *ngIf="colorSuccess">{{msgRegister}}</label>
                                     </div>
                                 </div>
 
@@ -153,16 +151,7 @@
                                 </form>
                                 <p class="centrarTexto">Por favor lee detenidamente los <u><i>Términos y Condiciones</i></u> de usuario y las <u><i>Políticas de Seguridad</i></u></p>
                                 <div>
-                                    <button (click)="getEmailRegister()"
-                                            *ngIf="!registerStatus"
-                                            class="btn waves-effect waves-light teal centrar"
-                                            type="submit"
-                                            name="action">REGISTRARTE</button>
-                                    <button (click)="register()"
-                                            *ngIf="registerStatus"
-                                            class="btn waves-effect waves-light teal centrar"
-                                            type="submit"
-                                            name="action">REGISTRARTE</button>
+                                    <button (click)="getEmailRegister()" class="btn waves-effect waves-light teal centrar" type="submit" name="action">REGISTRARSE</button>
                                 </div>
                             </div>
                         </form>
@@ -254,9 +243,10 @@
 
     <!-- Modal Recuparacion de password -->
     <div id="recoveryPassword"
-         class="modal modal-fixed-footer modalRecovery">
+         class="modal modal-fixed-footer modalRecovery ">
         <div class="modal-content">
             <h5 class="teal-text left">Recuperacion de contraseña</h5>
+            <i class="material-icons right closeIcon modal-close waves-effect" (click)="recoveryIdentification = '' ">close</i>
             <div class="row mb-10">
                 <div class="input-field col s12">
                     <input [(ngModel)]="recoveryIdentification"
@@ -276,7 +266,7 @@
 
         </div>
         <div class="modal-footer">
-            <button href="#login" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+            <button href="#login" class="modal-close waves-effect waves-light btn-flat" (click)="recoveryIdentification = '' ">Cancelar</button>
             <button (click)="recoveryPassword()" class="btn waves-effect waves-light btnChangePassword"><i class="material-icons right">lock</i> Recuperar</button>
         </div>
     </div>

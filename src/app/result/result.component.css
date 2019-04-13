@@ -465,6 +465,35 @@ footer>p {
 }
 
 .footerFilter {
-    margin-top: 148px;
+    margin-top: 142px;
     margin-left: -12px;
+}
+
+.closeIcon {
+    font-size: 33px;
+    color: #156499;
+}
+.infoIcon {
+    color: #5c87cc;
+    margin-top: -29px;
+    margin-left: 33px;
+}
+.infoMargin {
+    color: #5c87cc;
+
+
+}
+.casita2 {
+    position: relative;
+}
+
+.casita:after {
+    font-family: 'Material Icons';
+    content: 'file_download';
+    font-size: 24px;
+    color: #fff;
+    position: absolute;
+    right: 30px;
+    top: 7px;
+    z-index: 1;
 }

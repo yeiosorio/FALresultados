@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from '../service/user.service';
 declare var M: any;
 import * as moment from 'moment';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
 	selector: 'app-result',
@@ -22,6 +23,7 @@ export class ResultComponent implements OnInit {
 	username: any;
 	userType: any;
 	uid: any;
+	msgLimitSearch: string = '';
 	changePasswordModal: any;
 	instancesPicker: any;
 	colorBarra: string = 'back-estudies-sonV';
@@ -71,33 +73,9 @@ export class ResultComponent implements OnInit {
 				this.dateIni = moment(value).format('YYYY-MM-DD');
 			},
 			i18n: {
-				months: [
-					'Enero',
-					'Febrero',
-					'Marzo',
-					'Abril',
-					'Mayo',
-					'Junio',
-					'Julio',
-					'Agosto',
-					'Septiembre',
-					'Octubre',
-					'Noviembre',
-					'Diciembre'
+				months: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 				],
-				monthsShort: [
-					'Ene',
-					'Feb',
-					'Mar',
-					'Abr',
-					'May',
-					'Jun',
-					'Jul',
-					'Ago',
-					'Sep',
-					'Oct',
-					'Nov',
-					'Dic'
+				monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
 				],
 				weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
 				cancel: 'Cancelar'
@@ -113,41 +91,15 @@ export class ResultComponent implements OnInit {
 				this.dateEnd = moment(value).format('YYYY-MM-DD');
 			},
 			i18n: {
-				months: [
-					'Enero',
-					'Febrero',
-					'Marzo',
-					'Abril',
-					'Mayo',
-					'Junio',
-					'Julio',
-					'Agosto',
-					'Septiembre',
-					'Octubre',
-					'Noviembre',
-					'Diciembre'
+				months: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 				],
-				monthsShort: [
-					'Ene',
-					'Feb',
-					'Mar',
-					'Abr',
-					'May',
-					'Jun',
-					'Jul',
-					'Ago',
-					'Sep',
-					'Oct',
-					'Nov',
-					'Dic'
+				monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
 				],
 				weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
 				cancel: 'Cancelar'
 			}
 		});
-
-		console.log(this.instancesPicker);
-
+		
 		this.forceChangePassword();
 
 		let userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -219,27 +171,41 @@ export class ResultComponent implements OnInit {
 		this.loading = true;
 		this.msgListOrders = '';
 		this.items$ = [];
+		this.msgLimitSearch = "";
+
+		let diffDays: any;
 
 		// Se establecen por defecto las fechas con el dia actual
 		if (!this.dateIni || !this.dateEnd) {
 			this.dateIni = moment().format('YYYY-MM-DD');
 			this.dateEnd = moment().format('YYYY-MM-DD');
 		} else {
+			// De lo contrario se verifica que no exeda el mes de anterioridad
 			let dateDiffEnd = moment(this.dateEnd);
 			let dateDiffIni = moment(this.dateIni);
-			let diffDays = dateDiffEnd.diff(dateDiffIni, 'days'); // 1
+			diffDays = dateDiffEnd.diff(dateDiffIni, 'days'); // 1
 
-			// // Diferencia de 90 dias
-			if (diffDays > 90) {
+			// // Diferencia de 30 dias
+			if (diffDays > 30) {
 				// Se restan dias resultantes para limitar a 3 meses de anterioridad
-				let restDays = diffDays - 90;
+				let restDays = diffDays - 30;
 				dateDiffIni = dateDiffIni.add(restDays, 'days');
 				let dateFinal = moment(dateDiffIni).format('YYYY-MM-DD');
+				// Se reasigna a la propiedad de fecha que sera enviada
 				this.dateIni = dateFinal;
+
+				
 			}
+
 		}
 		this.serviceUser.getOrdersByRol(this.dateIni, this.dateEnd, this.identification, this.rol, this.client)
 			.subscribe((data) => {
+
+				console.log(diffDays)
+				if (diffDays > 30) {
+					// Propiedad que muestra mensaje indicando que la consulta se limito a solo 3 meses
+					this.msgLimitSearch = "La consulta se ha generado con limite de 1 mes"
+				}
 				this.loading = false;
 				this.msgListOrders = data.msg;
 
@@ -427,7 +393,7 @@ export class ResultComponent implements OnInit {
 	// funcion que permite listar los clientes activos state = 1 de la fundacion alejandro londoño
 	getClients() {
 		this.serviceUser.getClients().subscribe((res) => {
-			console.log(res.listClients);
+			
 			this.clients = res.listClients;
 			// se espera un momento para inicializar los campos select
 			setTimeout(() => {
