@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from '../service/user.service';
 declare var M: any;
 import * as moment from 'moment';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
 	selector: 'app-result',
@@ -14,7 +15,7 @@ export class ResultComponent implements OnInit {
 	//downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
 	downloadUrl: string = 'https://www.samfundacion.com/back_end/ResultProfiles/downloadPrev/true/';
 	loading = true;
-	search: string = '';
+	search = 'test';
 	colorchangePassword: any;
 	antPassword: any;
 	newPassword: any;
@@ -37,6 +38,9 @@ export class ResultComponent implements OnInit {
 	listStudies = {};
 	auxStudies = [];
 	msgchangePassword = '';
+	page: number = 1
+	itemsPerPage: number = 10
+
 
 	backgroundColor: any;
 	colorToggle: any;
@@ -171,6 +175,9 @@ export class ResultComponent implements OnInit {
 		this.loading = true;
 		this.msgListOrders = '';
 		this.items$ = [];
+		this.msgLimitSearch = "";
+
+		let diffDays: any;
 
 		// Se establecen por defecto las fechas con el dia actual
 		if (!this.dateIni || !this.dateEnd) {
@@ -226,14 +233,19 @@ export class ResultComponent implements OnInit {
 				let dateFinal = moment(dateDiffIni).format('YYYY-MM-DD');
 				// Se reasigna a la propiedad de fecha que sera enviada
 				this.dateIni = dateFinal;
+
+
 			}
 
-			// Propiedad que muestra mensaje indicando que la consulta se limito a solo 3 meses
-			this.msgLimitSearch = "La consulta se ha generado a un limite de 1 mes"
 		}
-		this.serviceUser
-			.getOrdersByRol(this.dateIni, this.dateEnd, this.identification, this.rol, this.client)
+		this.serviceUser.getOrdersByRol(this.dateIni, this.dateEnd, this.identification, this.rol, this.client)
 			.subscribe((data) => {
+
+				console.log(diffDays)
+				if (diffDays > 30) {
+					// Propiedad que muestra mensaje indicando que la consulta se limito a solo 3 meses
+					this.msgLimitSearch = "La consulta se ha generado con limite de 1 mes"
+				}
 				this.loading = false;
 				this.msgListOrders = data.msg;
 
@@ -432,5 +444,9 @@ export class ResultComponent implements OnInit {
 	// identifica la seleccion del cliente
 	changeClient() {
 		this.getOrdersByRol();
+	}
+
+	absoluteIndex(indexOnPage: number): number {
+		return this.itemsPerPage * (this.page - 1) + indexOnPage;
 	}
 }

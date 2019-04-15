@@ -150,8 +150,7 @@ li {
     padding: 15px 0px;
 }
 
-.titulos>h3,
-h5 {
+.titulos>h3, h5 {
     line-height: 1px;
     color: #156499 !important;
 }
@@ -170,8 +169,7 @@ h5 {
     left: 0;
 }
 
-.titulo-1>h3,
-h5 {
+.titulo-1>h3, h5 {
     line-height: 16px;
     text-align: right;
 }
@@ -212,6 +210,7 @@ h5 {
 }
 
 /*JEAN*/
+
 .tabs>.indicator {
     height: 100%;
     background-color: rgba(61, 176, 248, 1);
@@ -219,6 +218,7 @@ h5 {
 }
 
 /* MEDIAQUERIES - Dispositivos */
+
 @media screen and (min-width: 719px) {
     p.get-down {
         display: none;
@@ -228,6 +228,20 @@ h5 {
 @media screen and (max-width: 720px) {
     .contenedor {
         width: 340PX;
+    }
+    #recoveryPassword {
+        height: 256px;
+        width: 418px !important;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    #recoveryPassword {
+        height: 256px;
+        width: 353px !important
+    }
+    .teal-text {
+        font-size: 19px;
     }
 }
 
@@ -249,28 +263,14 @@ h5 {
         width: 100%;
         float: none;
     }
-
     .container-front {
         display: none;
     }
-
     .footer-text {
         width: 100%;
         text-align: center;
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
 
 body {
     overflow-x: hidden;
@@ -292,7 +292,6 @@ body {
     0% {
         margin-left: -1000px;
     }
-
     100% {
         margin-left: 100%;
     }
@@ -302,7 +301,6 @@ body {
     0% {
         margin-left: -1000px;
     }
-
     100% {
         margin-left: 100%;
     }
@@ -312,7 +310,6 @@ body {
     0% {
         margin-left: -1000px;
     }
-
     100% {
         margin-left: 100%;
     }
@@ -324,7 +321,6 @@ body {
     -webkit-animation: animateCloud 35s linear infinite;
     -moz-animation: animateCloud 35s linear infinite;
     animation: animateCloud 35s linear infinite;
-
     -webkit-transform: scale(0.65);
     -moz-transform: scale(0.65);
     transform: scale(0.65);
@@ -334,7 +330,6 @@ body {
     -webkit-animation: animateCloud 20s linear infinite;
     -moz-animation: animateCloud 20s linear infinite;
     animation: animateCloud 20s linear infinite;
-
     -webkit-transform: scale(0.3);
     -moz-transform: scale(0.3);
     transform: scale(0.3);
@@ -344,7 +339,6 @@ body {
     -webkit-animation: animateCloud 30s linear infinite;
     -moz-animation: animateCloud 30s linear infinite;
     animation: animateCloud 30s linear infinite;
-
     -webkit-transform: scale(0.5);
     -moz-transform: scale(0.5);
     transform: scale(0.5);
@@ -354,7 +348,6 @@ body {
     -webkit-animation: animateCloud 18s linear infinite;
     -moz-animation: animateCloud 18s linear infinite;
     animation: animateCloud 18s linear infinite;
-
     -webkit-transform: scale(0.4);
     -moz-transform: scale(0.4);
     transform: scale(0.4);
@@ -364,7 +357,6 @@ body {
     -webkit-animation: animateCloud 25s linear infinite;
     -moz-animation: animateCloud 25s linear infinite;
     animation: animateCloud 25s linear infinite;
-
     -webkit-transform: scale(0.55);
     -moz-transform: scale(0.55);
     transform: scale(0.55);
@@ -381,22 +373,18 @@ body {
     background: -ms-linear-gradient(top, #fff 5%, #f1f1f1 100%);
     background: linear-gradient(top, #fff 5%, #f1f1f1 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f1f1f1', GradientType=0);
-
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px;
-
     -webkit-box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
     box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
-
     height: 120px;
     position: relative;
     width: 350px;
 }
 
-.cloud:after,
-.cloud:before {
+.cloud:after, .cloud:before {
     background: #fff;
     content: '';
     position: absolute;
@@ -407,7 +395,6 @@ body {
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px;
-
     height: 100px;
     left: 50px;
     top: -50px;
@@ -418,7 +405,6 @@ body {
     -webkit-border-radius: 200px;
     -moz-border-radius: 200px;
     border-radius: 200px;
-
     width: 180px;
     height: 180px;
     right: 50px;
@@ -427,13 +413,20 @@ body {
 
 .modalRecovery {
     height: 256px;
-    width: 33%;
+    width: 526px;
 }
 
 .btnChangePassword {
     background-color: #156499 !important;
 }
+
 .closeIcon {
     font-size: 33px;
     color: #156499;
+}
+
+.infoMargin {
+    color: #cc6464;
+    margin-top: 0px;
+    position: absolute;
 }

@@ -9,7 +9,7 @@
 
 .modalRecovery {
     height: 390px;
-    width: 33%;
+    width: 526px;
 }
 
 .tabs {
@@ -123,8 +123,8 @@ ol li:before {
 }
 
 .numero-orden-head {
-    margin-left: 18px !important;
-    margin-right: -18px;
+    /* margin-left: 18px !important;
+    margin-right: -18px; */
 }
 
 .orden-number {
@@ -348,6 +348,10 @@ footer>p {
 }
 
 @media screen and (max-width: 600px) {
+    .modalRecovery {
+        height: 390px;
+        width: 414px;
+    }
     .logo-header {
         margin-top: 4px;
     }
@@ -475,6 +479,40 @@ footer>p {
     margin-left: -12px;
 }
 
+.closeIcon {
+    font-size: 33px;
+    color: #156499;
+}
+
+.infoIcon {
+    color: #5c87cc;
+    margin-top: -29px;
+    margin-left: 33px;
+}
+
+.infoMargin {
+    color: #5c87cc;
+}
+
 .casita2 {
     position: relative;
+}
+
+.casita:after {
+    font-family: 'Material Icons';
+    content: 'file_download';
+    font-size: 24px;
+    color: #fff;
+    position: absolute;
+    right: 30px;
+    top: 7px;
+    z-index: 1;
+}
+
+.ngx-pagination {
+    background-color: #ffffff;
+}
+
+.ngx-pagination::before {
+    padding: 8px;
 }

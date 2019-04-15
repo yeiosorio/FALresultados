@@ -89,13 +89,9 @@ export class LoginComponent implements OnInit {
 					this.colorSuccess = true;
 					this.msgRegister = data.msg;
 
-					// setTimeout(() => {
-					// 	this.msgRegister = ""
-					// }, 6000);
 				} else {
 					this.colorSuccess = false;
 					if (!data.noExist) {
-						this.registerStatus = true;
 						this.msgRegister = data.msg;
 
 						setTimeout(() => {
@@ -106,7 +102,7 @@ export class LoginComponent implements OnInit {
 
 						setTimeout(() => {
 							this.msgRegister = '';
-						}, 6000);
+						}, 5000);
 					}
 				}
 			});

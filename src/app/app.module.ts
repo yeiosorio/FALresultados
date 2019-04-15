@@ -18,6 +18,7 @@ import locale from '@angular/common/locales/es';
 registerLocaleData(locale);
 
 import { MzNavbarModule } from 'ngx-materialize';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AuthGuard } from './_guards';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -112,7 +113,8 @@ import { APP_BASE_HREF } from '@angular/common';
 		MatTreeModule,
 		HttpClientModule,
 		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		NgxPaginationModule
 	],
 	providers: [
 		AuthGuard, { provide: APP_BASE_HREF, useValue: '/resultados' },
