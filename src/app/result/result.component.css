@@ -9,7 +9,7 @@
 
 .modalRecovery {
     height: 390px;
-    width: 33%;
+    width: 526px;
 }
 
 .tabs {
@@ -498,9 +498,6 @@ footer>p {
     z-index: 1;
 }
 
-.ngx-pagination{
-    background-color: #ffffff;
-}
 .ngx-pagination{
     background-color: #ffffff;
 }
