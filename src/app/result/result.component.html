@@ -1,7 +1,7 @@
 <div class="body-style">
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">
+            <a class="brand-logo">
                 <img class="logo-header" src="./assets/img/logo.jpg" />
             </a>
             <a href="#" data-target="slide-out" class="sidenav-trigger">
@@ -225,6 +225,9 @@
         <div class="row padd-out" *ngFor="let item of items$ | paginate: {itemsPerPage: itemsPerPage, currentPage: page}; let i = index;">
 
             <div class="col s12 m12 l11 padd-out casita2">
+                <a href="#/resultados/result#" (click)="downloadBlock(item, i);" class="descargar-todo no-mobile">
+                    <i class="material-icons text-download" style="position: absolute;z-index: 2;right: 27px;top: 5px;color:#fff;">file_download</i>
+                </a>
                 <mat-tab-group mat-elevation-z4 dynamicHeight animationDuration="0ms" [color]="colorToggle" [backgroundColor]="backgroundColor"
                     class="casita">
                     <mat-tab label="Información">
@@ -271,11 +274,7 @@
                                 <div class="estudies-son" [ngClass]="colorBarra">
                                     <div class="row espaciado-titulo">
                                         <div class="s12">
-                                            <a class="descargar-todo no-mobile" href="#/FalResultados/result#" (click)="downloadBlock(item, absoluteIndex(i));">
-                                                <small>
-                                                    <i class="material-icons text-download">file_download</i>
-                                                </small>
-                                            </a>
+
                                             <h6>
                                                 <b>Nombre del Paciente: </b>
                                                 <span class="orden-number">{{item.people_name}}</span>
@@ -396,11 +395,11 @@
             <div class="container">
                 <form id="formFilterDate">
                     <div class="row">
-                        <div class="col s6">
+                        <div class="col s12 m6">
                             <label>Fecha Inicial</label>
                             <input id="dateIni" type="text" placeholder="aaaa/mm/dd" name="dateini" class="dateIni" value="">
                         </div>
-                        <div class="col s6">
+                        <div class="col s12 m6">
                             <label>Fecha Final</label>
                             <input id="dateEnd" type="text" placeholder="aaaa/mm/dd" name="dateEnd" class="dateEnd" value="">
                         </div>
@@ -410,7 +409,7 @@
         </div>
         <div class="modal-footer footerFilter">
             <button (click)="closeModalFilter()" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
-            <a href="/#/resultados/result#" (click)="getOrdersByRol();" class="modal-close waves-effect waves-green btn">Filtrar resultados</a>
+            <a (click)="getOrdersByRol();" class="modal-close waves-effect waves-green btn">Filtrar resultados</a>
         </div>
     </div>
 

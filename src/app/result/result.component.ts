@@ -124,6 +124,9 @@ export class ResultComponent implements OnInit {
 			this.identification = userInfo.usuario_id;
 			this.userType = 'Medico';
 		} else {
+			// paciente
+			this.dateIni = moment().subtract(30, 'd').format('YYYY-MM-DD');
+			this.dateEnd = moment().format('YYYY-MM-DD');
 			this.identification = userInfo.identification;
 			this.userType = 'Usuario';
 		}
@@ -303,10 +306,9 @@ export class ResultComponent implements OnInit {
 				}
 			});
 	}
-
 	downloadBlock(item, index) {
 		this.auxStudies[index].forEach((value, index) => {
-			if (value.Results_state == '1') {
+			if (value.Results_state == '1' && item.state_download == '1') {
 				this.downloadResult(value.result_id, item, value.Results_state, value.name);
 			}
 		});
