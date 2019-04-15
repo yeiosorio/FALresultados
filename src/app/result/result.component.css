@@ -1,5 +1,5 @@
 .body-style {
-    background-image: url('./assets/img/wallpaper-results.jpg');
+    background-image: url('/assets/img/wallpaper-results.jpg');
     background-position: center;
     background-size: cover;
     height: 100vh;
@@ -165,7 +165,7 @@ nav {
 }
 
 .sidenav {
-    background-image: url('./assets/img/mobile.jpg');
+    background-image: url('/assets/img/mobile.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -362,7 +362,7 @@ footer>p {
         font-size: 11px;
     }
     .body-style {
-        background-image: url('./assets/img/wallpaper-results-mobile.jpg');
+        background-image: url('/assets/img/wallpaper-results-mobile.jpg');
     }
     .contenedor-back {
         background-color: rgba(255, 255, 255, 0);

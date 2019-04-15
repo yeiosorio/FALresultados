@@ -11,7 +11,8 @@ import * as moment from 'moment';
 	styleUrls: ['./result.component.css']
 })
 export class ResultComponent implements OnInit {
-	downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
+	//downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
+	downloadUrl: string = 'https://www.samfundacion.com/back_end/ResultProfiles/downloadPrev/true/';
 	loading = true;
 	search: string = '';
 	colorchangePassword: any;
