@@ -250,7 +250,8 @@
             <h4> {{msgListOrders}}</h4>
         </div>
 
-        <div class="row padd-out" *ngFor="let item of items$; let i = index;">
+        <div class="row padd-out" *ngFor="let item of items$ | paginate: {itemsPerPage: itemsPerPage, currentPage: page}; let i = index;">
+            
            <div class="col s12 m12 l11 padd-out casita2">
            <mat-tab-group mat-elevation-z4 dynamicHeight animationDuration="0ms" [color]="colorToggle" [backgroundColor]="backgroundColor" class="casita">
                <mat-tab label="Información">
@@ -281,6 +282,12 @@
                                        </h6>
                                        <label>{{item.people_name}}</label>
                                    </div>
+                                   <div class="col s4 m4 l4 xl3">
+                                        <h6>
+                                            <b>Fecha de atención:</b>
+                                        </h6>
+                                        <label>{{item.date_time_ini | date:'longDate' }}</label>
+                                    </div>
                                </div>
                            </div>
                        </div>
@@ -296,21 +303,20 @@
                                    <div class="s12">
                                        <a class="descargar-todo no-mobile"
                                           href="#/FalResultados/result#"
-                                          (click)="downloadBlock(item, i);"><small><i class="material-icons text-download">file_download</i></small></a>
+                                          (click)="downloadBlock(item, absoluteIndex(i));"><small><i class="material-icons text-download">file_download</i></small></a>
                                        <h6>
                                            <b>Número de Orden: </b>
                                            <span class="orden-number">{{item.order_consec}}</span>
                                        </h6>
                                        <hr>
                                    </div>
-                                   <div class="col s12 lista"
-                                        *ngFor="let study of listStudies[i]; let x = index;">
+                                   <div class="col s12 lista" *ngFor="let study of listStudies[absoluteIndex(i)]; let x = index;">
                                        <div class="estudios-lista"
                                             *ngIf="study != undefined">
                                            <div>
                                                {{study.name}}
                                            </div>
-                                           <div>
+                                           <div> 
                                                <a *ngIf="study.Results_state == '1' && item.state_download == '1' "
                                                   matTooltip="Descargar resultado"
                                                   (click)="downloadResult(study.result_id, item, study.Results_state, study.name);"
@@ -347,10 +353,7 @@
        </div>
    </div>
 
-        <mat-paginator [length]="100"
-                    [pageSize]="10"
-                    [pageSizeOptions]="[5, 10, 25, 100]">
-        </mat-paginator>
+   <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
 
 
     </div>

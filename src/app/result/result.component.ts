@@ -37,6 +37,9 @@ export class ResultComponent implements OnInit {
 	listStudies = {};
 	auxStudies = [];
 	msgchangePassword = '';
+	page: number = 1
+	itemsPerPage: number = 10
+	
 
 	backgroundColor: any;
 	colorToggle: any;
@@ -404,5 +407,9 @@ export class ResultComponent implements OnInit {
 	// identifica la seleccion del cliente
 	changeClient() {
 		this.getOrdersByRol();
+	}
+
+	absoluteIndex(indexOnPage: number): number {
+		return this.itemsPerPage * (this.page - 1) + indexOnPage;
 	}
 }
