@@ -11,8 +11,8 @@ export class UserService {
   URL_API: string;
 
   constructor(public http: HttpClient) {
-    this.URL_API = 'http://52.183.68.4/xxespejofundacion/back_end/';
-    // this.URL_API = 'https://samfundacion.com/back_end/';
+    // this.URL_API = 'http://52.183.68.4/xxespejofundacion/back_end/';
+    this.URL_API = 'https://samfundacion.com/back_end/';
   }
 
   public register(identification, email) {

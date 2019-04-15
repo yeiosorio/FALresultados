@@ -1,5 +1,5 @@
 .body-style {
-    background-image: url('/assets/img/wallpaper-results.jpg');
+    background-image: url('./assets/img/wallpaper-results.jpg');
     background-position: center;
     background-size: cover;
     height: 100vh;
@@ -165,7 +165,7 @@ nav {
 }
 
 .sidenav {
-    background-image: url('/assets/img/mobile.jpg');
+    background-image: url('./assets/img/mobile.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -335,14 +335,34 @@ footer>p {
     display: block;
 }
 
+.input-search {
+    width: 100%;
+}
+
 /*  ----------MEDIA QUERY DISPOSITIVOS----------  */
+
+@media screen and (max-width: 1200px) {
+    .orden-number {
+        font-size: 12px;
+    }
+}
 
 @media screen and (max-width: 600px) {
     .logo-header {
         margin-top: 4px;
     }
+    .input-search {
+        width: 90%;
+        margin: 0 5%;
+    }
+    .nodata {
+        color: #fff;
+    }
+    .orden-number {
+        font-size: 11px;
+    }
     .body-style {
-        background-image: url('/assets/img/wallpaper-results-mobile.jpg');
+        background-image: url('./assets/img/wallpaper-results-mobile.jpg');
     }
     .contenedor-back {
         background-color: rgba(255, 255, 255, 0);
@@ -457,20 +477,4 @@ footer>p {
 
 .casita2 {
     position: relative;
-}
-
-.casita:after {
-    font-family: 'Material Icons';
-    content: 'file_download';
-    font-size: 24px;
-    color: #fff;
-    position: absolute;
-    right: 30px;
-    top: 7px;
-    z-index: 1;
-}
-
-.closeIcon {
-    font-size: 33px;
-    color: #156499;
 }

@@ -8,7 +8,7 @@ import * as moment from 'moment';
 @Component({
 	selector: 'app-result',
 	templateUrl: './result.component.html',
-	styleUrls: [ './result.component.css' ]
+	styleUrls: ['./result.component.css']
 })
 export class ResultComponent implements OnInit {
 	downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
@@ -72,11 +72,11 @@ export class ResultComponent implements OnInit {
 				this.dateIni = moment(value).format('YYYY-MM-DD');
 			},
 			i18n: {
-				months: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+				months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 				],
-				monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
+				monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
 				],
-				weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+				weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
 				cancel: 'Cancelar'
 			}
 		});
@@ -90,15 +90,15 @@ export class ResultComponent implements OnInit {
 				this.dateEnd = moment(value).format('YYYY-MM-DD');
 			},
 			i18n: {
-				months: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+				months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 				],
-				monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
+				monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
 				],
-				weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+				weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
 				cancel: 'Cancelar'
 			}
 		});
-		
+
 		this.forceChangePassword();
 
 		let userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -179,6 +179,42 @@ export class ResultComponent implements OnInit {
 			// De lo contrario se verifica que no exeda el mes de anterioridad
 			let dateDiffEnd = moment(this.dateEnd);
 			let dateDiffIni = moment(this.dateIni);
+			let calFechas = dateDiffEnd.diff(dateDiffIni, 'days');
+
+			if (this.rol == '1' || this.rol == '2') {
+				// entidad o medico
+				if (calFechas > 90) {
+					alert('Solo se puede colsultar dos mes');
+					this.loading = false;
+					return;
+				}
+			}
+			if (this.rol == '0') {
+				// admin
+				if (calFechas > 30) {
+					this.loading = false;
+					alert('Solo se puede colsultar un mes');
+					return;
+				}
+			}
+			if (this.rol == '3') {
+				// paciente
+				if (calFechas > 120) {
+					this.loading = false;
+					alert('Solo se puede colsultar tres mes');
+					return;
+				}
+			}
+
+			if (dateDiffEnd == undefined || dateDiffEnd == null) {
+				alert('Se debe especificar una Fecha Fin');
+				return;
+			}
+			if (dateDiffIni == undefined || dateDiffIni == null) {
+				alert('Se debe especificar una Fecha Inicial');
+				return;
+			}
+
 			let diffDays = dateDiffEnd.diff(dateDiffIni, 'days'); // 1
 
 			// // Diferencia de 30 dias
@@ -316,7 +352,7 @@ export class ResultComponent implements OnInit {
 			});
 
 			this.serviceUser.printResult(data).subscribe((response) => {
-				this.serviceUser.addPrintControl(result_id, this.uid).subscribe((response) => {});
+				this.serviceUser.addPrintControl(result_id, this.uid).subscribe((response) => { });
 
 				window.open(this.downloadUrl + item.identification, '_blank');
 			});
@@ -378,13 +414,13 @@ export class ResultComponent implements OnInit {
 
 	logOut() {
 		localStorage.clear();
-		this.router.navigate([ '/login' ]);
+		this.router.navigate(['/login']);
 	}
 
 	// funcion que permite listar los clientes activos state = 1 de la fundacion alejandro londoño
 	getClients() {
 		this.serviceUser.getClients().subscribe((res) => {
-			
+
 			this.clients = res.listClients;
 			// se espera un momento para inicializar los campos select
 			setTimeout(() => {

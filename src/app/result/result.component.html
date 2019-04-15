@@ -2,7 +2,7 @@
     <nav>
         <div class="nav-wrapper">
             <a href="#!" class="brand-logo">
-                <img class="logo-header" src="assets/img/logo.jpg" />
+                <img class="logo-header" src="./assets/img/logo.jpg" />
             </a>
             <a href="#" data-target="slide-out" class="sidenav-trigger">
                 <i class="material-icons">menu</i>
@@ -18,7 +18,7 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content1">
-                            <a href="#/FalResultados/result#" (click)="openChangePassword()" class="waves-effect waves-light logout">
+                            <a href="#/resultados/result#" (click)="openChangePassword()" class="waves-effect waves-light logout">
                                 <i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
                             <hr class="none-hr">
                             <a class="waves-effect waves-light logout" (click)="logOut()">
@@ -77,7 +77,7 @@
                             <p>
                                 <b>Los colores dentro de la actividad de los estudios se representan en la parte izquierda:</b>
                             </p>
-                            <img src="/assets/img/estado-estudios.JPG" class="responsive">
+                            <img src="./assets/img/estado-estudios.JPG" class="responsive">
                             <ol>
                                 <li>El color
                                     <em class="color-verde">"Verde" </em> muestra que los estudios estan listos para descarga.</li>
@@ -97,7 +97,7 @@
                             <p>
                                 <b>En el menú superior puedes encontrar:</b>
                             </p>
-                            <img src="/assets/img/nav.png" class="responsive">
+                            <img src="./assets/img/nav.png" class="responsive">
                             <ol>
                                 <li>
                                     <b>Ayuda:</b> Te explica toda la plataforma, si tienes dudas.</li>
@@ -118,17 +118,17 @@
                                 <b>En el menú superior puedes encontrar:</b>
                             </p>
                             <ol>
-                                <img src="/assets/img/filtrar.JPG" class="responsive">
+                                <img src="./assets/img/filtrar.JPG" class="responsive">
                                 <li>
                                     <b>Filtrar:</b> Colocando un rango de fecha, te permite generar un reporte de todos los
                                     estudios.
                                 </li>
-                                <img src="/assets/img/descargar-todos.JPG" class="responsive">
+                                <img src="./assets/img/descargar-todos.JPG" class="responsive">
                                 <li>
                                     <b>Descargar todo:</b> esta opcion te permite, despues de seleccionar, descargar todos los
                                     estudios de una manera más fácil.
                                 </li>
-                                <img src="/assets/img/download.JPG">
+                                <img src="./assets/img/download.JPG">
                                 <li>
                                     <b>Descargar:</b> Este botón te permite descargar estudios.
                                 </li>
@@ -152,7 +152,7 @@
             </h5>
         </div>
         <div class="row background-search">
-            <div class="col s5 m5" *ngIf="rol == '0' ">
+            <div class="col s12 m5" *ngIf="rol == '0' ">
                 <div class="input-field col s12">
                     <select class="fondo-select" (change)="changeClient()" [(ngModel)]="client">
                         <option value="" selected>Todos los Clientes</option>
@@ -161,10 +161,10 @@
                     <label>Cliente</label>
                 </div>
             </div>
-            <div class="col s7 m7">
+            <div class="col s12 m7">
                 <div class="row">
 
-                    <mat-form-field class="width100" autocomplete="nope">
+                    <mat-form-field class="input-search" autocomplete="nope">
                         <input matInput id="search" name="search" [(ngModel)]="search" (keyup)="getItems($event)" autocomplete="new-password" value=""
                             placeholder="Buscador...">
                     </mat-form-field>
@@ -214,23 +214,23 @@
         </div>
 
 
-        <div class="row" *ngIf="msgLimitSearch != '' ">
-            <p>
-                <i class="material-icons">info_outline</i> {{msgLimitSearch}}</p>
-        </div>
         <div class="row loading" *ngIf="msgListOrders != '' ">
-            <h4> {{msgListOrders}}</h4>
+            <h4 class="nodata"> {{msgListOrders}}</h4>
         </div>
 
         <div class="row padd-out" *ngFor="let item of items$; let i = index;">
             <div class="col s12 m12 l11 padd-out casita2">
 
-                <mat-tab-group mat-elevation-z4 dynamicHeight animationDuration="0ms" [color]="colorToggle" [backgroundColor]="backgroundColor"
-                    class="casita">
-
+                <a href="#/resultados/result#" (click)="downloadBlock(item, i);" class="descargar-todo no-mobile">
+                    <i class="material-icons text-download" style="position: absolute;z-index: 2;right: 27px;top: 11px;color:#fff;">file_download</i>
+                </a>
+                <mat-tab-group mat-elevation-z4 dynamicHeight animationDuration="0ms" [color]="colorToggle" [backgroundColor]="backgroundColor">
                     <mat-tab label="Información">
+
+
                         <div class="example-small-box ">
                             <div id="test-swipe-1" class="col s12 white estudies">
+
                                 <div class="estudies-son" [ngClass]="colorBarra">
                                     <div class="row">
                                         <div class="col s3 m2 l2 xl2 numero-orden-head">
@@ -271,11 +271,9 @@
                                 <div class="estudies-son" [ngClass]="colorBarra">
                                     <div class="row espaciado-titulo">
                                         <div class="s12">
-                                            <a class="descargar-todo no-mobile" href="#/FalResultados/result#" (click)="downloadBlock(item, i);">
-                                                <small>
-                                                    <i class="material-icons text-download">file_download</i>
-                                                </small>
-                                            </a>
+                                            <!-- <a class="descargar-todo no-mobile"
+                                               href="#/FalResultados/result#"
+                                               (click)="downloadBlock(item, i);"><small><i class="material-icons text-download">file_download</i></small></a> -->
                                             <h6>
                                                 <b>Nombre del Paciente: </b>
                                                 <span class="orden-number">{{item.people_name}}</span>
@@ -289,13 +287,13 @@
                                                 </div>
                                                 <div>
                                                     <a *ngIf="study.Results_state == '1' && item.state_download == '1' " matTooltip="Descargar resultado" (click)="downloadResult(study.result_id, item, study.Results_state, study.name);"
-                                                        class="btn-flat able" href="#/FalResultados/result#">
+                                                        class="btn-flat able" href="#/resultados/result#">
                                                         <small>
                                                             <i class="material-icons">file_download</i>
                                                         </small>
                                                     </a>
                                                     <a *ngIf="study.Results_state == '0' || item.state_download == '0' " matTooltip="No se permite la descarga" class="btn-flat unable"
-                                                        href="#/FalResultados/result#">
+                                                        href="#/resultados/result#">
                                                         <small>
                                                             <i class="material-icons">file_download</i>
                                                         </small>
@@ -408,7 +406,7 @@
         </div>
         <div class="modal-footer footerFilter">
             <button (click)="closeModalFilter()" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
-            <a href="/#/FalResultados/result#" (click)="getOrdersByRol();" class="modal-close waves-effect waves-green btn">Filtrar resultados</a>
+            <a href="/#/resultados/result#" (click)="getOrdersByRol();" class="modal-close waves-effect waves-green btn">Filtrar resultados</a>
         </div>
     </div>
 
