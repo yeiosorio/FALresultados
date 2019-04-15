@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,12 @@ import { ResultComponent } from './result/result.component';
 
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { registerLocaleData } from '@angular/common';
+import locale from '@angular/common/locales/es';
+
+// the second parameter 'fr' is optional
+registerLocaleData(locale);
 
 import { MzNavbarModule } from 'ngx-materialize';
 
@@ -108,7 +114,10 @@ import { APP_BASE_HREF } from '@angular/common';
 		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 		BrowserAnimationsModule
 	],
-	providers: [ AuthGuard, { provide: APP_BASE_HREF, useValue: '/FalResultados' } ],
+	providers: [ 
+		AuthGuard, { provide: APP_BASE_HREF, useValue: '/FalResultados' } ,
+		{ provide: LOCALE_ID, useValue: 'es' } 
+	],
 	bootstrap: [ AppComponent ]
 })
 export class AppModule {}

@@ -84,7 +84,6 @@ ol li:before {
     position: absolute;
     height: 100%;
     width: 12px;
-
     top: 0%;
     left: 0;
     border-bottom-left-radius: 5px;
@@ -118,12 +117,10 @@ ol li:before {
     position: absolute;
     height: 100%;
     width: 12px;
-
     top: 0%;
     left: 0;
     border-bottom-left-radius: 5px;
 }
-
 
 .numero-orden-head {
     margin-left: 18px !important;
@@ -305,8 +302,7 @@ footer>p {
     transition: .4s ease;
 }
 
-.navbar a:hover,
-.dropdown:hover .dropbtn {
+.navbar a:hover, .dropdown:hover .dropbtn {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -345,26 +341,21 @@ footer>p {
     .logo-header {
         margin-top: 4px;
     }
-
     .body-style {
         background-image: url('/assets/img/wallpaper-results-mobile.jpg');
     }
-
     .contenedor-back {
         background-color: rgba(255, 255, 255, 0);
         padding: 0px;
     }
-
     h5 {
         color: #fff;
     }
-
     .background-search {
         background-color: #fff;
         border-radius: 5px;
         padding-top: 15px;
     }
-
     .boton-filtro {
         width: 85%;
         text-align: center;
@@ -374,23 +365,18 @@ footer>p {
         margin-bottom: 30px;
         background-color: #0081bf;
     }
-
     .retirar {
         display: none;
     }
-
     .padd-out {
         padding: 0px;
     }
-
     .estudios-lista {
         margin: 10px 0px;
     }
-
     .lista {
         padding: 0px 10px;
     }
-
     .responsive {
         width: 85%;
         height: auto;
@@ -465,7 +451,7 @@ footer>p {
 }
 
 .footerFilter {
-    margin-top: 148px;
+    margin-top: 142px;
     margin-left: -12px;
 }
 
@@ -482,4 +468,9 @@ footer>p {
     right: 30px;
     top: 7px;
     z-index: 1;
+}
+
+.closeIcon {
+    font-size: 33px;
+    color: #156499;
 }

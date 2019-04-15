@@ -1,33 +1,28 @@
 <div class="body-style">
     <nav>
         <div class="nav-wrapper">
-            <a href="#!"
-               class="brand-logo">
-                <img class="logo-header"
-                     src="assets/img/logo.jpg" />
+            <a href="#!" class="brand-logo">
+                <img class="logo-header" src="assets/img/logo.jpg" />
             </a>
-            <a href="#"
-               data-target="slide-out"
-               class="sidenav-trigger">
+            <a href="#" data-target="slide-out" class="sidenav-trigger">
                 <i class="material-icons">menu</i>
             </a>
             <ul class="right hide-on-med-and-down">
                 <li>
-                    <a class="waves-effect waves-light modal-trigger"
-                       href="#modal1">Ayuda</a>
+                    <a class="waves-effect waves-light modal-trigger" href="#modal1">Ayuda</a>
                 </li>
                 <!-- <li><a class='dropdown-trigger btn user' href='#' data-target='dropdown12' style="width: 250px;">Usuario01</a></li> -->
                 <li>
                     <div class="dropdown">
-                        <button class="dropbtn">{{username}}<i class="fa fa-caret-down"></i>
+                        <button class="dropbtn">{{username}}
+                            <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content1">
-                            <a href="#/FalResultados/result#"
-                               (click)="openChangePassword()"
-                               class="waves-effect waves-light logout"><i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
+                            <a href="#/FalResultados/result#" (click)="openChangePassword()" class="waves-effect waves-light logout">
+                                <i class="material-icons">vpn_key</i>Cambiar Contraseña</a>
                             <hr class="none-hr">
-                            <a class="waves-effect waves-light logout"
-                               (click)="logOut()"><i class="material-icons">wrap_text</i>Cerrar Sesión</a>
+                            <a class="waves-effect waves-light logout" (click)="logOut()">
+                                <i class="material-icons">wrap_text</i>Cerrar Sesión</a>
                             <!-- <hr class="none-hr">
                           <a href="#">Link 3</a> -->
                         </div>
@@ -43,12 +38,10 @@
     </nav>
 
 
-    <ul id="slide-out"
-        class="sidenav">
+    <ul id="slide-out" class="sidenav">
 
         <li>
-            <a class="waves-effect waves-light modal-trigger"
-               href="#modal1">
+            <a class="waves-effect waves-light modal-trigger" href="#modal1">
                 <i class="material-icons">lightbulb_outline</i>Ayuda</a>
         </li>
         <!-- <li><a href="#!">Second Link</a></li> -->
@@ -69,8 +62,7 @@
         </li>
     </ul>
     <!-- Modal Structure -->
-    <div id="modal1"
-         class="modal bottom-sheet">
+    <div id="modal1" class="modal bottom-sheet">
         <div class="modal-content">
             <h4>¿Necesitas Ayuda?</h4>
             <p>Tips Básicos que te ayudarán para el uso de la aplicación</p>
@@ -85,8 +77,7 @@
                             <p>
                                 <b>Los colores dentro de la actividad de los estudios se representan en la parte izquierda:</b>
                             </p>
-                            <img src="/assets/img/estado-estudios.JPG"
-                                 class="responsive">
+                            <img src="/assets/img/estado-estudios.JPG" class="responsive">
                             <ol>
                                 <li>El color
                                     <em class="color-verde">"Verde" </em> muestra que los estudios estan listos para descarga.</li>
@@ -106,8 +97,7 @@
                             <p>
                                 <b>En el menú superior puedes encontrar:</b>
                             </p>
-                            <img src="/assets/img/nav.png"
-                                 class="responsive">
+                            <img src="/assets/img/nav.png" class="responsive">
                             <ol>
                                 <li>
                                     <b>Ayuda:</b> Te explica toda la plataforma, si tienes dudas.</li>
@@ -128,14 +118,12 @@
                                 <b>En el menú superior puedes encontrar:</b>
                             </p>
                             <ol>
-                                <img src="/assets/img/filtrar.JPG"
-                                     class="responsive">
+                                <img src="/assets/img/filtrar.JPG" class="responsive">
                                 <li>
                                     <b>Filtrar:</b> Colocando un rango de fecha, te permite generar un reporte de todos los
                                     estudios.
                                 </li>
-                                <img src="/assets/img/descargar-todos.JPG"
-                                     class="responsive">
+                                <img src="/assets/img/descargar-todos.JPG" class="responsive">
                                 <li>
                                     <b>Descargar todo:</b> esta opcion te permite, despues de seleccionar, descargar todos los
                                     estudios de una manera más fácil.
@@ -164,16 +152,11 @@
             </h5>
         </div>
         <div class="row background-search">
-            <div class="col s5 m5"
-                 *ngIf="rol == '0' ">
+            <div class="col s5 m5" *ngIf="rol == '0' ">
                 <div class="input-field col s12">
-                    <select class="fondo-select"
-                            (change)="changeClient()"
-                            [(ngModel)]="client">
-                        <option value=""
-                                selected>Todos los Clientes</option>
-                        <option *ngFor="let client of clients"
-                                [value]="client.id">{{client.name}}</option>
+                    <select class="fondo-select" (change)="changeClient()" [(ngModel)]="client">
+                        <option value="" selected>Todos los Clientes</option>
+                        <option *ngFor="let client of clients" [value]="client.id">{{client.name}}</option>
                     </select>
                     <label>Cliente</label>
                 </div>
@@ -181,16 +164,9 @@
             <div class="col s7 m7">
                 <div class="row">
 
-                    <mat-form-field class="width100"
-                                    autocomplete="nope">
-                        <input matInput
-                               id="search"
-                               name="search"
-                               [(ngModel)]="search"
-                               (keyup)="getItems($event)"
-                               autocomplete="new-password"
-                               value=""
-                               placeholder="Buscador...">
+                    <mat-form-field class="width100" autocomplete="nope">
+                        <input matInput id="search" name="search" [(ngModel)]="search" (keyup)="getItems($event)" autocomplete="new-password" value=""
+                            placeholder="Buscador...">
                     </mat-form-field>
                 </div>
             </div>
@@ -200,8 +176,7 @@
                         <p class="retirar estudios-titulo">ESTUDIOS</p>
                     </div>
                     <div class="col s12 m8 l3">
-                        <a class="waves-effect waves-light btn modal-trigger boton-filtro"
-                           href="#modal-fecha">Filtrar por Fecha</a>
+                        <a class="waves-effect waves-light btn modal-trigger boton-filtro" href="#modal-fecha">Filtrar por Fecha</a>
                     </div>
                     <div class="col s12 m8 l4 xl4">
                         <a class="waves-effect waves-light btn no-mobile boton-filtro btn-fter disabled">Descargar Seleccionados</a>
@@ -209,9 +184,7 @@
                     <div class="col s12 m8 l3">
                         <p class="no-mobile check">
                             <label>
-                                <input type="checkbox"
-                                       class="filled-in"
-                                       checked="checked" />
+                                <input type="checkbox" class="filled-in" checked="checked" />
                                 <span>
                                     <small>Seleccionar todos</small>
                                 </span>
@@ -224,8 +197,7 @@
             </div>
         </div>
 
-        <div class="row loading"
-             *ngIf="loading">
+        <div class="row loading" *ngIf="loading">
             <div class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-blue-only">
                     <div class="circle-clipper left">
@@ -242,28 +214,24 @@
         </div>
 
 
-        <div class="row loading"
-             *ngIf="msgListOrders != '' ">
+        <div class="row" *ngIf="msgLimitSearch != '' ">
+            <p>
+                <i class="material-icons">info_outline</i> {{msgLimitSearch}}</p>
+        </div>
+        <div class="row loading" *ngIf="msgListOrders != '' ">
             <h4> {{msgListOrders}}</h4>
         </div>
 
-        <div class="row padd-out"
-             *ngFor="let item of items$; let i = index;">
+        <div class="row padd-out" *ngFor="let item of items$; let i = index;">
             <div class="col s12 m12 l11 padd-out casita2">
 
-                <mat-tab-group mat-elevation-z4
-                               dynamicHeight
-                               animationDuration="0ms"
-                               [color]="colorToggle"
-                               [backgroundColor]="backgroundColor"
-                               class="casita">
+                <mat-tab-group mat-elevation-z4 dynamicHeight animationDuration="0ms" [color]="colorToggle" [backgroundColor]="backgroundColor"
+                    class="casita">
 
                     <mat-tab label="Información">
                         <div class="example-small-box ">
-                            <div id="test-swipe-1"
-                                 class="col s12 white estudies">
-                                <div class="estudies-son"
-                                     [ngClass]="colorBarra">
+                            <div id="test-swipe-1" class="col s12 white estudies">
+                                <div class="estudies-son" [ngClass]="colorBarra">
                                     <div class="row">
                                         <div class="col s3 m2 l2 xl2 numero-orden-head">
                                             <h6>
@@ -286,6 +254,12 @@
                                             </h6>
                                             <label>{{item.people_name}}</label>
                                         </div>
+                                        <div class="col s4 m4 l4 xl3">
+                                            <h6>
+                                                <b>Fecha de atención:</b>
+                                            </h6>
+                                            <label>{{item.date_time_ini | date:'longDate' }}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -293,41 +267,38 @@
                     </mat-tab>
                     <mat-tab label="Estudios">
                         <div class="example-large-box">
-                            <div id="test-swipe-2"
-                                 class="col s12 white estudies">
-                                <div class="estudies-son"
-                                     [ngClass]="colorBarra">
+                            <div id="test-swipe-2" class="col s12 white estudies">
+                                <div class="estudies-son" [ngClass]="colorBarra">
                                     <div class="row espaciado-titulo">
                                         <div class="s12">
-                                            <a class="descargar-todo no-mobile"
-                                               href="#/FalResultados/result#"
-                                               (click)="downloadBlock(item, i);"><small><i class="material-icons text-download">file_download</i></small></a>
+                                            <a class="descargar-todo no-mobile" href="#/FalResultados/result#" (click)="downloadBlock(item, i);">
+                                                <small>
+                                                    <i class="material-icons text-download">file_download</i>
+                                                </small>
+                                            </a>
                                             <h6>
-                                                <b>Número de Orden: </b>
-                                                <span class="orden-number">{{item.order_consec}}</span>
+                                                <b>Nombre del Paciente: </b>
+                                                <span class="orden-number">{{item.people_name}}</span>
                                             </h6>
                                             <hr>
                                         </div>
-                                        <div class="col s12 lista"
-                                             *ngFor="let study of listStudies[i]; let x = index;">
-                                            <div class="estudios-lista"
-                                                 *ngIf="study != undefined">
+                                        <div class="col s12 lista" *ngFor="let study of listStudies[i]; let x = index;">
+                                            <div class="estudios-lista" *ngIf="study != undefined">
                                                 <div>
                                                     {{study.name}}
                                                 </div>
                                                 <div>
-                                                    <a *ngIf="study.Results_state == '1' && item.state_download == '1' "
-                                                       matTooltip="Descargar resultado"
-                                                       (click)="downloadResult(study.result_id, item, study.Results_state, study.name);"
-                                                       class="btn-flat able"
-                                                       href="#/FalResultados/result#">
-                                                        <small><i class="material-icons">file_download</i></small>
+                                                    <a *ngIf="study.Results_state == '1' && item.state_download == '1' " matTooltip="Descargar resultado" (click)="downloadResult(study.result_id, item, study.Results_state, study.name);"
+                                                        class="btn-flat able" href="#/FalResultados/result#">
+                                                        <small>
+                                                            <i class="material-icons">file_download</i>
+                                                        </small>
                                                     </a>
-                                                    <a *ngIf="study.Results_state == '0' || item.state_download == '0' "
-                                                       matTooltip="No se permite la descarga"
-                                                       class="btn-flat unable"
-                                                       href="#/FalResultados/result#">
-                                                        <small><i class="material-icons">file_download</i></small>
+                                                    <a *ngIf="study.Results_state == '0' || item.state_download == '0' " matTooltip="No se permite la descarga" class="btn-flat unable"
+                                                        href="#/FalResultados/result#">
+                                                        <small>
+                                                            <i class="material-icons">file_download</i>
+                                                        </small>
                                                     </a>
 
                                                 </div>
@@ -344,8 +315,7 @@
             <div class="col m1 no-mobile valign-wrapper">
                 <p class="botn-top">
                     <label>
-                        <input type="checkbox"
-                               class="filled-in" />
+                        <input type="checkbox" class="filled-in" />
                         <span></span>
                     </label>
                 </p>
@@ -356,88 +326,69 @@
     </div>
 
     <!-- Modal cambio de password -->
-    <div id="changePassword"
-         class="modal modal-fixed-footer modalRecovery">
+    <div id="changePassword" class="modal modal-fixed-footer modalRecovery">
         <div class="modal-content">
             <h5 class="teal-text left">Cambio de contraseña</h5>
+            <i class="material-icons right closeIcon modal-close waves-effect" (click)="closeModal()">close</i>
             <div class="row mb-10">
                 <div class="input-field col s12">
-                    <input [(ngModel)]="antPassword"
-                           id="antPassword"
-                           type="password"
-                           name="antPassword">
+                    <input [(ngModel)]="antPassword" id="antPassword" type="password" name="antPassword">
                     <label for="antPassword">Contraseña actual</label>
                 </div>
                 <div class="input-field col s12">
-                    <input [(ngModel)]="newPassword"
-                           id="newPassword"
-                           type="password"
-                           name="newPassword">
+                    <input [(ngModel)]="newPassword" id="newPassword" type="password" name="newPassword">
                     <label for="newPassword">Contraseña Nueva</label>
                 </div>
             </div>
             <div class="row mb-10">
-                <div class="col s12"
-                     *ngIf="msgchangePassword != '' ">
-                    <label style="color: #cc6464; font-size: 14px;"
-                           *ngIf="!colorchangePassword">{{msgchangePassword}}</label>
-                    <label style="color: #64cca7; font-size: 14px;"
-                           *ngIf="colorchangePassword">{{msgchangePassword}}</label>
+                <div class="col s12" *ngIf="msgchangePassword != '' ">
+                    <label style="color: #cc6464; font-size: 14px;" *ngIf="!colorchangePassword">{{msgchangePassword}}</label>
+                    <label style="color: #64cca7; font-size: 14px;" *ngIf="colorchangePassword">{{msgchangePassword}}</label>
                 </div>
             </div>
 
         </div>
         <div class="modal-footer">
-            <button (click)="closeModal()"
-                    class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
-            <button (click)="changePassword()"
-                    class="btn waves-effect waves-light btnChangePassword "><i class="material-icons right">lock</i> Cambiar contraseña</button>
+            <button (click)="closeModal()" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+            <button (click)="changePassword()" class="btn waves-effect waves-light btnChangePassword ">
+                <i class="material-icons right">lock</i> Cambiar contraseña</button>
         </div>
     </div>
 
-    <div id="forceChangePassword"
-         class="modal modal-fixed-footer modalRecovery">
+    <div id="forceChangePassword" class="modal modal-fixed-footer modalRecovery">
         <div class="modal-content">
             <h5 class="teal-text left">Cambio de contraseña</h5>
+            <i class="material-icons right closeIcon modal-close waves-effect">close</i>
             <div class="row mb-10">
                 <div class="input-field col s12">
-                    <input [(ngModel)]="antPassword"
-                           id="forcAntPassword"
-                           type="password"
-                           name="forcAntPassword">
+                    <input [(ngModel)]="antPassword" id="forcAntPassword" type="password" name="forcAntPassword">
                     <label for="forcAntPassword">Contraseña Anterior</label>
                 </div>
                 <div class="input-field col s12">
-                    <input [(ngModel)]="newPassword"
-                           id="forceNewPassword"
-                           type="password"
-                           name="forcenewPassword">
+                    <input [(ngModel)]="newPassword" id="forceNewPassword" type="password" name="forcenewPassword">
                     <label for="forceNewPassword">Contraseña Nueva</label>
                 </div>
             </div>
             <div class="row mb-10">
-                <div class="col s12"
-                     *ngIf="msgchangePassword != '' ">
-                    <label style="color: #cc6464; font-size: 14px;"
-                           *ngIf="!colorchangePassword">{{msgchangePassword}}</label>
-                    <label style="color: #64cca7; font-size: 14px;"
-                           *ngIf="colorchangePassword">{{msgchangePassword}}</label>
+                <div class="col s12" *ngIf="msgchangePassword != '' ">
+                    <label style="color: #cc6464; font-size: 14px;" *ngIf="!colorchangePassword">{{msgchangePassword}}</label>
+                    <label style="color: #64cca7; font-size: 14px;" *ngIf="colorchangePassword">{{msgchangePassword}}</label>
                 </div>
             </div>
 
         </div>
         <div class="modal-footer">
-            <button (click)="changePassword()"
-                    class="btn waves-effect waves-light"><i class="material-icons right">lock</i> Cambiar contraseña</button>
+            <button (click)="changePassword()" class="btn waves-effect waves-light">
+                <i class="material-icons right">lock</i> Cambiar contraseña</button>
         </div>
     </div>
 
     <!-- Modal Structure -->
-    <div id="modal-fecha"
-         class="modal modal-1 modalFilterDate">
-        <div class="modal-content">
+    <div id="modal-fecha" class="modal modal-1 modalFilterDate">
+        <div [ngStyle]="{'margin-top': '10px'}" class="modal-content">
             <div class="titleFilterDate">
                 <h4 style="color:#345b9a">Reporte de Resultados </h4>
+                <i [ngStyle]="{'margin-top': '-70px'}" class="material-icons right closeIcon modal-close waves-effect">close</i>
             </div>
             <p class="subTitleFilter">A partir de rango de fechas</p>
             <div class="container">
@@ -445,32 +396,19 @@
                     <div class="row">
                         <div class="col s6">
                             <label>Fecha Inicial</label>
-                            <input id="dateIni"
-                                   type="text"
-                                   placeholder="aaaa/mm/dd"
-                                   name="dateini"
-                                   class="dateIni"
-                                   value="">
+                            <input id="dateIni" type="text" placeholder="aaaa/mm/dd" name="dateini" class="dateIni" value="">
                         </div>
                         <div class="col s6">
                             <label>Fecha Final</label>
-                            <input id="dateEnd"
-                                   type="text"
-                                   placeholder="aaaa/mm/dd"
-                                   name="dateEnd"
-                                   class="dateEnd"
-                                   value="">
+                            <input id="dateEnd" type="text" placeholder="aaaa/mm/dd" name="dateEnd" class="dateEnd" value="">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <div class="modal-footer footerFilter">
-            <button (click)="closeModalFilter()"
-                    class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
-            <a href="/#/FalResultados/result#"
-               (click)="getOrdersByRol();"
-               class="modal-close waves-effect waves-green btn">Filtrar resultados</a>
+            <button (click)="closeModalFilter()" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+            <a href="/#/FalResultados/result#" (click)="getOrdersByRol();" class="modal-close waves-effect waves-green btn">Filtrar resultados</a>
         </div>
     </div>
 

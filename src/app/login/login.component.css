@@ -433,3 +433,7 @@ body {
 .btnChangePassword {
     background-color: #156499 !important;
 }
+.closeIcon {
+    font-size: 33px;
+    color: #156499;
+}

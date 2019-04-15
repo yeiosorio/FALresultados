@@ -254,9 +254,10 @@
 
     <!-- Modal Recuparacion de password -->
     <div id="recoveryPassword"
-         class="modal modal-fixed-footer modalRecovery">
+         class="modal modal-fixed-footer modalRecovery ">
         <div class="modal-content">
             <h5 class="teal-text left">Recuperacion de contraseña</h5>
+            <i class="material-icons right closeIcon modal-close waves-effect" (click)="recoveryIdentification = '' ">close</i>
             <div class="row mb-10">
                 <div class="input-field col s12">
                     <input [(ngModel)]="recoveryIdentification"
@@ -276,7 +277,7 @@
 
         </div>
         <div class="modal-footer">
-            <button href="#login" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+            <button href="#login" class="modal-close waves-effect waves-light btn-flat" (click)="recoveryIdentification = '' ">Cancelar</button>
             <button (click)="recoveryPassword()" class="btn waves-effect waves-light btnChangePassword"><i class="material-icons right">lock</i> Recuperar</button>
         </div>
     </div>
