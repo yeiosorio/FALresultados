@@ -204,7 +204,7 @@
                            href="#modal-fecha">Filtrar por Fecha</a>
                     </div>
                     <div class="col s12 m8 l4 xl4">
-                        <a class="waves-effect waves-light btn no-mobile boton-filtro btn-fter disabled">Descargar Seleccionados</a>
+                        <button class="waves-effect waves-light btn no-mobile boton-filtro btn-fter" (click)="DownloadAllChecked();" [disabled]="isDisabled" >Descargar Seleccionados</button>
                     </div>
                     <div class="col s12 m8 l3">
                         <p class="no-mobile check">
@@ -245,6 +245,9 @@
         <div class="row" *ngIf="msgLimitSearch != '' ">
             <i class="material-icons infoMargin">info_outline</i> <p class="infoIcon">{{msgLimitSearch}}</p>
         </div>
+        <div class="row" *ngIf="blockedDownload != '' ">
+            <i class="material-icons infoMargin">info_outline</i> <p class="infoIcon">{{blockedDownload}}</p>
+        </div>
         <div class="row loading"
              *ngIf="msgListOrders != '' ">
             <h4> {{msgListOrders}}</h4>
@@ -258,8 +261,7 @@
                    <div class="example-small-box ">
                        <div id="test-swipe-1"
                             class="col s12 white estudies">
-                           <div class="estudies-son"
-                                [ngClass]="colorBarra">
+                           <div class="estudies-son" [ngClass]="colorBarra">
                                <div class="row">
                                    <div class="col s3 m2 l2 xl2 numero-orden-head">
                                        <h6>
@@ -301,12 +303,10 @@
                                 [ngClass]="colorBarra">
                                <div class="row espaciado-titulo">
                                    <div class="s12">
-                                       <a class="descargar-todo no-mobile"
-                                          href="#/FalResultados/result#"
-                                          (click)="downloadBlock(item, absoluteIndex(i));"><small><i class="material-icons text-download">file_download</i></small></a>
+                                       <a class="descargar-todo no-mobile" href="#/FalResultados/result#" (click)="downloadBlock(item, absoluteIndex(i));"><small><i class="material-icons text-download">file_download</i></small></a>
                                        <h6>
-                                           <b>Número de Orden: </b>
-                                           <span class="orden-number">{{item.order_consec}}</span>
+                                            <b>Nombre del Paciente: </b>
+                                            <span class="orden-number">{{item.people_name}}</span>
                                        </h6>
                                        <hr>
                                    </div>
@@ -345,8 +345,7 @@
        <div class="col m1 no-mobile valign-wrapper">
            <p class="botn-top">
                <label>
-                   <input type="checkbox"
-                          class="filled-in" />
+                   <input type="checkbox" class="filled-in" [value]="absoluteIndex(i)" name="checkDownload" (change)="toogleDisabled();"/>
                    <span></span>
                </label>
            </p>
