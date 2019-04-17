@@ -6,6 +6,8 @@ declare var M: any;
 import * as moment from 'moment';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 
+
+
 @Component({
 	selector: 'app-result',
 	templateUrl: './result.component.html',
@@ -40,18 +42,21 @@ export class ResultComponent implements OnInit {
 	page: number = 1
 	itemsPerPage: number = 10
 	
-
 	backgroundColor: any;
 	colorToggle: any;
 	items$: any[];
 	client: string;
 	clients: any;
-
+	isDisabled: boolean = false;
+	blockedDownload: string = '';
+	downloadFlag: boolean = false;
+	
+	
 	constructor(private router: Router, private serviceUser: UserService) {
 		this.search = '';
 		this.client = '';
 	}
-
+	
 	ngOnInit() {
 		// inicia los componentes de materialize
 		setTimeout(() => {
@@ -196,7 +201,6 @@ export class ResultComponent implements OnInit {
 				let dateFinal = moment(dateDiffIni).format('YYYY-MM-DD');
 				// Se reasigna a la propiedad de fecha que sera enviada
 				this.dateIni = dateFinal;
-
 				
 			}
 
@@ -252,9 +256,7 @@ export class ResultComponent implements OnInit {
 							this.initializeItems();
 
 							// Se formatea objeto a array para ser iterados los estudios en el template
-							this.auxStudies[this.auxStudies.length - 1] = Object.keys(
-								this.auxStudies[this.auxStudies.length - 1]
-							).map((i) => this.auxStudies[this.auxStudies.length - 1]);
+							this.auxStudies[this.auxStudies.length - 1] = Object.keys(this.auxStudies[this.auxStudies.length - 1]).map((i) => this.auxStudies[this.auxStudies.length - 1]);
 							// Se quitan las dos primeras posiciones por quedar duplicada al hacer el object.keys()
 							this.auxStudies[this.auxStudies.length - 1].splice(0, 2);
 						}
@@ -267,12 +269,48 @@ export class ResultComponent implements OnInit {
 			});
 	}
 
-	downloadBlock(item, index) {
-		this.auxStudies[index].forEach((value, index) => {
-			if (value.Results_state == '1') {
-				this.downloadResult(value.result_id, item, value.Results_state, value.name);
+	toogleDisabled(event){
+
+		console.log('check')
+		console.log(event)
+
+		this.isDisabled = false;
+		
+
+	}
+
+	DownloadAllChecked(){
+		
+		let element = <HTMLInputElement[]> <any> document.getElementsByName('checkDownload');
+		
+		for (let index = 0; index < element.length; index++) {
+			// No se pudieron descargar los resultados de las ordenes seleccionadas
+			if (element[index].checked) {
+				this.downloadFlag = true;
+				let posOrderList = element[index].value;
+				let item = this.items$[posOrderList];
+				this.downloadBlock(item, posOrderList);
 			}
-		});
+		}
+
+		if (!this.downloadFlag) {
+			this.blockedDownload = "No se pudieron descargar los resultados de las ordenes seleccionadas";
+
+			setTimeout(() => {
+				this.blockedDownload = '';
+			}, 6000);
+		}
+	}
+
+	downloadBlock(item, index) {
+
+		if (item.state_download == '1') {
+			this.auxStudies[index].forEach((value, index) => {
+				if (value.Results_state == '1') {
+					this.downloadResult(value.result_id, item, value.Results_state, value.name);
+				}
+			});
+		}
 	}
 
 	// Funcion encargada de la generacion de resultado y la posterior descarga en Pdf.
