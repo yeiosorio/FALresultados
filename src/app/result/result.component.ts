@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 declare var M: any;
 import * as moment from 'moment';
+import { log } from 'util';
 
 @Component({
 	selector: 'app-result',
@@ -11,7 +12,9 @@ import * as moment from 'moment';
 	styleUrls: [ './result.component.css' ]
 })
 export class ResultComponent implements OnInit {
-	downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
+	//	downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
+	downloadUrl: string = 'https://www.samfundacion.com/back_end/ResultProfiles/downloadPrev/true/';
+
 	loading = true;
 	search: string = '';
 	colorchangePassword: any;
@@ -168,6 +171,9 @@ export class ResultComponent implements OnInit {
 			this.identification = userInfo.usuario_id;
 			this.userType = 'Medico';
 		} else {
+			// paciente
+			this.dateIni = moment().subtract(30, 'd').format('YYYY-MM-DD');
+			this.dateEnd = moment().format('YYYY-MM-DD');
 			this.identification = userInfo.identification;
 			this.userType = 'Usuario';
 		}
@@ -247,6 +253,9 @@ export class ResultComponent implements OnInit {
 			}
 			if (this.rol == '3') {
 				// paciente
+
+				this.dateIni = moment().subtract(30, 'd').format('YYYY-MM-DD');
+				this.dateEnd = moment().format('YYYY-MM-DD');
 				if (calFechas > 120) {
 					this.loading = false;
 					alert('Solo se puede colsultar tres mes');
@@ -337,7 +346,7 @@ export class ResultComponent implements OnInit {
 
 	downloadBlock(item, index) {
 		this.auxStudies[index].forEach((value, index) => {
-			if (value.Results_state == '1') {
+			if (value.Results_state == '1' && item.state_download == '1') {
 				this.downloadResult(value.result_id, item, value.Results_state, value.name);
 			}
 		});
