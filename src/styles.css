@@ -54,3 +54,30 @@ nav i.material-icons {
 .content {
     padding: 5px 33px;
 }
+
+.mat-tab-label-container {
+    background: #0081bf !important;
+
+}
+
+.mat-tab-group.mat-background-primary .mat-tab-header,
+.mat-tab-group.mat-background-primary .mat-tab-links,
+.mat-tab-nav-bar.mat-background-primary .mat-tab-header,
+.mat-tab-nav-bar.mat-background-primary .mat-tab-links {
+    background: #0081bf !important;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.mat-input-element {
+    caret-color: #000;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: #000;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    display: none;
+}

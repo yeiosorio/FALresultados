@@ -6,19 +6,19 @@
                 <div class="x1">
                     <div class="cloud"></div>
                 </div>
-            
+
                 <div class="x2">
                     <div class="cloud"></div>
                 </div>
-            
+
                 <div class="x3">
                     <div class="cloud"></div>
                 </div>
-            
+
                 <div class="x4">
                     <div class="cloud"></div>
                 </div>
-            
+
                 <div class="x5">
                     <div class="cloud"></div>
                 </div>
@@ -26,86 +26,105 @@
             <div class="sostenedor">
                 <div class="container white z-depth-2 contenedor offset-s6">
                     <ul class="tabs teal">
-                        <li class="tab col s3"><a class="white-text active"
-                            href="#login">INICIO DE SESIÓN</a></li>
-                        <li class="tab col s3"><a class="white-text"
-                            href="#register">REGISTRARTE</a></li>
+                        <li class="tab col s3">
+                            <a class="white-text active" href="#login">INICIO DE SESIÓN</a>
+                        </li>
+                        <li class="tab col s3">
+                            <a class="white-text" href="#register">REGISTRARTE</a>
+                        </li>
                     </ul>
-                    <div id="login"
-                        class="col s12">
+                    <div id="login" class="col s12">
                         <form class="col s12">
                             <div class="form-container">
                                 <div class="titulos">
                                     <h5 class="teal-text left">Ingresa a tus resultados</h5>
                                 </div>
                                 <div class="row mb-10">
-                                    <div class="input-field col s12 marTop">
-                                        <input id="email"
-                                            type="text"
-                                            class="validate">
-                                        <label for="email">Digíta tu número de documento</label>
+                                    <div class="input-field col s12">
+                                        <input [(ngModel)]="identificationLogin" id="identificationLogin" type="text" class="validate" name="identificationLogin">
+                                        <label for="identificationLogin">Digíta tu número de documento</label>
                                     </div>
                                 </div>
                                 <div class="row mb-10">
                                     <div class="input-field col s12">
-                                        <input id="password"
-                                            type="password"
-                                            class="validate">
+                                        <input [(ngModel)]="password" id="password" type="password" class="validate" name="password">
                                         <label for="password">Contraseña</label>
                                     </div>
                                 </div>
-                                <br>
+                                <div class="row mb-10">
+                                    <div class="col s12" *ngIf="msgUserValidate != '' ">
+                                        <label style="color: #cc6464; font-size: 14px;">{{msgUserValidate}}</label>
+                                    </div>
+                                </div>
                                 <div>
-                                    <button class="btn waves-effect waves-light teal centrar"
-                                            type="submit"
-                                            name="action"
-                                            (click)="iniciarSesion()">INCIAR SESIÓN</button>
+                                    <button class="btn waves-effect waves-light teal centrar" type="submit" name="action" (click)="userAuthenticate()">INCIAR SESIÓN</button>
                                     <br>
                                     <br>
-                                    <a href=""
-                                    class="centroTextoLink">¿Has olvidado la contraseña?</a>
+                                    <a href="#recoveryPassword" class="centroTextoLink modal-trigger">¿Has olvidado la contraseña?</a>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div id="register"
-                        class="col s12">
+                    <div id="register" class="col s12">
                         <form class="col s12">
                             <div class="form-container">
                                 <div class="titulos">
                                     <h5 class="teal-text left">Formulario de Registro</h5>
                                 </div>
+
                                 <div class="row mb-10">
                                     <div class="input-field col s12 marTop">
-                                        <input id="last_name"
-                                            type="text"
-                                            class="validate">
-                                        <label for="last_name">Número de documento</label>
+                                        <input [(ngModel)]="identification" id="identification" type="text" class="validate" name="identification">
+                                        <label for="identification">Número de documento</label>
+                                    </div>
+                                </div>
+                                <!-- <div class="row mb-10">
+                                    <div class="input-field col s12"
+                                         *ngIf="registerStatus">
+                                        <input [(ngModel)]="email"
+                                               id="email"
+                                               type="email"
+                                               name="email">
+                                        <label for="email">Email</label>
                                     </div>
                                 </div>
                                 <div class="row mb-10">
-                                    <div class="input-field col s12">
-                                        <input id="email" type="email" class="validate">
-                                        <label for="email">Correo Electrónico</label>
+                                    <div class="input-field col s12"
+                                         *ngIf="registerStatus">
+                                        <input [(ngModel)]="confirmEmail"
+                                               id="confirmEmail"
+                                               type="email"
+                                               name="email">
+                                        <label for="confirmEmail">Confirmación email</label>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row mb-10">
-                                    <div class="input-field col s12">
-                                        <input id="email-confirm" type="email" class="validate">
-                                        <label for="email-confirm">Confirmar Correo Electrónico</label>
+                                    <div class="col s12" *ngIf="msgRegister != '' ">
+                                        <!-- <i class="material-icons infoMargin">info_outline</i> -->
+                                        <label style="color: #cc6464; font-size: 14px; margin-left: 30px;" *ngIf="!colorSuccess">{{msgRegister}}</label>
+                                        <label style="color: #64cca7; font-size: 14px;" *ngIf="colorSuccess">{{msgRegister}}</label>
                                     </div>
                                 </div>
+
                                 <form action="#">
                                     <p class="centrarTexto">
                                         <label>
-                                            <input type="checkbox">
+                                            <input [(ngModel)]="term" (change)="toggleCheck($event)" type="checkbox" name="checkTerm">
                                             <span>He Leído los términos y condiciones</span>
                                         </label>
                                     </p>
                                 </form>
-                                <p class="centrarTexto">Por favor lee detenidamente los <u><i>Términos y Condiciones</i></u> de usuario y las <u><i>Políticas de Seguridad</i></u></p>
+                                <p class="centrarTexto">Por favor lee detenidamente los
+                                    <u>
+                                        <i>Términos y Condiciones</i>
+                                    </u> de usuario y las
+                                    <u>
+                                        <i>Políticas de Seguridad</i>
+                                    </u>
+                                </p>
                                 <div>
-                                    <button class="btn waves-effect waves-light teal centrar" type="submit" name="action">REGISTRARTE</button>
+                                    <button (click)="getEmailRegister()" class="btn waves-effect waves-light teal centrar" type="submit" name="action">REGISTRARTE</button>
+                                    <!-- <button (click)="register()" *ngIf="registerStatus" class="btn waves-effect waves-light teal centrar" type="submit" name="action">REGISTRARTE</button> -->
                                 </div>
                             </div>
                         </form>
@@ -114,87 +133,116 @@
             </div>
             <div>
                 <p class="get-down">
-                    Información de contacto:<br>
-                    www.fundacionalejandrolondono.com<br>
-                    Teléfono: (036) 745 00 00<br>
-                    E-mail: fundacion@hotmail.es<br>
+                    Información de contacto:
+                    <br> www.fundacionalejandrolondono.com
+                    <br> Teléfono: (036) 745 00 00
+                    <br> E-mail: fundacion@hotmail.es
+                    <br>
                 </p>
-                <div class="footer-text">
-                    <span>Gato Loco Studios S.A.S. 2019 | Todos los derechos reservados</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-front">
-            <div class="white-text titulo-1">
-                <h3>Bienvenido</h3>
-                <h5 class="">Consulta de Resultados</h5>
-            </div>
-            <div class="pasos-margen">
-                <div class="row row-align">
-                    <div class="col s10">
-                        <!-- <span class="flow-text">This div is 12-columns wide on all screen sizes</span> -->
-                        <div class="pasos">
-                            <div>Si ya tienes un usuario y una contraseña por favor ingresala para ver tus resultados, de lo contrario regístrate</div>
-                        </div>
-                    </div>
-                    <div class="col s2 right">
-                        <div class="numeros">
-                            <div>1</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row row-align">
-                    <div class="col s10">
-                        <div class="pasos">
-                            <div>Para regiístrarte llena todos los campos solicitados, una vez los llenes presiona la casilla de “Acepto los términos y condiciones”
-                                para finalizar el registro</div>
-                        </div>
-                    </div>
-                    <div class="col s2 right">
-                        <div class="numeros">
-                            <div>2</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row row-align">
-                    <div class="col s10">
-                        <div class="pasos">
-                            <div>Una vez hayas realizado el registro “Inicia sesión” para confirmar el ingreso</div>
-                        </div>
-                    </div>
-                    <div class="col s2 right">
-                        <div class="numeros">
-                            <div>3</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row row-align">
-                    <div class="col s10">
-                        <div class="pasos">
-                            <div>Eso es todo, consultala desde cualquier plataforma</div>
-                        </div>
-                    </div>
-                    <div class="col s2 right">
-                        <div class="numeros">
-                            <div>4</div>
-                        </div>
-                    </div>
-                </div>
-                <p class="get-down2">
-                    Información de contacto:<br>
-                    www.fundacionalejandrolondono.com<br>
-                    Teléfono: (036) 745 00 00<br>
-                    E-mail: fundacion@hotmail.es<br>
-                </p>
-            </div>
-            <div class="logo-background logo-login">
-                <img src="/assets/img/logo.jpg"
-                     class="img-logo"
-                     width="450px" />
             </div>
         </div>
     </div>
+    <div class="container-front">
+        <div class="logo-background logo-login">
+            <img src="assets/img/logo.jpg" class="img-logo" width="450px" />
+        </div>
+        <div class="white-text titulo-1">
+            <h3>Bienvenido</h3>
+            <h5 class="">Consulta de Resultados</h5>
+        </div>
+        <div class="pasos-margen">
+            <div class="row row-align">
+                <div class="col s10">
+                    <!-- <span class="flow-text">This div is 12-columns wide on all screen sizes</span> -->
+                    <div class="pasos">
+                        <div>Si ya tienes un usuario y una contraseña por favor ingresala para ver tus resultados, de lo contrario
+                            regístrate
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2 right">
+                    <div class="numeros">
+                        <div>1</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-align">
+                <div class="col s10">
+                    <div class="pasos">
+                        <div>Para regiístrarte llena todos los campos solicitados, una vez los llenes presiona la casilla de “Acepto
+                            los términos y condiciones” para finalizar el registro</div>
+                    </div>
+                </div>
+                <div class="col s2 right">
+                    <div class="numeros">
+                        <div>2</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-align">
+                <div class="col s10">
+                    <div class="pasos">
+                        <div>Una vez hayas realizado el registro “Inicia sesión” para confirmar el ingreso</div>
+                    </div>
+                </div>
+                <div class="col s2 right">
+                    <div class="numeros">
+                        <div>3</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-align">
+                <div class="col s10">
+                    <div class="pasos">
+                        <div>Eso es todo, consultala desde cualquier plataforma tus resultados</div>
+                    </div>
+                </div>
+                <div class="col s2 right">
+                    <div class="numeros">
+                        <div>4</div>
+                    </div>
+                </div>
+            </div>
+            <p class="get-down2">
+                Visítanos en:
+                <br> <span class="light-blue-text">Sede Norte 1:</span> Car 15 # 1N – 49.
+                <br> WhatsApp <a href="https://api.whatsapp.com/send?phone=573108469345">310 846 9345</a>
+                <br> <span class="light-blue-text">Sede Norte 2:</span> Cl. 2N # 14-37
+                <br> WhatsApp <a href="https://api.whatsapp.com/send?phone=573104146124">310 414 6124</a>
+                <br> <span class="light-blue-text">Sede Sur:</span> Car 18 # 43 - 70 Esquina
+                <br> WhatsApp <a href="https://api.whatsapp.com/send?phone=573017032131">301 703 2131</a> Armenia, Quindío PBX: (6) 7455566
+            </p>
+        </div>
 
+    </div>
 
+    <!-- Modal Recuparacion de password -->
+    <div id="recoveryPassword" class="modal modal-fixed-footer modalRecovery ">
+        <div class="modal-content">
+            <h5 class="teal-text left">Recuperacion de contraseña</h5>
+            <i class="material-icons right closeIcon modal-close waves-effect" (click)="recoveryIdentification = '' ">close</i>
+            <div class="row mb-10">
+                <div class="input-field col s12">
+                    <input [(ngModel)]="recoveryIdentification" id="recoveryIdentification" type="text" name="recoveryIdentification">
+                    <label for="recoveryIdentification">Número de documento</label>
+                </div>
+            </div>
+            <div class="row mb-10">
+                <div class="col s12" *ngIf="msgRecovery != '' ">
+                    <label style="color: #cc6464; font-size: 14px;" *ngIf="!colorRecovery">{{msgRecovery}}</label>
+                    <label style="color: #64cca7; font-size: 14px;" *ngIf="colorRecovery">{{msgRecovery}}</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button href="#login" class="modal-close waves-effect waves-light btn-flat" (click)="recoveryIdentification = '' ">Cancelar</button>
+            <button (click)="recoveryPassword()" class="btn waves-effect waves-light btnChangePassword">
+                <i class="material-icons right">lock</i> Recuperar</button>
+        </div>
+    </div>
+    <div class="footer-text">
+        <span><a href="http://samsalud.info/" target="_blank">Gato Loco Studios S.A.S. 2019</a> | Todos los derechos reservados</span>
+        <span><a href="mailto:info@gatolocostudios.com">info@gatolocostudios.com</a></span>
+    </div>
 </body>
