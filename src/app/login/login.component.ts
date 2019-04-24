@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit {
 	term = false;
 	registerStatus = false;
 
-	constructor(private router: Router, private serviceUser: UserService) { 
+	constructor(private router: Router, private serviceUser: UserService) {
 		if (localStorage.getItem('token')) {
-            this.router.navigate(['/result'])
-        }
+			this.router.navigate(['/result'])
+		}
 	}
 
 	ngOnInit() {
@@ -89,13 +89,9 @@ export class LoginComponent implements OnInit {
 					this.colorSuccess = true;
 					this.msgRegister = data.msg;
 
-					// setTimeout(() => {
-					// 	this.msgRegister = ""
-					// }, 6000);
 				} else {
 					this.colorSuccess = false;
 					if (!data.noExist) {
-						this.registerStatus = true;
 						this.msgRegister = data.msg;
 
 						setTimeout(() => {
@@ -106,7 +102,7 @@ export class LoginComponent implements OnInit {
 
 						setTimeout(() => {
 							this.msgRegister = '';
-						}, 6000);
+						}, 5000);
 					}
 				}
 			});
@@ -116,48 +112,48 @@ export class LoginComponent implements OnInit {
 		}
 	}
 	// funcion que permite realizar el registro del usuario en la plataforma
-	register() {
-		let identification = this.identification;
-		let email = this.email;
-		let confirmEmail = this.confirmEmail;
+	// register() {
+	// 	let identification = this.identification;
+	// 	let email = this.email;
+	// 	let confirmEmail = this.confirmEmail;
 
-		if (email != undefined) {
-			if (confirmEmail == email) {
-				if (this.term) {
-					this.serviceUser.register(identification, email).subscribe((data) => {
-						if (data.success) {
-							this.colorSuccess = true;
-							this.registerStatus = false;
-							this.email = undefined;
-							this.confirmEmail = undefined;
-							this.msgRegister = data.msg;
+	// 	// if (email != undefined) {
+	// 	// 	if (confirmEmail == email) {
+	// 	if (this.term) {
+	// 		this.serviceUser.register(identification, email).subscribe((data) => {
+	// 			if (data.success) {
+	// 				this.colorSuccess = true;
+	// 				this.registerStatus = false;
+	// 				this.email = undefined;
+	// 				this.confirmEmail = undefined;
+	// 				this.msgRegister = data.msg;
 
-							setTimeout(() => {
-								this.msgRegister = '';
-							}, 5000);
-						} else {
-							this.email = undefined;
-							this.confirmEmail = undefined;
-							this.msgRegister = data.msg;
+	// 				setTimeout(() => {
+	// 					this.msgRegister = '';
+	// 				}, 5000);
+	// 			} else {
+	// 				this.email = undefined;
+	// 				this.confirmEmail = undefined;
+	// 				this.msgRegister = data.msg;
 
-							setTimeout(() => {
-								this.msgRegister = '';
-							}, 5000);
-						}
-					});
-				} else {
-					this.colorSuccess = false;
-					this.msgRegister = '¡Debe aceptar los terminos y condiciones!.';
-				}
-			} else {
-				this.colorSuccess = false;
-				this.msgRegister = '¡No coinciden los correos ingresados!.';
-			}
-		} else {
-			this.colorSuccess = false;
-			this.msgRegister = '¡El campo email no puede estar vacio!.';
-		}
-	}
+	// 				setTimeout(() => {
+	// 					this.msgRegister = '';
+	// 				}, 5000);
+	// 			}
+	// 		});
+	// 	} else {
+	// 		this.colorSuccess = false;
+	// 		this.msgRegister = '¡Debe aceptar los terminos y condiciones!.';
+	// 	}
+	// 	// 	} else {
+	// 	// 		this.colorSuccess = false;
+	// 	// 		this.msgRegister = '¡No coinciden los correos ingresados!.';
+	// 	// 	}
+	// 	// } else {
+	// 	// 	this.colorSuccess = false;
+	// 	// 	this.msgRegister = '¡El campo email no puede estar vacio!.';
+	// 	// }
+	// }
 
 	recoveryPassword() {
 		if (this.recoveryIdentification != undefined) {

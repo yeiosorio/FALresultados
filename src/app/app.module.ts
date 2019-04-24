@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,7 +11,14 @@ import { ResultComponent } from './result/result.component';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { registerLocaleData } from '@angular/common';
+import locale from '@angular/common/locales/es';
+
+// the second parameter 'fr' is optional
+registerLocaleData(locale);
+
 import { MzNavbarModule } from 'ngx-materialize';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AuthGuard } from './_guards';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -56,7 +63,7 @@ import { ResultadosComponent } from './resultados/resultados.component';
 import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
-	declarations: [ AppComponent, LoginComponent, ResultComponent, ResultadosComponent ],
+	declarations: [AppComponent, LoginComponent, ResultComponent, ResultadosComponent],
 	imports: [
 		MzNavbarModule,
 		FormsModule,
@@ -106,9 +113,13 @@ import { APP_BASE_HREF } from '@angular/common';
 		MatTreeModule,
 		HttpClientModule,
 		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		NgxPaginationModule
 	],
-	providers: [ AuthGuard, { provide: APP_BASE_HREF, useValue: '/FalResultados' } ],
-	bootstrap: [ AppComponent ]
+	providers: [
+		AuthGuard, { provide: APP_BASE_HREF, useValue: '/resultados' },
+		{ provide: LOCALE_ID, useValue: 'es' }
+	],
+	bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
