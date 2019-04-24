@@ -160,8 +160,8 @@ export class UserService {
     });
   }
 
-  public addPrintControl(result_id, uid) {
-    let data = JSON.stringify({ results_id: result_id, users_id: uid });
+  public addPrintControl(result_id, uid, attention_id, people) {
+    let data = JSON.stringify({ results_id: result_id, users_id: attention_id, attention_id: uid, people: people });
 
     return Observable.create((observer) => {
       this.http.post(this.URL_API + `WsUsers/addPrintControl.json`, data).subscribe(

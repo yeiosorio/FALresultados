@@ -284,22 +284,15 @@ export class ResultComponent implements OnInit {
 		let element = <HTMLInputElement[]> <any> document.getElementsByName('checkDownload');
 		
 		for (let index = 0; index < element.length; index++) {
-			// No se pudieron descargar los resultados de las ordenes seleccionadas
 			if (element[index].checked) {
-				this.downloadFlag = true;
 				let posOrderList = element[index].value;
 				let item = this.items$[posOrderList];
 				this.downloadBlock(item, posOrderList);
+
 			}
+			
 		}
 
-		if (!this.downloadFlag) {
-			this.blockedDownload = "No se pudieron descargar los resultados de las ordenes seleccionadas";
-
-			setTimeout(() => {
-				this.blockedDownload = '';
-			}, 6000);
-		}
 	}
 
 	downloadBlock(item, index) {
@@ -307,7 +300,21 @@ export class ResultComponent implements OnInit {
 		if (item.state_download == '1') {
 			this.auxStudies[index].forEach((value, index) => {
 				if (value.Results_state == '1') {
+					this.downloadFlag = true;
 					this.downloadResult(value.result_id, item, value.Results_state, value.name);
+				}
+
+				// Si no se pudieron descargar los resultados de las ordenes seleccionadas
+				// Se ejecuta esto al final del ciclo
+				if (this.auxStudies[index].length == (index + 1)) {
+					// Evalua si hubo al menos un resultados que se descargo
+					if (!this.downloadFlag) {
+						this.blockedDownload = "No se pudieron descargar los resultados de algunas ordenes seleccionadas";
+						setTimeout(() => {
+							this.blockedDownload = '';
+							this.downloadFlag = false;
+						}, 6000);
+					}
 				}
 			});
 		}
@@ -366,9 +373,10 @@ export class ResultComponent implements OnInit {
 			});
 
 			this.serviceUser.printResult(data).subscribe((response) => {
-				this.serviceUser.addPrintControl(result_id, this.uid).subscribe((response) => {});
-
+				
 				window.open(this.downloadUrl + item.identification, '_blank');
+				this.serviceUser.addPrintControl(result_id, this.uid, item.attentions_id, this.username).subscribe((response) => {});
+
 			});
 		});
 	}
