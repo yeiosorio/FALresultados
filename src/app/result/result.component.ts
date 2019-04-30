@@ -80,33 +80,9 @@ export class ResultComponent implements OnInit {
 				this.dateIni = moment(value).format('YYYY-MM-DD');
 			},
 			i18n: {
-				months: [
-					'Enero',
-					'Febrero',
-					'Marzo',
-					'Abril',
-					'Mayo',
-					'Junio',
-					'Julio',
-					'Agosto',
-					'Septiembre',
-					'Octubre',
-					'Noviembre',
-					'Diciembre'
+				months: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 				],
-				monthsShort: [
-					'Ene',
-					'Feb',
-					'Mar',
-					'Abr',
-					'May',
-					'Jun',
-					'Jul',
-					'Ago',
-					'Sep',
-					'Oct',
-					'Nov',
-					'Dic'
+				monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
 				],
 				weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
 				cancel: 'Cancelar'
@@ -122,33 +98,9 @@ export class ResultComponent implements OnInit {
 				this.dateEnd = moment(value).format('YYYY-MM-DD');
 			},
 			i18n: {
-				months: [
-					'Enero',
-					'Febrero',
-					'Marzo',
-					'Abril',
-					'Mayo',
-					'Junio',
-					'Julio',
-					'Agosto',
-					'Septiembre',
-					'Octubre',
-					'Noviembre',
-					'Diciembre'
+				months: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 				],
-				monthsShort: [
-					'Ene',
-					'Feb',
-					'Mar',
-					'Abr',
-					'May',
-					'Jun',
-					'Jul',
-					'Ago',
-					'Sep',
-					'Oct',
-					'Nov',
-					'Dic'
+				monthsShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'
 				],
 				weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
 				cancel: 'Cancelar'
