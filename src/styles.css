@@ -90,3 +90,13 @@ nav i.material-icons {
         width: 100%;
     }
 }
+
+.ngx-pagination {
+    background-color: #ffffff99;
+    width: 95%;
+    padding: 13px;
+}
+
+/* .ngx-pagination::before {
+    padding: 8px;
+} */

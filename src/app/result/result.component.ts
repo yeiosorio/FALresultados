@@ -47,6 +47,7 @@ export class ResultComponent implements OnInit {
 	items$: any[];
 	client: string;
 	clients: any;
+	checkOn: false;
 	isDisabled: boolean = false;
 	blockedDownload: string = '';
 	downloadFlag: boolean = false;
@@ -114,7 +115,7 @@ export class ResultComponent implements OnInit {
 			}
 		});
 
-		this.forceChangePassword();
+		
 
 		let userInfo = JSON.parse(localStorage.getItem('userInfo'));
 		let person = JSON.parse(localStorage.getItem('person'));
@@ -127,7 +128,8 @@ export class ResultComponent implements OnInit {
 		if (this.rol == '0') {
 			this.getClients();
 			this.dateIni = moment().subtract(30, 'd').format('YYYY-MM-DD');
-		    this.dateEnd = moment().format('YYYY-MM-DD');
+			this.dateEnd = moment().format('YYYY-MM-DD');
+			this.userType = 'Admin';
 		}
 		if (this.rol == '1') { // cliente
 			this.dateIni = moment().subtract(90, 'd').format('YYYY-MM-DD');
@@ -146,7 +148,7 @@ export class ResultComponent implements OnInit {
 			this.identification = userInfo.identification;
 			this.userType = 'Usuario';
 		}
-
+		this.forceChangePassword();
 		this.getOrdersByRol();
 	}
 	applyFilter(filterValue: string) {
@@ -183,8 +185,12 @@ export class ResultComponent implements OnInit {
 		// Se abre modal para forzar cambio de password
 		if (change_password == 0) {
 			setTimeout(() => {
+				let elems = document.querySelectorAll('#forceChangePassword');
+				this.instances = M.Modal.init(elems, {
+					dismissible: false,
+				});
 				this.instances[0].open();
-			}, 100);
+			}, 1000);
 		}
 	}
 
@@ -495,4 +501,29 @@ export class ResultComponent implements OnInit {
 	absoluteIndex(indexOnPage: number): number {
 		return this.itemsPerPage * (this.page - 1) + indexOnPage;
 	}
+
+	selectAllCheck(){
+		let checkAll = <HTMLInputElement[]>(<any>document.getElementsByName('checkAll'));
+
+		// Si se selecciono el check principal
+		if (checkAll[0].checked) {
+			let element = <HTMLInputElement[]>(<any>document.getElementsByName('checkDownload'));
+			for (let index = 0; index < element.length; index++) {
+				if (!element[index].checked) {
+					element[index].checked = true;
+				}
+			}
+		}else{//Se desmarcan todos los checks
+			let element = <HTMLInputElement[]>(<any>document.getElementsByName('checkDownload'));
+			for (let index = 0; index < element.length; index++) {
+				if (element[index].checked) {
+					element[index].checked = false;
+				}
+			}
+		}
+	}
+
+
+
+
 }

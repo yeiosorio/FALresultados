@@ -210,9 +210,7 @@
                     <div class="col s12 m8 l3">
                         <p class="no-mobile check">
                             <label>
-                                <input type="checkbox"
-                                       class="filled-in"
-                                       checked="checked" />
+                                <input type="checkbox" class="filled-in" (click)="selectAllCheck();" name="checkAll" />
                                 <span>
                                     <small>Seleccionar todos</small>
                                 </span>
@@ -364,9 +362,7 @@
 
                              
 
-        <pagination-controls (pageChange)="page = $event"
-                             previousLabel="Anterior"
-                             nextLabel="Siguiente"></pagination-controls>
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
 
 
     </div>
@@ -418,7 +414,6 @@
          class="modal modal-fixed-footer modalRecovery">
         <div class="modal-content">
             <h5 class="teal-text left">Cambio de contraseña</h5>
-            <i class="material-icons right closeIcon modal-close waves-effect">close</i>
             <div class="row mb-10">
                 <div class="input-field col s12">
                     <input [(ngModel)]="antPassword"

@@ -604,11 +604,3 @@ footer>p {
 .result-down i {
     cursor: pointer;
 }
-
-.ngx-pagination {
-    background-color: #ffffff;
-}
-
-.ngx-pagination::before {
-    padding: 8px;
-}

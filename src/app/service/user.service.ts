@@ -163,8 +163,8 @@ export class UserService {
 	public addPrintControl(result_id, uid, attention_id, people) {
 		let data = JSON.stringify({
 			results_id: result_id,
-			users_id: attention_id,
-			attention_id: uid,
+			users_id: uid,
+			attention_id: attention_id,
 			people: people
 		});
 
