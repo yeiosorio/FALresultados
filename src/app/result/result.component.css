@@ -348,18 +348,26 @@ footer>p {
     width: 100%;
 }
 
+
+
 /*  ----------MEDIA QUERY DISPOSITIVOS----------  */
 
 @media screen and (max-width: 1200px) {
     .orden-number {
         font-size: 12px;
     }
+
+
 }
 
 @media screen and (max-width: 600px) {
     .modalRecovery {
         height: 390px;
         width: 414px;
+    }
+
+    .modalFilterDate {
+        height: 54% !important;
     }
 
     .logo-header {
@@ -434,12 +442,20 @@ footer>p {
     .no-mobile {
         display: none;
     }
+
+
+
 }
 
 @media only screen and (min-width: 993px) {
     .container {
         width: 90%;
     }
+
+    .modalFilterDate {
+        height: 61%;
+    }
+
 }
 
 .color-verde {
@@ -492,9 +508,22 @@ footer>p {
         width: 130%;
         height: auto;
     }
+
+    .modalFilterDate {
+        height: 58% !important;
+    }
 }
 
+@media screen and (max-width: 390px) {
+    .logo-header {
+        width: 130%;
+        height: auto;
+    }
 
+    .modalFilterDate {
+        height: 70% !important;
+    }
+}
 
 
 
@@ -535,7 +564,7 @@ footer>p {
 }
 
 .modalFilterDate {
-    height: 470px;
+    height: 46%;
     /* width: 50%; */
 }
 
@@ -549,7 +578,7 @@ footer>p {
 }
 
 .footerFilter {
-    margin-top: 142px;
+    margin-top: 87px;
     margin-left: -12px;
 }
 

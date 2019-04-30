@@ -13,8 +13,8 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 	styleUrls: [ './result.component.css' ]
 })
 export class ResultComponent implements OnInit {
-	//downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
-	downloadUrl: string = 'https://www.samfundacion.com/back_end/ResultProfiles/downloadPrev/true/';
+	downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
+	//	downloadUrl: string = 'https://www.samfundacion.com/back_end/ResultProfiles/downloadPrev/true/';
 	loading = true;
 	search: string = '';
 	colorchangePassword: any;
@@ -55,7 +55,7 @@ export class ResultComponent implements OnInit {
 		this.search = '';
 		this.client = '';
 	}
-
+	
 	ngOnInit() {
 		// inicia los componentes de materialize
 		setTimeout(() => {
@@ -76,8 +76,13 @@ export class ResultComponent implements OnInit {
 			format: 'yyyy-mm-dd',
 			// maxDate: today,
 			// minDate: minDate,
+			
 			onSelect: (value) => {
+				
 				this.dateIni = moment(value).format('YYYY-MM-DD');
+				this.dateEnd = moment(value).add(30, 'd').format('YYYY-MM-DD');
+	
+				
 			},
 			i18n: {
 				months: [
@@ -118,8 +123,10 @@ export class ResultComponent implements OnInit {
 			format: 'yyyy-mm-dd',
 			// maxDate: today,
 			// minDate: minDate,
+		
 			onSelect: (value) => {
 				this.dateEnd = moment(value).format('YYYY-MM-DD');
+				this.dateIni = moment(value).subtract(30, 'd').format('YYYY-MM-DD');
 			},
 			i18n: {
 				months: [
@@ -167,16 +174,22 @@ export class ResultComponent implements OnInit {
 		// si el usuario es admin
 		if (this.rol == '0') {
 			this.getClients();
+			this.dateIni = moment().subtract(30, 'd').format('YYYY-MM-DD');
+		    this.dateEnd = moment().format('YYYY-MM-DD');
 		}
-		if (this.rol == '1') {
+		if (this.rol == '1') { // cliente
+			this.dateIni = moment().subtract(90, 'd').format('YYYY-MM-DD');
+			this.dateEnd = moment().format('YYYY-MM-DD');
 			this.userType = 'Entidad';
 			this.identification = userInfo.usuario_id;
-		} else if (this.rol == '2') {
+		} else if (this.rol == '2') { // medico
+			this.dateIni = moment().subtract(90, 'd').format('YYYY-MM-DD');
+			this.dateEnd = moment().format('YYYY-MM-DD')
 			this.identification = userInfo.usuario_id;
 			this.userType = 'Medico';
-		} else {
+		} else if (this.rol == '3'){
 			// paciente
-			this.dateIni = moment().subtract(30, 'd').format('YYYY-MM-DD');
+			this.dateIni = moment().format('YYYY-MM-DD');
 			this.dateEnd = moment().format('YYYY-MM-DD');
 			this.identification = userInfo.identification;
 			this.userType = 'Usuario';
@@ -231,14 +244,14 @@ export class ResultComponent implements OnInit {
 		this.items$ = [];
 		this.msgLimitSearch = '';
 
-		let diffDays: any;
+	//	let diffDays: any;
 
 		// Se establecen por defecto las fechas con el dia actual
-		if (!this.dateIni || !this.dateEnd) {
-			this.dateIni = moment().format('YYYY-MM-DD');
-			this.dateEnd = moment().format('YYYY-MM-DD');
-		} else {
-			// De lo contrario se verifica que no exeda el mes de anterioridad
+		// if (!this.dateIni || !this.dateEnd) {
+		// 	this.dateIni = moment().format('YYYY-MM-DD');
+		// 	this.dateEnd = moment().format('YYYY-MM-DD');
+		// } else {
+		// 	// De lo contrario se verifica que no exeda el mes de anterioridad
 			let dateDiffEnd = moment(this.dateEnd);
 			let dateDiffIni = moment(this.dateIni);
 			let calFechas = dateDiffEnd.diff(dateDiffIni, 'days');
@@ -253,23 +266,14 @@ export class ResultComponent implements OnInit {
 			}
 			if (this.rol == '0') {
 				// admin
+			
 				if (calFechas > 30) {
 					this.loading = false;
 					alert('Solo se puede colsultar un mes');
 					return;
 				}
 			}
-			if (this.rol == '3') {
-				// paciente
-
-				this.dateIni = moment().subtract(30, 'd').format('YYYY-MM-DD');
-				this.dateEnd = moment().format('YYYY-MM-DD');
-				if (calFechas > 120) {
-					this.loading = false;
-					alert('Solo se puede colsultar tres mes');
-					return;
-				}
-			}
+		
 
 			if (dateDiffEnd == undefined || dateDiffEnd == null) {
 				alert('Se debe especificar una Fecha Fin');
@@ -291,7 +295,7 @@ export class ResultComponent implements OnInit {
 				// Se reasigna a la propiedad de fecha que sera enviada
 				this.dateIni = dateFinal;
 			}
-		}
+	//	}
 		this.serviceUser
 			.getOrdersByRol(this.dateIni, this.dateEnd, this.identification, this.rol, this.client)
 			.subscribe((data) => {

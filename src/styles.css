@@ -84,3 +84,9 @@ nav i.material-icons {
 .mat-form-field-appearance-legacy .mat-form-field-underline {
     display: none;
 }
+
+@media screen and (min-width: 993px){
+    #formFilterDate>.row>.col>.modal {
+        width: 100%;
+    }
+}
