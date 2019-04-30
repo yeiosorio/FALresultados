@@ -35,6 +35,10 @@
     margin: 7px 0px;
 }
 
+.margen-izq {
+    margin-left: 5px;
+}
+
 .estudies {
     padding: 10px 20px;
     border-bottom-left-radius: 5px;
@@ -125,6 +129,8 @@ ol li:before {
 .numero-orden-head {
     /* margin-left: 18px !important;
     margin-right: -18px; */
+    margin-left: 5px !important;
+
 }
 
 .orden-number {
@@ -302,7 +308,8 @@ footer>p {
     transition: .4s ease;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
+.navbar a:hover,
+.dropdown:hover .dropbtn {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -352,34 +359,43 @@ footer>p {
         height: 390px;
         width: 414px;
     }
+
     .logo-header {
         margin-top: 4px;
     }
+
     .input-search {
         width: 90%;
         margin: 0 5%;
     }
+
     .nodata {
         color: #fff;
     }
+
     .orden-number {
         font-size: 11px;
     }
+
     .body-style {
         background-image: url('/assets/img/wallpaper-results-mobile.jpg');
     }
+
     .contenedor-back {
         background-color: rgba(255, 255, 255, 0);
         padding: 0px;
     }
+
     h5 {
         color: #fff;
     }
+
     .background-search {
         background-color: #fff;
         border-radius: 5px;
         padding-top: 15px;
     }
+
     .boton-filtro {
         width: 85%;
         text-align: center;
@@ -389,18 +405,23 @@ footer>p {
         margin-bottom: 30px;
         background-color: #0081bf;
     }
+
     .retirar {
         display: none;
     }
+
     .padd-out {
         padding: 0px;
     }
+
     .estudios-lista {
         margin: 10px 0px;
     }
+
     .lista {
         padding: 0px 10px;
     }
+
     .responsive {
         width: 85%;
         height: auto;
