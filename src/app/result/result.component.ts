@@ -16,7 +16,7 @@ export class ResultComponent implements OnInit {
 	//downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
 	downloadUrl: string = 'https://www.samfundacion.com/back_end/ResultProfiles/downloadPrev/true/';
 	loading = true;
-	search = 'test';
+	search: string = '';
 	colorchangePassword: any;
 	antPassword: any;
 	newPassword: any;
