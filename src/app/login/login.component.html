@@ -54,11 +54,17 @@
                                 </div>
                                 <div class="row mb-10">
                                     <div class="input-field col s12">
+
                                         <input [(ngModel)]="password"
-                                               id="password"
+                                                matInput
+                                                showHideInput
+                                               id="password1"
                                                type="password"
                                                class="validate"
                                                name="password">
+                                        <i class="material-icons" matSuffix showHideTrigger="password1" 
+                                            [showHideStatus]="{ materialIcon: true, id: 'password1' }">
+                                        </i>
                                         <label for="password">Contraseña</label>
                                     </div>
                                 </div>

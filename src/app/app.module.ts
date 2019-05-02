@@ -61,6 +61,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ResultadosComponent } from './resultados/resultados.component';
 import { APP_BASE_HREF } from '@angular/common';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 @NgModule({
 	declarations: [AppComponent, LoginComponent, ResultComponent, ResultadosComponent],
@@ -114,7 +115,8 @@ import { APP_BASE_HREF } from '@angular/common';
 		HttpClientModule,
 		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 		BrowserAnimationsModule,
-		NgxPaginationModule
+		NgxPaginationModule,
+		ShowHidePasswordModule
 	],
 	providers: [
 		AuthGuard, { provide: APP_BASE_HREF, useValue: '/resultados' },
