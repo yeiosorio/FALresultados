@@ -63,7 +63,7 @@ import { ResultadosComponent } from './resultados/resultados.component';
 import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
-	declarations: [ AppComponent, LoginComponent, ResultComponent, ResultadosComponent ],
+	declarations: [AppComponent, LoginComponent, ResultComponent, ResultadosComponent],
 	imports: [
 		MzNavbarModule,
 		FormsModule,
@@ -116,10 +116,10 @@ import { APP_BASE_HREF } from '@angular/common';
 		BrowserAnimationsModule,
 		NgxPaginationModule
 	],
-	providers: [ 
-		AuthGuard, { provide: APP_BASE_HREF, useValue: '/FalResultados' } ,
-		{ provide: LOCALE_ID, useValue: 'es' } 
+	providers: [
+		AuthGuard, { provide: APP_BASE_HREF, useValue: '/resultados' },
+		{ provide: LOCALE_ID, useValue: 'es' }
 	],
-	bootstrap: [ AppComponent ]
+	bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -4,9 +4,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 declare var M: any;
 import * as moment from 'moment';
+import { log } from 'util';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-
-
 
 @Component({
 	selector: 'app-result',
@@ -15,8 +14,9 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 })
 export class ResultComponent implements OnInit {
 	downloadUrl: string = 'http://52.183.68.4/xxespejofundacion/back_end/ResultProfiles/downloadPrev/true/';
+	//	downloadUrl: string = 'https://www.samfundacion.com/back_end/ResultProfiles/downloadPrev/true/';
 	loading = true;
-	search = 'test';
+	search: string = '';
 	colorchangePassword: any;
 	antPassword: any;
 	newPassword: any;
@@ -39,19 +39,19 @@ export class ResultComponent implements OnInit {
 	listStudies = {};
 	auxStudies = [];
 	msgchangePassword = '';
-	page: number = 1
-	itemsPerPage: number = 10
-	
+	page: number = 1;
+	itemsPerPage: number = 10;
+
 	backgroundColor: any;
 	colorToggle: any;
 	items$: any[];
 	client: string;
 	clients: any;
+	checkOn: false;
 	isDisabled: boolean = false;
 	blockedDownload: string = '';
 	downloadFlag: boolean = false;
-	
-	
+
 	constructor(private router: Router, private serviceUser: UserService) {
 		this.search = '';
 		this.client = '';
@@ -77,8 +77,13 @@ export class ResultComponent implements OnInit {
 			format: 'yyyy-mm-dd',
 			// maxDate: today,
 			// minDate: minDate,
+			
 			onSelect: (value) => {
+				
 				this.dateIni = moment(value).format('YYYY-MM-DD');
+				this.dateEnd = moment(value).add(30, 'd').format('YYYY-MM-DD');
+	
+				
 			},
 			i18n: {
 				months: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
@@ -95,20 +100,22 @@ export class ResultComponent implements OnInit {
 			format: 'yyyy-mm-dd',
 			// maxDate: today,
 			// minDate: minDate,
+		
 			onSelect: (value) => {
 				this.dateEnd = moment(value).format('YYYY-MM-DD');
+				this.dateIni = moment(value).subtract(30, 'd').format('YYYY-MM-DD');
 			},
 			i18n: {
 				months: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 				],
-				monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
+				monthsShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'
 				],
 				weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
 				cancel: 'Cancelar'
 			}
 		});
+
 		
-		this.forceChangePassword();
 
 		let userInfo = JSON.parse(localStorage.getItem('userInfo'));
 		let person = JSON.parse(localStorage.getItem('person'));
@@ -120,18 +127,28 @@ export class ResultComponent implements OnInit {
 		// si el usuario es admin
 		if (this.rol == '0') {
 			this.getClients();
+			this.dateIni = moment().subtract(30, 'd').format('YYYY-MM-DD');
+			this.dateEnd = moment().format('YYYY-MM-DD');
+			this.userType = 'Admin';
 		}
-		if (this.rol == '1') {
+		if (this.rol == '1') { // cliente
+			this.dateIni = moment().subtract(90, 'd').format('YYYY-MM-DD');
+			this.dateEnd = moment().format('YYYY-MM-DD');
 			this.userType = 'Entidad';
 			this.identification = userInfo.usuario_id;
-		} else if (this.rol == '2') {
+		} else if (this.rol == '2') { // medico
+			this.dateIni = moment().subtract(90, 'd').format('YYYY-MM-DD');
+			this.dateEnd = moment().format('YYYY-MM-DD')
 			this.identification = userInfo.usuario_id;
 			this.userType = 'Medico';
-		} else {
+		} else if (this.rol == '3'){
+			// paciente
+			this.dateIni = moment().format('YYYY-MM-DD');
+			this.dateEnd = moment().format('YYYY-MM-DD');
 			this.identification = userInfo.identification;
 			this.userType = 'Usuario';
 		}
-
+		this.forceChangePassword();
 		this.getOrdersByRol();
 	}
 	applyFilter(filterValue: string) {
@@ -168,8 +185,12 @@ export class ResultComponent implements OnInit {
 		// Se abre modal para forzar cambio de password
 		if (change_password == 0) {
 			setTimeout(() => {
+				let elems = document.querySelectorAll('#forceChangePassword');
+				this.instances = M.Modal.init(elems, {
+					dismissible: false,
+				});
 				this.instances[0].open();
-			}, 100);
+			}, 1000);
 		}
 	}
 
@@ -179,19 +200,49 @@ export class ResultComponent implements OnInit {
 		this.loading = true;
 		this.msgListOrders = '';
 		this.items$ = [];
-		this.msgLimitSearch = "";
+		this.msgLimitSearch = '';
 
-		let diffDays: any;
+	//	let diffDays: any;
 
 		// Se establecen por defecto las fechas con el dia actual
-		if (!this.dateIni || !this.dateEnd) {
-			this.dateIni = moment().format('YYYY-MM-DD');
-			this.dateEnd = moment().format('YYYY-MM-DD');
-		} else {
-			// De lo contrario se verifica que no exeda el mes de anterioridad
+		// if (!this.dateIni || !this.dateEnd) {
+		// 	this.dateIni = moment().format('YYYY-MM-DD');
+		// 	this.dateEnd = moment().format('YYYY-MM-DD');
+		// } else {
+		// 	// De lo contrario se verifica que no exeda el mes de anterioridad
 			let dateDiffEnd = moment(this.dateEnd);
 			let dateDiffIni = moment(this.dateIni);
-			diffDays = dateDiffEnd.diff(dateDiffIni, 'days'); // 1
+			let calFechas = dateDiffEnd.diff(dateDiffIni, 'days');
+
+			if (this.rol == '1' || this.rol == '2') {
+				// entidad o medico
+				if (calFechas > 90) {
+					alert('Solo se puede colsultar dos mes');
+					this.loading = false;
+					return;
+				}
+			}
+			if (this.rol == '0') {
+				// admin
+			
+				if (calFechas > 30) {
+					this.loading = false;
+					alert('Solo se puede colsultar un mes');
+					return;
+				}
+			}
+		
+
+			if (dateDiffEnd == undefined || dateDiffEnd == null) {
+				alert('Se debe especificar una Fecha Fin');
+				return;
+			}
+			if (dateDiffIni == undefined || dateDiffIni == null) {
+				alert('Se debe especificar una Fecha Inicial');
+				return;
+			}
+
+			let diffDays = dateDiffEnd.diff(dateDiffIni, 'days'); // 1
 
 			// // Diferencia de 30 dias
 			if (diffDays > 30) {
@@ -201,17 +252,15 @@ export class ResultComponent implements OnInit {
 				let dateFinal = moment(dateDiffIni).format('YYYY-MM-DD');
 				// Se reasigna a la propiedad de fecha que sera enviada
 				this.dateIni = dateFinal;
-				
 			}
-
-		}
-		this.serviceUser.getOrdersByRol(this.dateIni, this.dateEnd, this.identification, this.rol, this.client)
+	//	}
+		this.serviceUser
+			.getOrdersByRol(this.dateIni, this.dateEnd, this.identification, this.rol, this.client)
 			.subscribe((data) => {
-
-				console.log(diffDays)
+				console.log(diffDays);
 				if (diffDays > 30) {
 					// Propiedad que muestra mensaje indicando que la consulta se limito a solo 3 meses
-					this.msgLimitSearch = "La consulta se ha generado con limite de 1 mes"
+					this.msgLimitSearch = 'La consulta se ha generado con limite de 1 mes';
 				}
 				this.loading = false;
 				this.msgListOrders = data.msg;
@@ -256,7 +305,9 @@ export class ResultComponent implements OnInit {
 							this.initializeItems();
 
 							// Se formatea objeto a array para ser iterados los estudios en el template
-							this.auxStudies[this.auxStudies.length - 1] = Object.keys(this.auxStudies[this.auxStudies.length - 1]).map((i) => this.auxStudies[this.auxStudies.length - 1]);
+							this.auxStudies[this.auxStudies.length - 1] = Object.keys(
+								this.auxStudies[this.auxStudies.length - 1]
+							).map((i) => this.auxStudies[this.auxStudies.length - 1]);
 							// Se quitan las dos primeras posiciones por quedar duplicada al hacer el object.keys()
 							this.auxStudies[this.auxStudies.length - 1].splice(0, 2);
 						}
@@ -269,45 +320,45 @@ export class ResultComponent implements OnInit {
 			});
 	}
 
-	toogleDisabled(event){
-
-		console.log('check')
-		console.log(event)
+	toogleDisabled(event) {
+		console.log('check');
+		console.log(event);
 
 		this.isDisabled = false;
-		
-
 	}
 
-	DownloadAllChecked(){
-		
-		let element = <HTMLInputElement[]> <any> document.getElementsByName('checkDownload');
-		
+	DownloadAllChecked() {
+		let element = <HTMLInputElement[]>(<any>document.getElementsByName('checkDownload'));
+
 		for (let index = 0; index < element.length; index++) {
-			// No se pudieron descargar los resultados de las ordenes seleccionadas
 			if (element[index].checked) {
-				this.downloadFlag = true;
 				let posOrderList = element[index].value;
 				let item = this.items$[posOrderList];
 				this.downloadBlock(item, posOrderList);
 			}
 		}
-
-		if (!this.downloadFlag) {
-			this.blockedDownload = "No se pudieron descargar los resultados de las ordenes seleccionadas";
-
-			setTimeout(() => {
-				this.blockedDownload = '';
-			}, 6000);
-		}
 	}
 
 	downloadBlock(item, index) {
-
 		if (item.state_download == '1') {
 			this.auxStudies[index].forEach((value, index) => {
 				if (value.Results_state == '1') {
+					this.downloadFlag = true;
 					this.downloadResult(value.result_id, item, value.Results_state, value.name);
+				}
+
+				// Si no se pudieron descargar los resultados de las ordenes seleccionadas
+				// Se ejecuta esto al final del ciclo
+				if (this.auxStudies[index].length == index + 1) {
+					// Evalua si hubo al menos un resultados que se descargo
+					if (!this.downloadFlag) {
+						this.blockedDownload =
+							'No se pudieron descargar los resultados de algunas ordenes seleccionadas';
+						setTimeout(() => {
+							this.blockedDownload = '';
+							this.downloadFlag = false;
+						}, 6000);
+					}
 				}
 			});
 		}
@@ -366,9 +417,10 @@ export class ResultComponent implements OnInit {
 			});
 
 			this.serviceUser.printResult(data).subscribe((response) => {
-				this.serviceUser.addPrintControl(result_id, this.uid).subscribe((response) => {});
-
 				window.open(this.downloadUrl + item.identification, '_blank');
+				this.serviceUser
+					.addPrintControl(result_id, this.uid, item.attentions_id, this.username)
+					.subscribe((response) => {});
 			});
 		});
 	}
@@ -434,7 +486,6 @@ export class ResultComponent implements OnInit {
 	// funcion que permite listar los clientes activos state = 1 de la fundacion alejandro londoño
 	getClients() {
 		this.serviceUser.getClients().subscribe((res) => {
-			
 			this.clients = res.listClients;
 			// se espera un momento para inicializar los campos select
 			setTimeout(() => {
@@ -450,4 +501,29 @@ export class ResultComponent implements OnInit {
 	absoluteIndex(indexOnPage: number): number {
 		return this.itemsPerPage * (this.page - 1) + indexOnPage;
 	}
+
+	selectAllCheck(){
+		let checkAll = <HTMLInputElement[]>(<any>document.getElementsByName('checkAll'));
+
+		// Si se selecciono el check principal
+		if (checkAll[0].checked) {
+			let element = <HTMLInputElement[]>(<any>document.getElementsByName('checkDownload'));
+			for (let index = 0; index < element.length; index++) {
+				if (!element[index].checked) {
+					element[index].checked = true;
+				}
+			}
+		}else{//Se desmarcan todos los checks
+			let element = <HTMLInputElement[]>(<any>document.getElementsByName('checkDownload'));
+			for (let index = 0; index < element.length; index++) {
+				if (element[index].checked) {
+					element[index].checked = false;
+				}
+			}
+		}
+	}
+
+
+
+
 }

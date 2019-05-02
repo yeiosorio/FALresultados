@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+html {
+    overflow-y: hidden;
+}
 
 
 body {
@@ -82,6 +85,18 @@ nav i.material-icons {
     display: none;
 }
 
-.width100 {
-    width: 100%;
+@media screen and (min-width: 993px){
+    #formFilterDate>.row>.col>.modal {
+        width: 100%;
+    }
 }
+
+.ngx-pagination {
+    background-color: #ffffff99;
+    width: 95%;
+    padding: 13px;
+}
+
+/* .ngx-pagination::before {
+    padding: 8px;
+} */
