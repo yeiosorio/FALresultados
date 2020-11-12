@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+html {
+    overflow-y: hidden;
+}
 
 
 body {
@@ -54,3 +57,46 @@ nav i.material-icons {
 .content {
     padding: 5px 33px;
 }
+
+.mat-tab-label-container {
+    background: #0081bf !important;
+
+}
+
+.mat-tab-group.mat-background-primary .mat-tab-header,
+.mat-tab-group.mat-background-primary .mat-tab-links,
+.mat-tab-nav-bar.mat-background-primary .mat-tab-header,
+.mat-tab-nav-bar.mat-background-primary .mat-tab-links {
+    background: #0081bf !important;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.mat-input-element {
+    caret-color: #000;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: #000;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    display: none;
+}
+
+@media screen and (min-width: 993px){
+    #formFilterDate>.row>.col>.modal {
+        width: 100%;
+    }
+}
+
+.ngx-pagination {
+    background-color: #ffffff99;
+    width: 95%;
+    padding: 13px;
+}
+
+/* .ngx-pagination::before {
+    padding: 8px;
+} */

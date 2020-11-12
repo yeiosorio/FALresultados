@@ -9,8 +9,9 @@ import { AuthGuard } from './_guards';
 const app_routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'result', component: ResultComponent, canActivate: [ AuthGuard ] },
-	{ path: '**', pathMatch: 'full', redirectTo: 'login' }
+	{ path: '', redirectTo: 'login', pathMatch: 'full' },
+	{ path: '**', redirectTo: 'login' }
 	// path: '**' -> cualquier otra direccion
 ];
 
-export const app_routing = RouterModule.forRoot(app_routes);
+export const app_routing = RouterModule.forRoot(app_routes, { useHash: true });
