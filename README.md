@@ -4,7 +4,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 =======
 
-![Alt text](/FALresultados/img/Captura de pantalla de 2020-11-11 21-27-59.png?raw=true "Login") 
+![Alt text](/img/login.png?raw=true "Login") 
 
 ![Alt text](/FALresultados/img/Captura de pantalla de 2020-11-11 21-38-03.png?raw=true "Home") 
 ![ScreenShot](https://https://github.com/{yeiosorio}/{FALresultados}/{master}/{img/Captura de pantalla de 2020-11-11 21-38-03.png}) 
